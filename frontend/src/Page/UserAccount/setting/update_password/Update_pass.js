@@ -1,0 +1,85 @@
+import React, { useState } from "react";
+import "./Update_pass.scss";
+import isEmpty from "validator/lib/isEmpty";
+
+const Update_pass = () => {
+  const onSubmitForm = (event) => {
+    event.preventDefault();
+  };
+
+  const [oldpass, setOldPass] = useState("");
+  const [newpass, setNewPass] = useState("");
+  const [newpass1, setNewPass1] = useState("");
+  const [msgVal, setmsgVal] = useState("");
+  const onchangeOldPass = (event) => {
+    setOldPass(event.target.value);
+  };
+  const onchangeNewPass = (event) => {
+    setNewPass(event.target.value);
+  };
+  const onchangeNewPass1 = (event) => {
+    setNewPass1(event.target.value);
+  };
+  const validateAll = () => {
+    const msg = {};
+    if (isEmpty(oldpass)) {
+      msg.oldpass = "Please input your old password";
+    }
+    if (isEmpty(newpass)) {
+      msg.newpass = "Please input your new password";
+    }
+    if (isEmpty(newpass1)) {
+      msg.newpass1 = "Please input your new password";
+    }
+    setmsgVal(msg);
+    if (Object.keys(msg).length > 0) return false;
+    return true;
+  };
+  const onSubmitSave = () => {
+    const isValid = validateAll();
+    if (!isValid) return;
+  };
+
+  return (
+    <form action="" className="update-pass" onSubmit={onSubmitForm}>
+      <div className="input-container">
+        <i className="fa fa-lock icon" style={{ width: 22.5 }}></i>
+        <input
+          type="text"
+          placeholder="Mật khẩu cũ..."
+          className="input"
+          name="oldpassword"
+          value={oldpass}
+          onChange={onchangeOldPass}
+        />
+      </div>
+      <p>{msgVal.oldpass}</p>
+      <div className="input-container">
+        <i className="fa fa-key icon"></i>
+        <input
+          type="text"
+          placeholder="Mật khẩu mới..."
+          className="input"
+          name="newpassword"
+          value={newpass}
+          onChange={onchangeNewPass}
+        />
+      </div>
+      <p>{msgVal.newpass}</p>
+      <div className="input-container">
+        <i className="fa fa-check icon"></i>
+        <input
+          type="text"
+          placeholder="Nhập lại mật khẩu..."
+          className="input"
+          name="password1"
+          value={newpass1}
+          onChange={onchangeNewPass1}
+        />
+      </div>
+      <p>{msgVal.newpass1}</p>
+      <button onClick={onSubmitSave}>Đổi mật khẩu</button>
+    </form>
+  );
+};
+export default Update_pass;

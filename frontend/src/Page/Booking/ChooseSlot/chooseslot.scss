@@ -1,0 +1,172 @@
+
+.checkOut__left {
+  
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    box-shadow: -5px 5px 11px -2px #cacbcc;
+    
+    .memu__list {
+      list-style: none;
+      padding: spacing(3) spacing(6.5) spacing(1);
+      
+      .list__item {
+        display: inline;
+        margin-right: spacing(5);
+        padding-top: spacing(3);
+        
+        &.active {
+          color: #fb4226;
+          border-top: 1px solid #fb4226;
+        }
+        .step {
+          text-transform: uppercase;
+          
+          
+        }
+      }
+    }
+    .user__login {
+      padding: spacing(3) spacing(3) spacing(1);
+      
+      .user__link {
+        text-decoration: none;
+        img {
+          width: 30px;
+          border-radius: 50%;
+          margin: spacing(0.3);
+        }
+        .user__name {
+          
+          color: #949494;
+          
+        }
+      }
+    }
+  }
+  
+    .bookSlot__content {
+      padding: spacing(3) spacing(10) spacing(0) spacing(12);
+      margin-left: 10px;
+      .theater__info {
+        
+        .theater__img {
+          img {
+            width: 55px;
+            height: 55px;
+          }
+          .theater__name {
+            margin-top: -200px;
+            margin-left: 10px;
+            .name {
+              color: #949494;
+              .subname {
+                color: #29303b;
+                font-size: 30px;
+              }
+            }
+            .showtime {
+              margin-top: -50px;
+              color: #949494;
+              
+            }
+          }
+        }
+        .timeKeepSlot {
+          text-align: center;
+          margin-right: 50px;
+          .title__text {
+            color: #949494;
+            
+            margin: 0;
+          }
+          .time {
+            color: #fb4226;
+            font-size: 30px;
+            letter-spacing: spacing(0.1);
+          }
+        }
+      }
+      .chooseSlot {
+        .screen__img {
+          img {
+            width: 95%;
+          }
+        }
+        .picking {
+          text-align: center;
+          padding: 0 spacing(5);
+          margin-bottom: spacing(3);
+          
+          .row__name {
+            .row__list {
+              list-style: none;
+              .list__item {
+                margin-bottom: spacing(0.36);
+              }
+            }
+          }
+          .slot__picking {
+            padding-left: 50px; ;
+           
+            .slot__row {
+              
+              text-align: center;
+              .slot__item {
+                
+                cursor: pointer;
+                color: #949494;
+                padding-left: 10px;
+                font-size: 25px;
+                &.item--picking {
+                  color: #60c5ef;
+                  padding-left: 10px;
+                  &.item--vip {
+                    color: #60c5ef;
+                  }
+                }
+                
+                &.item--picked {
+                  opacity: 0.5;
+                  cursor: no-drop;
+                  color: #949494;
+                  padding-left: 10px;
+                }
+                &.item--vip {
+                  color: #fb4226;
+                }
+                
+              }
+            }
+          }
+        }
+        .slot__detail {
+          padding-bottom: spacing(2);
+          text-align: center;
+          justify-content: center;
+          .fa {
+            font-size: 20px;
+            &.item--regular {
+              color: #949494;
+            }
+            &.item--picking {
+              color: #60c5ef;
+            }
+            &.item--vip {
+              color: #fb4226;
+            }
+            &.item--picked {
+              opacity: 0.2;
+            }
+          }
+          .slot__text {
+            padding-left: 10px;
+            margin-right: spacing(1.5);
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+
