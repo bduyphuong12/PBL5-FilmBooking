@@ -2,9 +2,9 @@ import React from "react";
 import "./checkout.scss";
 import swal from "sweetalert";
 
-
-import { Redirect } from "react-router-dom";
-import CreditModal from "../CreditModal/CreditModal";
+import TableCornAndWater from "../CornAndWater/tableCornandWater";
+import { Link } from "react-router-dom";
+import CreditModal from "../CornAndWater/CreditModal/CreditModal";
 export default function Checkout() {
   // let {  danhSachGheDangDat  } = props;
   // const renderThongTinGheDangDat = () => {
@@ -111,18 +111,20 @@ export default function Checkout() {
           <span className="noti__link">Email</span> đã nhập.{" "}
         </span>
       </div>
-      <div
-        id="btnBook"
-        className="btnBook"
-        data-toggle="modal"
-        data-target="#CreditModal"
+      <div>
+      <Link
+        className="btnContinue"
+        to={'/cornAwater'}
+
         // onClick={() => {
         //   datVe();
         // }}
       >
-        Thanh toán
+        Tiếp theo
+      </Link>
       </div>
-      <CreditModal datVe={datVe} />
+      
+      
     </div>
   );
 }

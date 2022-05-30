@@ -9,6 +9,8 @@ import AboutUs from './Components/PageLayout/Footer/about-us';
 import HomePage from './Page/HomePage/homepage';
 import MovieDetail from './Page/MovieDetail/moviedetail';
 import BookingTicket from './Page/Booking/bookticket';
+import TableCornAndWater from './Page/Booking/CornAndWater/tableCornandWater';
+import DoneBook from './Page/Booking/DoneBook/donebook';
 function App() {
   return (
     <BrowserRouter className="App" > 
@@ -17,6 +19,8 @@ function App() {
         <Route exact path="/" component={() => <HomePage />} />
         <Route  path="/film-detail" component={() => <MovieDetail />} />
         <Route path="/booking" component={()=> <BookingTicket />} />
+        <Route path="/cornAwater" component={() => <TableCornAndWater />} />
+        <Route path="/doneBook" component={() => <DoneBook />} />
         <Route path="/login" component={() => <Login /> } />
         <Route path="/register" component={() => <Register /> } />
         <Route path="/setting" component={() => <Setting_form />} />

@@ -5,7 +5,7 @@
 
   .checkout__form {
     overflow-y: scroll;
-    height: 450px;
+    height: 500px;
     width: 320px;
     &::-webkit-scrollbar {
       width: 2px;
@@ -170,25 +170,28 @@
   }
   .textNotification {
     padding: spacing(1) spacing(1) spacing(7) spacing(0);
-   
+    margin-bottom:20px ;
     
   }
   span{
     font-size: 10px;
     
   }
-  .btnBook {
+  .btnContinue {
+    text-decoration: none;
     
-    left: 0;
     
-    bottom: 0;
-    padding-top: 15px;
+    margin-top: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 40%;
+    padding-right: 38%;
     height: 60px;
     text-align: center;
     background-image: linear-gradient(223deg, #b4ec51 0, #429321 100%);
     
     color: #f7f8fa;
-    cursor: pointer;
+    cursor: point;
     
   }
 }

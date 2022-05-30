@@ -1,4 +1,9 @@
-
+.App-footer{
+  margin-top: 20px;
+}
+.grid{
+  margin-top: 20px;
+}
 .footer-icon {
   display: block;
   position: relative;
