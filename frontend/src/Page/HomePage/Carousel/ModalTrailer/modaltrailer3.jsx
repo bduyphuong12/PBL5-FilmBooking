@@ -1,19 +1,11 @@
 import React from "react";
-import "./ModalTrailer.scss";
+import "./modaltrailer.scss";
 import Modal from "@material-ui/core/Modal";
 import Fade from "@material-ui/core/Fade";
 import Box from "@material-ui/core/Box";
 
-export default function ModalTrailer({ trailer, maPhim, open, handleToggle }) {
-  const getId = (url) => {
-    if (!url) return null;
-    const regExp =
-      /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-    const match = url.match(regExp);
-
-    return match && match[2].length === 11 ? match[2] : null;
-  };
-  const video_id = getId(trailer);
+export default function ModalTrailer3({ open2, handleToggle2 }) {
+  
   const style = {
     position: "absolute",
     bottom: "0",
@@ -30,19 +22,19 @@ export default function ModalTrailer({ trailer, maPhim, open, handleToggle }) {
     <Modal
       aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
-      open={open}
-      onClose={handleToggle}
+      open={open2}
+      onClose={handleToggle2}
       closeAfterTransition
     >
-      <Fade in={open}>
+      <Fade in={open2}>
         <Box sx={style}>
           <div className="position-relative w-100 h-100">
             <div className="d-flex justify-content-center align-items-center">
               <iframe
-                title={maPhim}
+                // title={maPhim}
                 width="100%"
                 height={`${window.innerHeight}px`}
-                src={`https://www.youtube.com/embed/${video_id}`}
+                src={`https://youtu.be/YbqoBC3HS-g`}
                 frameBorder={0}
                 allowFullScreen
               />
@@ -51,7 +43,7 @@ export default function ModalTrailer({ trailer, maPhim, open, handleToggle }) {
               style={{
                 fontSize: 50,
                 fontWeight: "bold",
-                top: 2,
+                top: 1,
                 right: 10,
                 cursor: "pointer",
                 border: "5px solid #fff",
@@ -61,7 +53,7 @@ export default function ModalTrailer({ trailer, maPhim, open, handleToggle }) {
                 zIndex: "9000",
               }}
               className="position-absolute d-flex justify-content-center align-items-center text-white p-6"
-              onClick={() => handleToggle(false)}
+              onClick={() => handleToggle2(false)}
             >
               X
             </div>

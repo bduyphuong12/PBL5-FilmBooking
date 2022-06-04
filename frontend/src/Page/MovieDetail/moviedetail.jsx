@@ -7,6 +7,7 @@ function MovieDetail(){
         <div>
             <MovieInfo />
             <ShowTime />
+            
         </div>
     );
 

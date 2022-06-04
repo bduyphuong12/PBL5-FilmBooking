@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import "./CreditModal.scss";
+import { Link } from "react-router-dom";
 export default class CreditModal extends Component {
   state = {
     cvc: "",
@@ -105,7 +106,10 @@ export default class CreditModal extends Component {
                   </div>
                 </div>
               </div>
-              <div className="modal-footer">
+              <Link 
+                className="modal-footer"
+                to={'/donebook'}
+                >
                 <button
                   type="button"
                   className="btn-style draw-border"
@@ -115,7 +119,7 @@ export default class CreditModal extends Component {
                 >
                   Đặt vé
                 </button>
-              </div>
+              </Link>
             </div>
           </div>
         </div>

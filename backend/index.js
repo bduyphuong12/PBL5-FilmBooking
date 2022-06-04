@@ -11,18 +11,11 @@ app.use(bodyParser.json());
 app.use(cors({
     credentials: true,
     origin: [
-<<<<<<< Updated upstream
         'http://localhost:3000', //link frontend duoc phep truy cap data
         'http://localhost:3001', 
     ]
 }))
 
-=======
-        'http://localhost:3000',
-        'http://localhost:3001',
-    ]
-}))
->>>>>>> Stashed changes
 //cac router 
 require('./src/routers/home.router')(app);
 require('./src/routers/user.router')(app);

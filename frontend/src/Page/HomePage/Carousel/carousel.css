@@ -2,6 +2,7 @@
  .hotMovie {
 	 margin-top: spacing(6.2);
 	 position: relative;
+	 margin-top: 50px;
 }
  .hotMovie .hotMovie__content .myHotMovieCarousel.owl-carousel {
 	 display: block;
@@ -47,6 +48,7 @@
 }
  .hotMovie .hotMovie__content .item .item__img img {
 	 width: 100%;
+	 height: 500px;
 }
  .hotMovie .hotMovie__content .item .item__img .background__overlay {
 	 z-index: 1000;

@@ -53,6 +53,7 @@
       }
       .modal-footer {
         border: none;
+        text-decoration: none;
         @mixin btn-border-drawing(
           $color: #ccc,
           $hover: black,

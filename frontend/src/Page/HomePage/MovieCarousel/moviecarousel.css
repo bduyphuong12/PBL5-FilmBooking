@@ -107,8 +107,10 @@
     position: relative;
 }
 .item__movie .item__link .item__info .film__name {
-    color: #fff;
+    color: black;
     margin-bottom: spacing(0.5);
+    font-size: 20px;
+    text-align: center;
     display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
