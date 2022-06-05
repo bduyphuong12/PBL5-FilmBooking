@@ -1,12 +1,14 @@
 import React, {useEffect,useState} from "react";
 import "./moviecarousel.css";
-import { Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { NavLink } from "react-router-dom";
+import ModalTrailer from "../ModalTrailer/ModalTrailer"
 import axios from 'axios';
 function MovieCarousel(){
+  const [openT,setOpenT] = useState(false);
+  const handleToggleTrailer = () => setOpenT(!openT);
   const [listFilm,setListFilm] = useState(null);
 
   useEffect(() => {
@@ -41,7 +43,7 @@ function MovieCarousel(){
             <div
               className="play__button"
               style={{ cursor: "pointer" }}
-            //   onClick={handleToggle}
+              // onClick={handleToggleTrailer}
             >
               <i className="fa fa-play play__icon" />
             </div>
@@ -56,23 +58,21 @@ function MovieCarousel(){
           <div className="item__button">
             <NavLink
               className="btn buyTicket__button"
-              to={'/film-detail/'}
+              to={'/film-detail/'+ d.id_phim}
             >
               ĐẶT VÉ
             </NavLink>
           </div>
         </div>
       </div>
-      {/* <ModalTrailer
-        trailer={phimItem.trailer}
-        maPhim={phimItem.maPhim}
-        open={open}
-        handleToggle={handleToggle}
-      /> */}
+      <ModalTrailer
+        openT={openT}
+        handleToggleTrailer={handleToggleTrailer}
+      />
       </div>
           )))}
         </OwlCarousel>
-      
+        
       
     </div>
   </div>

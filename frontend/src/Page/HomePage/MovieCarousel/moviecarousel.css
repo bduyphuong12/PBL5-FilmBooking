@@ -20,7 +20,7 @@
     margin-bottom: spacing(1);
     position: relative;
     width: 100%;
-    height: 500px;
+    height: 550px;
 }
 .item__movie .item__link .item__img img {
     border-radius: 3px;
@@ -105,11 +105,13 @@
 }
 .item__movie .item__link .item__info {
     position: relative;
+    min-width: 100%;
 }
 .item__movie .item__link .item__info .film__name {
     color: red;
     margin-bottom: spacing(0.5);
     font-size: 20px;
+    
     text-align: center;
     display: -webkit-box;
     overflow: hidden;

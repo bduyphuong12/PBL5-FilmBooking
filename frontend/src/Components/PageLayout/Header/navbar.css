@@ -7,8 +7,13 @@
   }
   
   .navbar-logo {
-    margin-right: 50px;
+    margin-top: 10px;
+    margin-right: 80px;
+    margin-left: -80px;
     text-decoration: none;
+    width: 150px;
+    height: 40%;
+    
   }
   
   .navbar .nav-left-side {
@@ -20,7 +25,7 @@
   }
   
   .navbar-search {
-    max-width: 600px;
+    max-width: 500px;
     background-color: white;
     height: 37px;
     flex: 2;

@@ -52,6 +52,7 @@
 }
 .movieInfo .full__background .rating__point .rating__stars {
     color: #60c5ef;
+    text-align: center;
 }
 .movieInfo .form__info {
     position: absolute;
@@ -151,6 +152,7 @@
     transform: rotate(200deg);
 }
 .movieInfo .form__info .row .movie__rating .rating__stars {
+    text-align: center;
     color: #60c5ef;
 }
 .movieInfo .form__info .row .movie__rating .rating__text {

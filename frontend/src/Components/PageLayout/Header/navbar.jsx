@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import {
     Collapse,
 } from "reactstrap";
-
+import logo from '../../../Assets/Images/App/logo.png'
 import './navbar.css'
 
 
@@ -28,7 +28,9 @@ function NavBar() {
        <nav className="navbar navbar-expand navbar-light fixed-top">
            <div className="nav-left-side">
                <div>
-                    <Link className="navbar-logo" to={'/'}>logo</Link>   
+                    <Link  to={'/'}>
+                        <img className="navbar-logo" src={logo} alt="logo" />
+                        </Link>   
                </div>
                 <div className="navbar-search">
                     <input type="text" class="navbar-search-input" id='navbar-search-input' placeholder="Search flim..." />
