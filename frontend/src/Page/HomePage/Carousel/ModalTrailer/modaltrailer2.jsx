@@ -34,7 +34,7 @@ export default function ModalTrailer2({ open1, handleToggle1 }) {
                 // title={maPhim}
                 width="100%"
                 height={`${window.innerHeight}px`}
-                src={`https://www.youtube.com/embed/-iun6KPT4SM`}
+                src={`https://www.youtube.com/embed/56pvThSsoSE`}
                 frameBorder={0}
                 allowFullScreen
               />

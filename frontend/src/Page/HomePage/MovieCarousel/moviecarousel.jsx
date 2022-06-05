@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect,useState} from "react";
 import "./moviecarousel.css";
 import { Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
@@ -6,21 +6,37 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { NavLink } from "react-router-dom";
 import axios from 'axios';
-function MovieCarousel({phimItem}){
+function MovieCarousel(){
+  const [listFilm,setListFilm] = useState(null);
+
+  useEffect(() => {
+    const getListFilm = () => {
+      axios.get('/phim/list').then(res => {
+        setListFilm(res.data);
+      })
+    }
+    getListFilm();
+  },[]);
+  console.log(listFilm)
+  if(listFilm){ 
     return (
-        <div className="hotMovie">
-      <div className="hotMovie__content">
-        <OwlCarousel
+
+      <div className="hotMovie">
+    <div className="hotMovie__content">
+        
+          <OwlCarousel
           loop
           nav
           autoplay
           items={3}
           className="myHotMovieCarousel owl-carousel owl-theme"
         >
+          {React.Children.toArray(
+            listFilm.result.map(d => (
           <div className="item__movie">
       <div className="item__link">
         <div className="item__img">
-          <img src="http://movie0706.cybersoft.edu.vn/hinhanh/morbius_gp09.jpg" alt="" />
+          <img src={d.poster} alt={d.poster} />
           <div className="overlay">
             <div
               className="play__button"
@@ -33,7 +49,7 @@ function MovieCarousel({phimItem}){
           
         </div>
         <div className="item__info">
-          <p className="film__name"></p>
+          <p className="film__name">{d.ten_phim}</p>
           <span className="film__during">
             {/* {moment(phimItem.ngayKhoiChieu).format("yy")} */}
           </span>
@@ -54,9 +70,15 @@ function MovieCarousel({phimItem}){
         handleToggle={handleToggle}
       /> */}
       </div>
+          )))}
         </OwlCarousel>
-      </div>
+      
+      
     </div>
-    );
+  </div>
+  );
+
+  }
+    
 }
 export default MovieCarousel;

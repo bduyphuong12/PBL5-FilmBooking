@@ -107,7 +107,7 @@
     position: relative;
 }
 .item__movie .item__link .item__info .film__name {
-    color: black;
+    color: red;
     margin-bottom: spacing(0.5);
     font-size: 20px;
     text-align: center;

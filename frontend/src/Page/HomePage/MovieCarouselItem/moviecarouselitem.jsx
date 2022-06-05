@@ -13,46 +13,38 @@ export default function MovieCarouselItem({ phimItem }) {
     <div className="item__movie">
       <div className="item__link">
         <div className="item__img">
-          <img src={phimItem.hinhAnh} alt={phimItem.hinhAnh} />
+          <img src='http://movie0706.cybersoft.edu.vn/hinhanh/morbius_gp09.jpg' alt="" />
           <div className="overlay">
             <div
               className="play__button"
               style={{ cursor: "pointer" }}
-              onClick={handleToggle}
+              // onClick={handleToggle}
             >
               <i className="fa fa-play play__icon" />
             </div>
           </div>
-          <span className="film__age age--C">{phimItem.maNhom}</span>
-          <span className="film__audit">
-            <p className="film__point">8</p>
-            <i className="fa fa-star film__star" />
-            <i className="fa fa-star film__star" />
-            <i className="fa fa-star film__star" />
-            <i className="fa fa-star film__star" />
-          </span>
         </div>
         <div className="item__info">
-          <p className="film__name">{phimItem.tenPhim || <Skeleton />}</p>
+          <p className="film__name">{abc || <Skeleton />}</p>
           <span className="film__during">
             {/* {moment(phimItem.ngayKhoiChieu).format("yy")} */}
           </span>
           <div className="item__button">
             <NavLink
               className="btn buyTicket__button"
-              to={`/moviedetail/${phimItem.maPhim}`}
+              to={`/movie-detail/`}
             >
               ĐẶT VÉ
             </NavLink>
           </div>
         </div>
       </div>
-      <ModalTrailer
+      {/* <ModalTrailer
         trailer={phimItem.trailer}
         maPhim={phimItem.maPhim}
         open={open}
         handleToggle={handleToggle}
-      />
+      /> */}
     </div>
   );
 }

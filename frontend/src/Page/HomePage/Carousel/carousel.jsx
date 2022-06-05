@@ -80,12 +80,12 @@ function Carousel(){
             handleToggle={handleToggle}
             />
             <ModalTrailer2
-            open={open1}
-            handleToggle={handleToggle1}
+            open1={open1}
+            handleToggle1={handleToggle1}
             />
             <ModalTrailer3
-            open={open2}
-            handleToggle={handleToggle2}
+            open2={open2}
+            handleToggle2={handleToggle2}
             />
       </div>
             
