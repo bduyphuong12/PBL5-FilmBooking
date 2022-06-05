@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import {Link} from 'react-router-dom'
 import {AiOutlineBars} from 'react-icons/ai'
 import {GiGalaxy} from 'react-icons/gi'
@@ -11,8 +11,10 @@ import '../../styles/table.css'
 import AdminInfo from '../../modals/AdminInfo';
 import Messeger from '../../modals/messeger';
 import EditAdmin from '../../modals/editAdmin';
+import axios from 'axios';
 
 function Navbar() {
+  const [dataMesseger, setDataMesseger] = useState([])
   const [sidebar, setSidebar] = useState(false)
   const showSidebar = () => setSidebar(!sidebar);
 
@@ -39,6 +41,20 @@ function Navbar() {
       }
       else return;
     }
+  }
+  useEffect(() => {
+    const getMessNum = () => {
+      axios.get('/tb/list/').then(res => {
+        setDataMesseger(res.data);
+      })
+    }
+    getMessNum();
+  },[]);
+  const AddNewMess = async (data) => {
+    console.log(data);
+    await axios.post('/tb/add',data);
+    window.alert("Send mess to user successfully!");
+    window.location.reload();
   }
   return (
       <>
@@ -79,7 +95,7 @@ function Navbar() {
           </ul>
       </nav>
       <AdminInfo detail={detail} showInfo={showInfo} showEdit={showEdit} />
-      <Messeger openMess={messeger} showMess={showMesseger}/>
+      <Messeger openMess={messeger} showMess={showMesseger} dataMess={AddNewMess} idMess={dataMesseger}/>
       <EditAdmin infoEdit={editform} showEdit={showEdit} closeEdit={closeEdit}/>
       </IconContext.Provider>
       </>

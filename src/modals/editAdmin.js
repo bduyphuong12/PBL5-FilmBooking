@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function EditAdmin({infoEdit,showEdit,closeEdit}) {
+ 
   return (
     <div className="bg-modal" style={{display: infoEdit ? 'flex' : 'none' }}>
     <div className="modal-editAdmin" >

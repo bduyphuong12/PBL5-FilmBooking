@@ -5,8 +5,7 @@ import "keen-slider/keen-slider.min.css"
 import Itemfilm from './itemfilm'
 
 
-export default function Carousel({openFilm}) {
- 
+export default function Carousel({openFilm,dataPhim}) {
     const [currentSlide, setCurrentSlide] = useState(0)
     const [loaded, setLoaded] = useState(false)
     const [sliderRef, instanceRef] = useKeenSlider({
@@ -18,11 +17,10 @@ export default function Carousel({openFilm}) {
         setLoaded(true)
       },
     })
-  
     return (
       <>
         <div className="navigation-wrapper">
-            <Itemfilm sliderRef={sliderRef} modalOpenFilm={openFilm} />
+            <Itemfilm sliderRef={sliderRef} modalOpenFilm={openFilm} dataPhim={dataPhim}/>
           {loaded && instanceRef.current && (
             <>
               <Arrow

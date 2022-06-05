@@ -26,11 +26,11 @@
     margin-left: 28px;
 }
 .bg-chart:hover{
-    transform: scale(1.02);
+    transform: scale(1.01);
     transition: .5s all;
 }
 .bg-chart1:hover{
-    transform: scale(1.02);
+    transform: scale(1.01);
     transition: .5s all;
 }
 .bg-chart1{

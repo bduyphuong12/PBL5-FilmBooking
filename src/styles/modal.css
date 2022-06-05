@@ -190,6 +190,20 @@
     transform: scale(1.1);
     transition: 0.5s all;
 }
+.modal-info-user-post{
+	width: 350px;
+	height: auto;
+	background-color: #edb730;
+	border-radius: 14px;
+	text-align: left;
+	padding: 20px;
+	margin-left: 90px;
+	position: absolute;
+	z-index: 1;
+	justify-content: right;
+	align-items: center;
+	margin-top: 15px;
+}
 .modal-messeger{
     margin-top: 40px;
     width: 450px;
@@ -221,7 +235,16 @@
 }
 .modal-addGame{
 	width: 530px;
-	height: 700px;
+	height: 680px;
+	background-color: rgb(255, 225, 252);
+	border-radius: 6px;
+	text-align: center;
+	padding: 20px 20px 20px 0;
+	position: relative;
+}
+.modal-addActor{
+	width: 530px;
+	height: 390px;
 	background-color: rgb(255, 225, 252);
 	border-radius: 6px;
 	text-align: center;
@@ -230,7 +253,16 @@
 }
 .modal-editFilm{
 	width: 530px;
-	height: 700px;
+	height: 680px;
+	background-color: rgb(255, 225, 252);
+	border-radius: 6px;
+	text-align: center;
+	padding: 20px 20px 20px 0;
+	position: relative;
+}
+.modal-editActor{
+	width: 530px;
+	height: 400px;
 	background-color: rgb(255, 225, 252);
 	border-radius: 6px;
 	text-align: center;
@@ -239,7 +271,7 @@
 }
 .modal-editUser{
 	width: 500px;
-	height: 520px;
+	height: 410px;
 	background-color: rgb(255, 225, 252);
 	border-radius: 6px;
 	text-align: center;

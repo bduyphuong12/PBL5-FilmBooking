@@ -7,6 +7,9 @@ import Login from './components/login/login';
 import QliRap from './pages/QliRap'
 import QliPhim from './pages/QliPhim';
 import QliUser from './pages/QliUser';
+import QliDienVien from './pages/QliDienVien';
+import "../node_modules/slick-carousel/slick/slick.css"; 
+import "../node_modules/slick-carousel/slick/slick-theme.css";
 import './App.css';
 
 function App() {
@@ -23,6 +26,7 @@ function App() {
           <Route path='/qlirap' component={QliRap} />
           <Route path='/qliphim' component={QliPhim} />
           <Route path='/qliuser' component={QliUser} />
+          <Route path='/qlidv' component={QliDienVien} />
         </Switch>
     </Router>
     </>

@@ -12,61 +12,10 @@
   max-height: 100vh;
 }
 
-.number-slide1 {
-  /* height: inherit;
-  width: inherit; */
-  background-image: url("../assets/jujutsukaisen.jpg");
-  /* background-position: center center; */
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  /* background-size: cover; */
-}
-
-.number-slide2 {
-  background-image: url("../assets/51015.jpg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
-
-.number-slide3 {
-  background-image: url("../assets/chaytrondoidau.jpg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
-
-.number-slide4 {
-  background-image: url("../assets/ngay24.jpg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
-
-.number-slide5 {
-  background-image: url("../assets/nghesieukho.jpg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
-.number-slide6 {
-  background-image: url("../assets/ngoidenkiquai3.jpg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
-.number-slide1:hover{
-  cursor: pointer;
-}
-.number-slide2:hover{
-  cursor: pointer;
-}
-.number-slide3:hover{
-  cursor: pointer;
-}
-.number-slide4:hover{
-  cursor: pointer;
-}
-.number-slide5:hover{
-  cursor: pointer;
-}
-.number-slide6:hover{
-  cursor: pointer;
+.img-slide{
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
 }
 
 .navigation-wrapper {
@@ -89,7 +38,9 @@
   padding: 5px;
   cursor: pointer;
 }
-
+.keen-slider__slide{
+  height: 530px;
+}
 .dot:focus {
   outline: none;
 }

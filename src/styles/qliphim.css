@@ -27,7 +27,7 @@ main {
     transform: scale(1.05);
     transition: .5s all;
   }
-  #myInput0 {
+  #myTimeLC1 {
     font-size: 16px; 
     margin-left: 40px;
     margin-top: 10px;
@@ -40,13 +40,13 @@ main {
    background-color: #cbcbcb;
    border: 1px solid #000;
   }
-  #myInput0:hover{
-    transform: scale(1.05);
+  #myTimeLC1:hover{
+    transform: scale(1.02);
     transition: .5s all;
   }
   .btn1{
     margin-top: 100px;
-    margin-left: 20px;
+    margin-left: 1180px;
     padding: 8px ;
     display: inline-block;
     width: 90px;
@@ -80,7 +80,7 @@ main {
   .bg-carousel{
       width: 1000px;
       margin: auto;
-      margin-top: 50px;
+      margin-top: 20px;
       height: 530px;
       background-color: #EAEAEA;
       border: 1px solid #000;
@@ -128,10 +128,13 @@ main {
   .image-film{
     width: 375px;
     height: 250px;
-    background-image: url("../assets/jujutsukaisen.jpg");
-    background-size: cover;
     float: left;
     margin-top: 20px;
+  }
+  .img-film{
+    width: inherit;
+    height: inherit;
+    object-fit: cover;
   }
   .image-film iframe{
        box-sizing: border-box;
@@ -145,7 +148,7 @@ main {
   .btn-trailer{
     padding: 8px 12px;
     background-color: #D2D2D2;
-    margin-top: 260px;
+    margin-top: 10px;
   }
   .btn-trailer0{
     padding: 8px 12px;

@@ -3,6 +3,7 @@ import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import {CgLogOut} from 'react-icons/cg';
 import {GiTheater,GiFilmProjector} from 'react-icons/gi'
+import {FaUserAstronaut} from 'react-icons/fa'
 
 export const SidebarData = [
   {
@@ -12,21 +13,27 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'Quan Li Rap',
+    title: 'Theater',
     path: '/qlirap',
     icon: <GiFilmProjector />,
     cName: 'nav-text'
   },
   {
-    title: 'Quan Li Phim',
+    title: 'Film',
     path: '/qliphim',
     icon: <GiTheater />,
     cName: 'nav-text'
   },
   {
-    title: 'Quan Li User',
+    title: 'Actor',
+    path: '/qlidv',
+    icon: <FaUserAstronaut />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'User',
     path: '/qliuser',
-    icon: <FaIcons.FaRegUserCircle />,
+    icon: <FaIcons.FaUser />,
     cName: 'nav-text'
   },
   {

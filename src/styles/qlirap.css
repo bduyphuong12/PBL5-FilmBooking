@@ -20,7 +20,7 @@
 }
 .bg-items-rapchieu:hover{
     cursor: pointer;
-    transform: scale(1.05);
+    transform: scale(1.02);
     transition: .5s all;
 }
 .bg-qlirap::after{
