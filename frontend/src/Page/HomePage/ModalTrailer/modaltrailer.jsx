@@ -7,15 +7,16 @@ import Box from "@material-ui/core/Box";
 import axios from 'axios';
 export default function ModalTrailer({openT, handleToggleTrailer }) {
   const [listFilm,setListFilm] = useState(null);
-
+  const getUrlPhim= window.location.href.split("/");
+  const phimID = getUrlPhim[getUrlPhim.length - 1]
   useEffect(() => {
-    const getListFilm = () => {
-      axios.get('/phim/list').then(res => {
+    const getPhimDetail = () => {
+      axios.get('/phim/detail/' + phimID).then(res => {
         setListFilm(res.data);
       })
     }
-    getListFilm();
-  },[]);
+    getPhimDetail();
+  },[phimID]);
   console.log(listFilm)
   const style = {
     position: "absolute",
@@ -30,6 +31,7 @@ export default function ModalTrailer({openT, handleToggleTrailer }) {
   };
   if(listFilm){
     return (
+     
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

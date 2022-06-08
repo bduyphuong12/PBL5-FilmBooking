@@ -43,7 +43,7 @@ function MovieCarousel(){
             <div
               className="play__button"
               style={{ cursor: "pointer" }}
-              // onClick={handleToggleTrailer}
+              onClick={handleToggleTrailer}
             >
               <i className="fa fa-play play__icon" />
             </div>

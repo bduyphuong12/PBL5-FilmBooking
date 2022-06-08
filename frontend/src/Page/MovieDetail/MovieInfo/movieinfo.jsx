@@ -3,8 +3,8 @@ import "./movieinfo.css";
 import ModalTrailer from "../../HomePage/ModalTrailer/ModalTrailer";
 import axios from 'axios';
 export default function MovieInfo() {
-  const [open, setOpen] = React.useState(false);
-  const handleToggle = () => setOpen(!open);
+  const [openT, setOpenT] = React.useState(false);
+  const handleToggleTrailer = () => setOpenT(!openT);
   const [phimDetail,setPhimDetail] = useState(null);
   const getUrlPhim= window.location.href.split("/");
   const phimID = getUrlPhim[getUrlPhim.length - 1]
@@ -66,7 +66,7 @@ export default function MovieInfo() {
                   src={phimDetail.result[0].poster}
                   alt={phimDetail.result[0].poster}
                 />
-                <div className="play__btn" >
+                <div className="play__btn" onClick={handleToggleTrailer} >
                   <i className="fa fa-play" />
                 </div>
               </div>
@@ -110,12 +110,11 @@ export default function MovieInfo() {
           {/* <div className="name">{phimItem.tenPhim}</div> */}
           <div className="during">120 phút</div>
         </div>
-        {/* <ModalTrailer
-          trailer={phimItem.trailer}
-          maPhim={phimItem.maPhim}
-          open={open}
-          handleToggle={handleToggle}
-        /> */}
+        <ModalTrailer
+          
+          openT={openT}
+          handleToggleTrailer={handleToggleTrailer}
+        />
       </section>
     );
 
