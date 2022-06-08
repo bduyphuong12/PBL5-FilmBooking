@@ -1,6 +1,5 @@
 const { response } = require('express');
 const ThongBao = require('../models/thongBao.model');
-var user = require('../models/thongBao.model');
 
 
 exports.get_list = function (req, res) {
