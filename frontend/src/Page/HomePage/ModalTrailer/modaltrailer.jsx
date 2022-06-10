@@ -5,19 +5,31 @@ import Modal from "@material-ui/core/Modal";
 import Fade from "@material-ui/core/Fade";
 import Box from "@material-ui/core/Box";
 import axios from 'axios';
-export default function ModalTrailer({openT, handleToggleTrailer }) {
+export default function ModalTrailer({trailer,idPhim,openT, handleToggleTrailer }) {
   const [listFilm,setListFilm] = useState(null);
   const getUrlPhim= window.location.href.split("/");
   const phimID = getUrlPhim[getUrlPhim.length - 1]
   useEffect(() => {
     const getPhimDetail = () => {
-      axios.get('/phim/detail/' + phimID).then(res => {
+      axios.get('/phim/list').then(res => {
         setListFilm(res.data);
       })
     }
     getPhimDetail();
   },[phimID]);
-  console.log(listFilm)
+  console.log(listFilm);
+  const getId = (url) => {
+    if (!url) return null;
+    const regExp =
+      /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    console.log(match);
+    return match && match[2].length === 11 ? match[2] : null;
+  };
+  const video_id = getId(trailer);
+  
+  
+
   const style = {
     position: "absolute",
     bottom: "0",
@@ -44,10 +56,10 @@ export default function ModalTrailer({openT, handleToggleTrailer }) {
             <div className="position-relative w-100 h-100">
               <div className="d-flex justify-content-center align-items-center">
                 <iframe
-                  
+                  title={idPhim}
                   width="100%"
                   height={`${window.innerHeight}px`}
-                  src={listFilm.result[0].trailer}
+                  src={`https://www.youtube.com/embed/${video_id}`}
                   frameBorder={0}
                   allowFullScreen
                 />

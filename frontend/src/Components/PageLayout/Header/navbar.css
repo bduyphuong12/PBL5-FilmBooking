@@ -23,7 +23,10 @@
     align-items: center;
     margin-left: 10%;
   }
-  
+  .thongbao{
+    width: 30px;
+    margin-left: 50px;
+  }
   .navbar-search {
     max-width: 500px;
     background-color: white;

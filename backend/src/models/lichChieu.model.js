@@ -57,7 +57,16 @@ LichChieu.remove_lc = function (id, result) {
         }
     });
 }
-
+LichChieu.getByIdPhimVsRoomId = function (id, rid, result) {
+    db.query("select * from lich_chieu where id_phim = ? and room_id = ?", [id, rid], function (err, h) {
+        console.log(err);
+        if (err || h.length == 0) {
+            result(err);
+        } else {
+            result(h);
+        }
+    });
+};
 LichChieu.update = function (u, result) {
     db.query("update lich_chieu set id_phim=?,thoi_gian_chieu=?,room_id=? where id = ?", [u.id_phim, u.thoi_gian_chieu, u.room_id, u.id], function (err, u) {
         console.log(err)

@@ -40,8 +40,10 @@ function NavBar() {
                     
                 
            </div>
-           <a href="#" className="film">Phim</a>
-           <a href="#" className="category ">Thể loại</a>
+           
+           <Link className="film" to={'/allmovie'}>Phim</Link>
+           <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-bell-512.png" alt="" className="thongbao" />
+           
           
           
            {buttons}

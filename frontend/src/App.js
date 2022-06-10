@@ -11,6 +11,7 @@ import MovieDetail from './Page/MovieDetail/moviedetail';
 import BookingTicket from './Page/Booking/bookticket';
 import TableCornAndWater from './Page/Booking/CornAndWater/tableCornandWater';
 import DoneBook from './Page/Booking/DoneBook/donebook';
+import AllMovie from './Page/Movie/AllMovie/allmovie';
 function App() {
   return (
     <BrowserRouter className="App" > 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/login" component={() => <Login /> } />
         <Route path="/register" component={() => <Register /> } />
         <Route path="/setting" component={() => <Setting_form />} />
+        <Route path="/allmovie" component={() => <AllMovie />} />
       </Switch>
       
       <div className="App-footer " > 

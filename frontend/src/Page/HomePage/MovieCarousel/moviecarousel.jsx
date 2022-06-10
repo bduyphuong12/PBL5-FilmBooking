@@ -19,7 +19,7 @@ function MovieCarousel(){
     }
     getListFilm();
   },[]);
-  console.log(listFilm)
+  
   if(listFilm){ 
     return (
 
@@ -65,15 +65,17 @@ function MovieCarousel(){
           </div>
         </div>
       </div>
-      <ModalTrailer
-        openT={openT}
-        handleToggleTrailer={handleToggleTrailer}
-      />
+      
       </div>
           )))}
         </OwlCarousel>
-        
       
+        <ModalTrailer
+        trailer = {listFilm.result[1].trailer}
+        idPhim ={listFilm.result[0].id_phim}
+        openT={openT}
+        handleToggleTrailer={handleToggleTrailer}
+      />
     </div>
   </div>
   );

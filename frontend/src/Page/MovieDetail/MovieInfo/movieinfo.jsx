@@ -17,7 +17,6 @@ export default function MovieInfo() {
     }
     getPhimDetail();
   },[phimID]);
-  console.log(phimDetail);
   const renderStar = (rating) => {
     if (rating > 5) rating = 5;
     var content = [];
@@ -111,7 +110,8 @@ export default function MovieInfo() {
           <div className="during">120 phút</div>
         </div>
         <ModalTrailer
-          
+          trailer = {phimDetail.result[0].trailer}
+          idPhim ={phimDetail.result[0].id_phim}
           openT={openT}
           handleToggleTrailer={handleToggleTrailer}
         />

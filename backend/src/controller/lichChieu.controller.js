@@ -18,6 +18,11 @@ exports.getByIdPhim = function (req, res) {
         res.send({ result: response });
     });
 }
+exports.getLCByRoomAndIdPhim = function (req, res) {
+    LichChieu.getByIdPhimVsRoomId(req.params.id, req.params.rid,  function (response) {
+        res.send({ result: response });
+    });
+}
 //body-parser
 exports.add = function (req, res) {
     var data = req.body;

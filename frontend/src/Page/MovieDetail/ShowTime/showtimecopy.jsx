@@ -9,17 +9,17 @@ export default function ShowTime() {
   const [lcDetail,setLCPhimDetail] = useState(null);
   const getUrlPhim= window.location.href.split("/");
   const phimID = getUrlPhim[getUrlPhim.length - 1]
-  const [lcByRoomPhimID,setlcByRoomPhimID] = useState(null);
-  useEffect(() => {
-    const getLCByRoomPhimID = () => {
+  // const [lcByRoomPhimID,setlcByRoomPhimID] = useState(null);
+  // useEffect(() => {
+  //   const getLCByRoomPhimID = () => {
       
-      axios.get('/lc/getlc/' + phimID + '' ).then(res => {
-        setlcByRoomPhimID(res.data);
-      })
-    }
-    getLCByRoomPhimID();
-  },[phimID]);
-  console.log(lcByRoomPhimID);
+  //     axios.get('/lc/getlc/' + phimID + '' ).then(res => {
+  //       setlcByRoomPhimID(res.data);
+  //     })
+  //   }
+  //   getLCByRoomPhimID();
+  // },[phimID]);
+  // console.log(lcByRoomPhimID);
   
   useEffect(() => {
     const getLCDetail = () => {
@@ -61,34 +61,83 @@ export default function ShowTime() {
       );
     }
   };
- 
+  const renderCumRap = () => {
+      if(lcDetail){
+        return (
+          <div
+            id={lcDetail.room_id}
+            className="tab-pane fade show"
+            // id={heThongRap.maHeThongRap}
+            role="tabpanel"
+          >
+            <div className="theater__content">
+              <ul className="list__theater">{renderShowTime()}</ul>
+            </div>
+          </div>
+        );
+      }
+      
+    
+  };
   const renderTime = () => {
-    if(lcDetail){
-      return (
-        <div>
-          {
-            React.Children.toArray(
-              lcDetail.result.map((d) => (
-                <ul className=" flex-wrapp" >
-                <div className="timeshow__item" >
-                  <NavLink
-                  
-                    className="timeshow__link"
-                    to={'/booking/'+ d.id_phim + '/'+d.room_id}
-                  >
-                    <div className="time__begin mb-2">
-                    {moment(d.thoi_gian_chieu).format("DD/MM/yyyy")}
-                      <p>
-                      {moment(d.thoi_gian_chieu).format("hh:mm A")}
-                      </p>
-                    </div>
-                  </NavLink>
+    return (
+      <div>
+        <div className="film__version my-4">2D Digital</div>
+        <ul className="d-flex flex-wrap">
+          
+            return (
+              <div className="timeshow__item" >
+                <NavLink
+                  className="timeshow__link"
+                  to={`/booking/`}
+                >
+                  <div className="time__begin mb-2">
+                    06/10/2022
+                    <p>
+                      2:06:00AM
+                    </p>
+                  </div>
+                </NavLink>
+              </div>
+            );
+         
+        </ul>
+      </div>
+    );
+  };
+  const renderShowTime = () => {
+      if(lcDetail){
+        return (
+          <li className="list__item" >
+            <a
+              className="theater__link"
+              data-toggle="collapse"
+              href={lcDetail.room_id}
+              role="button"
+              aria-expanded="true"
+            >
+              <div className="row">
+                <div className="theater__img col-2">
+                  <img src="https://i.ibb.co/cvb2Rk6/theater.jpg" alt="hinhrap" />
                 </div>
-          </ul>
-              )))}
-        </div>
-      );
-    }};
+                <div className="theater__title col-10">
+                  <span className="theater__name cgv-color">
+                    <span className="theater__subname"> gfv </span>
+                  </span>
+                </div>
+              </div>
+            </a>
+            <div className="collapse" >
+              <div className="collapse__content">
+                <div className="film__timeshow">{renderTime()}</div>
+              </div>
+            </div>
+          </li>
+        );
+   
+    };
+      }
+      
 
   return (
     <section className="tabBookMovie">
@@ -157,7 +206,7 @@ export default function ShowTime() {
                 className="tab-content col-md-8 col-sm-12"
                 id="v-pills-tabContent"
               >
-                {renderTime()}
+                {renderCumRap()}
               </div>
             </div>
           </div>
