@@ -13,6 +13,7 @@ import TableCornAndWater from './Page/Booking/CornAndWater/tableCornandWater';
 import DoneBook from './Page/Booking/DoneBook/donebook';
 import Movie from './Page/Movie/movie'
 import ChooseSlotCopy from './Page/Booking/ChooseSlot/chooseslotcopy';
+import AllMovie from './Page/Movie/AllMovie/allmovie';
 function App() {
   return (
     <BrowserRouter className="App" > 
@@ -26,7 +27,7 @@ function App() {
         <Route path="/login" component={() => <Login /> } />
         <Route path="/register" component={() => <Register /> } />
         <Route path="/setting" component={() => <Setting_form />} />
-        <Route path="/allmovie" component={() => <Movie />} />
+        <Route path="/allmovie" component={() => <AllMovie />} />
         <Route path="/cs" component={() => <ChooseSlotCopy />} />
       </Switch>
       

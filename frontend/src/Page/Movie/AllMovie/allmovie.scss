@@ -1,5 +1,11 @@
-
-
+.navbar-search{
+  margin-left: 410px;
+}
+.btn-reload{
+  display: block;
+  margin-left: 800px;
+  margin-top: 40px;
+}
 .movie-card {
     margin-top: 100px;
     display: inline-flex;
@@ -52,8 +58,8 @@
             padding: 10px;
             margin-left: -2px;
             display: inline-block;
-           
-            margin-top: 5px;
+            margin-bottom: 15px;
+            margin-top: -5px;
           }
           .date-time {
             color: #cee4fd;
