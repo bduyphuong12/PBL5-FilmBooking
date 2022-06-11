@@ -10,6 +10,7 @@ const Phim = function (phim) {
     this.the_loai = phim.the_loai;
     this.trailer = phim.trailer;
     this.poster = phim.poster;
+    this.so_ve = phim.so_ve;
 }
 
 Phim.get_all = function (result) {
@@ -33,7 +34,7 @@ Phim.getById = function (id, result) {
 };
 
 Phim.add = function (data, result) {
-    db.query("INSERT INTO phim (id_phim, ten_phim, noi_dung,thoi_luong,so_sao,nha_san_xuat, dao_dien, the_loai,trailer,poster) VALUES (?,?,?,?,?,?,?,?,?,?);", [data.id_phim,data.ten_phim,data.noi_dung,data.thoi_luong,data.so_sao,data.nha_san_xuat,data.dao_dien,data.the_loai,data.trailer,data.poster], function(err, phim){
+    db.query("INSERT INTO phim (id_phim, ten_phim, noi_dung,thoi_luong,so_sao,nha_san_xuat, dao_dien, the_loai,trailer,poster, so_ve) VALUES (?,?,?,?,?,?,?,?,?,?,?);", [data.id_phim,data.ten_phim,data.noi_dung,data.thoi_luong,data.so_sao,data.nha_san_xuat,data.dao_dien,data.the_loai,data.trailer,data.poster,data.so_ve], function(err, phim){
         console.log(err, data)
         if (err) {
             result(null);
@@ -58,7 +59,7 @@ Phim.remove_phim = function (id, result) {
 }
 
 Phim.update = function (u, result) {
-    db.query("update phim set ten_phim=?,noi_dung=?,thoi_luong=?,so_sao=?,nha_san_xuat=?,dao_dien=?,the_loai=?,trailer=?,poster=? where id_phim = ?", [u.ten_phim,u.noi_dung,u.thoi_luong,u.so_sao,u.nha_san_xuat,u.dao_dien,u.the_loai,u.trailer,u.poster,u.id_phim], function(err, u){
+    db.query("update phim set ten_phim=?,noi_dung=?,thoi_luong=?,so_sao=?,nha_san_xuat=?,dao_dien=?,the_loai=?,trailer=?,poster=?,so_ve=? where id_phim = ?", [u.ten_phim,u.noi_dung,u.thoi_luong,u.so_sao,u.nha_san_xuat,u.dao_dien,u.the_loai,u.trailer,u.poster,u.so_ve,u.id_phim], function(err, u){
         console.log(err)
         if (err) {
             console.log(err);

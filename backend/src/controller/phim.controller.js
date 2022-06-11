@@ -1,6 +1,5 @@
 const { response } = require('express');
 const Phim = require('../models/phim.model');
-var phim = require('../models/phim.model');
 
 exports.get_list = function (req, res) {
     Phim.get_all(function (data) {

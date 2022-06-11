@@ -13,16 +13,12 @@ exports.detail = function (req, res) {
     });
 }
 
-exports.getByIdPhim = function (req, res) {
-    LichChieu.getByIdPhim(req.params.id, function (response) {
-        res.send({ result: response });
-    });
-}
 exports.getLCByRoomAndIdPhim = function (req, res) {
     LichChieu.getByIdPhimVsRoomId(req.params.id, req.params.rid,  function (response) {
         res.send({ result: response });
     });
 }
+
 //body-parser
 exports.add = function (req, res) {
     var data = req.body;

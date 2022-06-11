@@ -1,6 +1,5 @@
 const { response } = require('express');
 const DienVien = require('../models/dienVien.model');
-var dienVien = require('../models/dienVien.model');
 
 exports.get_list = function (req, res) {
     DienVien.get_all(function (data) {

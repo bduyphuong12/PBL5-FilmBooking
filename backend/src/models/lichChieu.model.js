@@ -17,7 +17,7 @@ LichChieu.get_all = function (result) {
     });
 };
 
-LichChieu.getById = function (id, result) {
+LichChieu.getById = function (id, rid, result) {
     db.query("select * from lich_chieu where id = ?", id, function (err, h) {
         if (err || h.length == 0) {
             result(err);
@@ -27,12 +27,13 @@ LichChieu.getById = function (id, result) {
     });
 };
 
-LichChieu.getByIdPhim = function (id, result) {
-    db.query("select * from lich_chieu where id_phim = ?", id, function (err, dv) {
-        if (err || dv.length == 0) {
+LichChieu.getByIdPhimVsRoomId = function (id, rid, result) {
+    db.query("select * from lich_chieu where id_phim = ? and room_id = ?", [id, rid], function (err, h) {
+        console.log(err);
+        if (err || h.length == 0) {
             result(err);
         } else {
-            result(dv);
+            result(h);
         }
     });
 };
@@ -57,16 +58,7 @@ LichChieu.remove_lc = function (id, result) {
         }
     });
 }
-LichChieu.getByIdPhimVsRoomId = function (id, rid, result) {
-    db.query("select * from lich_chieu where id_phim = ? and room_id = ?", [id, rid], function (err, h) {
-        console.log(err);
-        if (err || h.length == 0) {
-            result(err);
-        } else {
-            result(h);
-        }
-    });
-};
+
 LichChieu.update = function (u, result) {
     db.query("update lich_chieu set id_phim=?,thoi_gian_chieu=?,room_id=? where id = ?", [u.id_phim, u.thoi_gian_chieu, u.room_id, u.id], function (err, u) {
         console.log(err)

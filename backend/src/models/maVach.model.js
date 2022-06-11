@@ -1,4 +1,6 @@
 const db = require('../common/connect');
+const QRCode = require('qrcode');
+
 const MaVach = function (maVach) {
     this.id_ma_vach = maVach.id_ma_vach;
     this.id_giao_dich = maVach.id_giao_dich;
@@ -57,6 +59,10 @@ MaVach.update = function (u, result) {
         }
     })
 };
-``
+
+// MaVach.generate = function (u, result) {
+  
+// };
+
 
 module.exports = MaVach;
