@@ -17,17 +17,16 @@ export default function ModalTrailer({trailer,idPhim,openT, handleToggleTrailer 
     }
     getPhimDetail();
   },[phimID]);
-  console.log(listFilm);
+  
   const getId = (url) => {
     if (!url) return null;
     const regExp =
       /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
     const match = url.match(regExp);
-    console.log(match);
+    
     return match && match[2].length === 11 ? match[2] : null;
   };
   const video_id = getId(trailer);
-  
   
 
   const style = {

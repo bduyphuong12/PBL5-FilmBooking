@@ -1,6 +1,143 @@
+@import url('https://fonts.googleapis.com/css?family=Exo+2&display=swap');
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+
+.ChooseSlotCopy {
+  text-align: center;
+  margin-top: 100px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.Movies {
+  margin-bottom: 24px;
+}
+
+.Movies select {
+  appearance: none;
+  background: white;
+  font-size: 14px;
+  margin-left: 19px;
+  border-radius: 4px;
+  padding: 6px 24px;
+}
+
+.ShowCase {
+  margin: 0 0 48px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  background: #3b3b3b;
+  padding: 12px;
+  border-radius: 4px;
+  color: #7e7e7e;
+}
+
+
+.Cinema {
+  margin-bottom: 18px;
+  perspective: 450px;
+
+  display: grid;
+  place-items: center;
+  grid-gap: 20px;
+}
+
+
+.Cinema .seats {
+  display: grid;
+  grid-gap: 16px;
+ 
+  grid-template-columns: repeat(8, min-content);
+  align-items: center;
+  
+}
+
+
+
+.Cinema .seats .seat:not(.occupied):hover,
+.Cinema .seats .seat:not(.occupied):focus {
+  cursor: pointer;
+  background: #c1eac5;
+  transform: scale(1.2);
+  
+  
+}
+
+.Cinema .seats .seat.selected::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 8;
+ 
+  border-radius: 100%;
+  background: transparent;
+  border: 2px solid #7bc47f;
+  animation: show-off 0.8s;
+  visibility: hidden;
+ 
+}
+
+@keyframes show-off {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    transform: scale(3);
+    opacity: 0;
+    
+  }
+}
+
+.seat {
+  display: inline-block;
+  background: #626262;
+  width: 26px;
+  height: 22px;
+  padding: 20px;
+ 
+  transition: transform 0.3s ease-in-out;
+
+  position: relative;
+  top: 1px;
+}
+
+.seat.selected {
+  background: #7bc47f !important;
+  width: 26px;
+  height: 22px;
+  
+}
+
+.seat.occupied {
+  background: #cfcfcf;
+  width: 26px;
+  height: 22px;
+}
+
+.info .count {
+  color: #7bc47f;
+  font-size: 15px;
+}
+
+.info .total {
+  color: #7bc47f;
+  font-size: 15px;
+}
+
 
 .checkOut__left {
-  
+  margin-top: 20px;
   
   .header {
     display: flex;
@@ -92,7 +229,8 @@
       .chooseSlot {
         .screen__img {
           img {
-            width: 95%;
+            margin-left: 200px;
+            width: 55%;
           }
         }
         .picking {
@@ -111,35 +249,7 @@
           .slot__picking {
             padding-left: 50px; ;
            
-            .slot__row {
-              
-              text-align: center;
-              .slot__item {
-                
-                cursor: pointer;
-                color: #949494;
-                padding-left: 10px;
-                font-size: 25px;
-                &.item--picking {
-                  color: #60c5ef;
-                  padding-left: 10px;
-                  &.item--vip {
-                    color: #60c5ef;
-                  }
-                }
-                
-                &.item--picked {
-                  opacity: 0.5;
-                  cursor: no-drop;
-                  color: #949494;
-                  padding-left: 10px;
-                }
-                &.item--vip {
-                  color: #fb4226;
-                }
-                
-              }
-            }
+           
           }
         }
         .slot__detail {
@@ -148,18 +258,7 @@
           justify-content: center;
           .fa {
             font-size: 20px;
-            &.item--regular {
-              color: #949494;
-            }
-            &.item--picking {
-              color: #60c5ef;
-            }
-            &.item--vip {
-              color: #fb4226;
-            }
-            &.item--picked {
-              opacity: 0.2;
-            }
+           
           }
           .slot__text {
             padding-left: 10px;

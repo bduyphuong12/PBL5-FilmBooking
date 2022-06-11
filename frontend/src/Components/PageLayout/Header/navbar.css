@@ -1,9 +1,9 @@
 .navbar-light {
     background:#D2691E;
     box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2, green, blue, alpha);
-    height: 50px;
+    height: 70px;
     font-size: 0.9rem;
-    z-index: 1028 !important;
+    z-index: 1028 ;
   }
   
   .navbar-logo {
@@ -15,7 +15,9 @@
     height: 40%;
     
   }
-  
+  .nav-right-side{
+    margin-left: 350px;
+  }
   .navbar .nav-left-side {
     flex: 40%;
     display: flex;
@@ -24,8 +26,14 @@
     margin-left: 10%;
   }
   .thongbao{
-    width: 30px;
-    margin-left: 50px;
+    width: 25px;
+    margin-left: 32px;
+    display: block;
+  }
+  .tintuc{
+    width: 25px;
+    margin-left: 20px;
+    display: block;
   }
   .navbar-search {
     max-width: 500px;
@@ -51,7 +59,7 @@
     position: relative;
     background-color: #D2691E;
     border: none;
-    height: 28px;
+    height: 23px;
     width: 40px;
     border-radius: 15px;
     margin-right: 4px;
@@ -67,7 +75,19 @@
   }
   
   
-  
+  .navbar-btn-account{
+    outline: none !important;
+    position: relative;
+    font-size: 18px;
+    background-color: #D2691E;
+    color: black;
+    height: 32px;
+    margin-top: -20px;
+    
+    border-radius: 10px;
+    font-weight: 700;
+    border: none;
+  }
   .navbar-btn {
     outline: none !important;
     position: relative;
@@ -75,8 +95,8 @@
     background-color: #D2691E;
     color: black;
     height: 32px;
-    width: 63px;
-    
+    margin-top: -20px;
+    margin-left: 50px;
     border-radius: 10px;
     font-weight: 700;
     border: none;
@@ -86,17 +106,18 @@
       width: 45px;
       margin-top: 1px;
       border-radius: 50%;
-      margin-left: 150px;
+      
   }
   .film{
       color: black;
       text-decoration: none;
       font-weight: 700;
       font-size: 18px;
-      margin-left: 100px;
+      margin-left: 250px;
   }
  
   
+ 
   .category{
     color: black;
     text-decoration: none;
@@ -109,6 +130,11 @@
     cursor: pointer;
   }
   
+  .film-icon{
+    width: 25px;
+    display: block;
+    margin-left: 10px;
+  }
   
   
   
@@ -126,6 +152,7 @@
   }
   .navbar a {
     color: black;
+    text-decoration: none;
   }
   
   .navbar a:hover {

@@ -32,7 +32,7 @@ export default function BookingTicket() {
   
   return (
     <Fragment>
-      <div className="container-fluid bg-light" style={{ paddingTop: 20 }}>
+      <div className="container-fluid bg-light" style={{ paddingTop: 30 }}>
         <div className="bookTicket__content row mt-5">
           <ChooseSlot lcByRoomPhimID = {lcByRoomPhimID}
                       phimDetail={phimDetail}

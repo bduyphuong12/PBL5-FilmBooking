@@ -17,9 +17,10 @@ export default function AllMovie() {
     }
     getListFilm();
   },[]);
+  
   if(listFilm){
     return (
-        <>
+        <div className="pageallfilm">
         {
               React.Children.toArray(
                 listFilm.result.map(d => (
@@ -53,14 +54,11 @@ export default function AllMovie() {
                 </CSSTransition>
               </LazyLoad>
             </div>
-          </NavLink>
-               
-          
-          
+          </NavLink> 
         </div>
          )))
         }
-        </>
+        </div>
         
       );
   }

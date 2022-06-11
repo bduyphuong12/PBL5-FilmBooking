@@ -1,8 +1,18 @@
-import React from "react";
+import React, {useEffect,useState} from "react";
 import "./listmovie.css";
 import MovieCarousel from "../MovieCarousel/moviecarousel";
-
+import axios from 'axios';
 export default function ListMovie() {
+  const [listFilm,setListFilm] = useState(null);
+
+  useEffect(() => {
+    const getListFilm = () => {
+      axios.get('/phim/list').then(res => {
+        setListFilm(res.data);
+      })
+    }
+    getListFilm();
+  },[]);
   return (
     <div id="listMovie" className="listMovie">
       <div className="container">
@@ -42,7 +52,7 @@ export default function ListMovie() {
               role="tabpanel"
               aria-labelledby="pills-home-tab"
             >
-              <MovieCarousel  />
+              <MovieCarousel  listFilm ={listFilm}/>
             </div>
             <div
               className="tab-pane fade"
@@ -50,7 +60,7 @@ export default function ListMovie() {
               role="tabpanel"
               aria-labelledby="pills-profile-tab"
             >
-              <MovieCarousel />
+              <MovieCarousel listFilm ={listFilm}/>
             </div>
           </div>
         </div>

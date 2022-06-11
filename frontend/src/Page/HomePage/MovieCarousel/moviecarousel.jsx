@@ -5,24 +5,13 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { NavLink } from "react-router-dom";
 import ModalTrailer from "../ModalTrailer/ModalTrailer"
-import axios from 'axios';
-function MovieCarousel(){
+
+function MovieCarousel({listFilm}){
   const [openT,setOpenT] = useState(false);
   const handleToggleTrailer = () => setOpenT(!openT);
-  const [listFilm,setListFilm] = useState(null);
-
-  useEffect(() => {
-    const getListFilm = () => {
-      axios.get('/phim/list').then(res => {
-        setListFilm(res.data);
-      })
-    }
-    getListFilm();
-  },[]);
-  
+ 
   if(listFilm){ 
     return (
-
       <div className="hotMovie">
     <div className="hotMovie__content">
         
@@ -40,13 +29,7 @@ function MovieCarousel(){
         <div className="item__img">
           <img src={d.poster} alt={d.poster} />
           <div className="overlay">
-            <div
-              className="play__button"
-              style={{ cursor: "pointer" }}
-              onClick={handleToggleTrailer}
-            >
-              <i className="fa fa-play play__icon" />
-            </div>
+           
           </div>
           
         </div>
@@ -68,14 +51,15 @@ function MovieCarousel(){
       
       </div>
           )))}
+          
         </OwlCarousel>
-      
         <ModalTrailer
-        trailer = {listFilm.result[1].trailer}
+        trailer = {listFilm.result[0].trailer}
         idPhim ={listFilm.result[0].id_phim}
         openT={openT}
         handleToggleTrailer={handleToggleTrailer}
       />
+        
     </div>
   </div>
   );

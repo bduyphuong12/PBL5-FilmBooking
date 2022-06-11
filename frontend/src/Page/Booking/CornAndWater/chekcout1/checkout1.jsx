@@ -111,7 +111,7 @@ export default function Checkout1({lcByRoomPhimID,phimDetail}) {
           id="btnBook"
           className="btnBook"
           data-toggle="modal"
-          data-target="#CornAndWater"
+          data-target="#CreditModal"
           // onClick={() => {
           //   datVe();
           // }}

@@ -3,7 +3,7 @@ import "./News.scss";
 export default class News extends Component {
   render() {
     return (
-      <section id="news" className="news">
+      <section id="tin" className="news">
         <div className="container">
           <div id="newsTab">
             <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -65,7 +65,7 @@ export default class News extends Component {
                         </div>
                         <div className="datanews">
                           <div className="contentnews">
-                            <span className="authornews">Anh Phong</span>
+                            <span className="authornews">Duy Phuong</span>
                             <h1 className="titlenews">
                               <a className="title__link" href="/#">
                                 Một thành viên của Avengers sẽ "biến chất"?
@@ -130,7 +130,7 @@ export default class News extends Component {
                         </div>
                         <div className="datanews">
                           <div className="contentnews">
-                            <span className="authornews">Paul Pogba</span>
+                            <span className="authornews">Minh Trí</span>
                             <h1 className="titlenews">
                               <a className="title__link" href="/#">
                                 Stranger Things: The sound of the Upside Down
