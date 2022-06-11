@@ -66,8 +66,8 @@ function Navbar() {
           </Link>
         </div>
         <div className="sidebar__img">
-        <Link to='/'><GiGalaxy style={{color: "#9E4242"}} size={40}/></Link>
-              <a className="text" href="/">META CINEMA</a>
+        <Link to='/'><img style={{marginTop: '12px'}} src="https://i.postimg.cc/25yXkc0N/logo.png" height="60" width="180"/></Link>
+              
             </div>
         <div className="navbar__right">
         <div className="dropdown">

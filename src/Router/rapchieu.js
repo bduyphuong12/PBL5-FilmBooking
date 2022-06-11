@@ -1,15 +1,14 @@
 import React from 'react'
 
 
-const Rapchieu = ({modalOpenDetail}) => {
+const Rapchieu = ({modalOpenDetail,roomId,roomName}) => {
   return (
-    <div className='bg-items-rapchieu' onClick={function(event){modalOpenDetail(true)}}>
+    <div className='bg-items-rapchieu' onClick={function(event){modalOpenDetail(true,roomId)}}>
         <div className='bg-image' >
             <div className='image-items' />
         </div>
         <div className='title-items'>
-            <span className='title-left'>Room 1 &nbsp;&nbsp;&nbsp;|</span>
-            <span className='title-right'>35/80 Seat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<a style={{color: "green"}}>&nbsp;&nbsp;&nbsp; Open</a></span>
+            <span className='title-center'>{roomName}</span>
         </div>
     </div>
   )

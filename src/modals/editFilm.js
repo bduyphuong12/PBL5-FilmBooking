@@ -59,7 +59,8 @@ export default function EditFilm({infoModalFilm,modalClose,detailFilm,idUp}) {
         dao_dien: daoDienF,
         the_loai: catagoryF,
         trailer: trailerF,
-        poster: posterF
+        poster: posterF,
+        so_ve: detailFilm?detailFilm.result[0].so_ve:0
     }
 }
 const updateFilm = () => {

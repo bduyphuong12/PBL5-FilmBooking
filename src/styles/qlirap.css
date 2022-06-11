@@ -60,12 +60,16 @@ main {
       margin-top: 5px;
       width: 270px;
   }
+  .title-center{
+    float: center;
+    position: relative;
+    top: 5px;
+    width: 270px;
+}
   .size-canvas{
       margin: auto;
       margin-top: 12px;
-      background-image: url('../assets/seats.png');
-      background-repeat: no-repeat;
-      background-size: cover;
       width: 800px;
       height: 590px;
   }
+ 

@@ -2,18 +2,19 @@ import React from "react";
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS } from 'chart.js/auto'
 
-const Chart1 = () =>{
+const Chart1 = ({dataFilm}) =>{
+  if(dataFilm){
+  var phimTitles = dataFilm.map(phim => phim.ten_phim.substring(0,15));
+  var phimScores = dataFilm.map(phim => phim.so_ve);
     return (
         <Bar height={250} width={430}
             data={{
               labels: [
-                "Kimetsu No Yaiba",
-                "Batman",
-                "Jujutsu Kaisen",
-                "Your Name",
-                "Ironman",
-                "The Flash",
-                "Superman"
+                phimTitles[0]+"...",
+                phimTitles[1]+"...",
+                phimTitles[2]+"...",
+                phimTitles[3]+"...",
+                phimTitles[4]?phimTitles[4]+"...":"Null"
               ],
               datasets: [
                 {
@@ -41,7 +42,7 @@ const Chart1 = () =>{
                     'rgb(54, 162, 235)',
                     'rgb(153, 102, 255)'
                   ],
-                  data: [5000, 4700, 4200, 3700, 3000, 2800, 2100],
+                  data: [phimScores[0], phimScores[1], phimScores[2], phimScores[3], phimScores[4]],
                   borderWidth: 1
                 }
               ]
@@ -54,5 +55,5 @@ const Chart1 = () =>{
               }
             }}
           />
-    )}
+    )}}
 export default Chart1;

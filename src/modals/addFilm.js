@@ -39,7 +39,8 @@ export default function AddFilm({addFilm,modalClose,dataF,newFilm}) {
           dao_dien: daoDienF,
           the_loai: catagoryF,
           trailer: trailerF,
-          poster: posterF
+          poster: posterF,
+          so_ve: 0
       }
   }
   

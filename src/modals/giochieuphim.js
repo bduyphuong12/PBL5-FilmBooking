@@ -8,10 +8,10 @@ export default function Giochieuphim({infogiochieu,modalCloseInfo,time,timeFilm,
   const [infoDetailGC,setGC] = useState(false);
   const [idLC, setIdLC] = useState(1);
   const [dataLC,setDataLC] = useState(null);
-  const [timeGC,setTimeLC] = useState(null);
+  const [timeGCPhim,setTimeGCPhim] = useState(null);
   const changeGC = (val,id) => {
     setGC(val);
-    setTimeLC(id);
+    setTimeGCPhim(id);
   }
   useEffect(()=>{
     const getDataLC = () => {
@@ -74,7 +74,7 @@ export default function Giochieuphim({infogiochieu,modalCloseInfo,time,timeFilm,
             )))}
         </div>
     </div>
-    <DetailGiochieu infoDetailGC={infoDetailGC} closeDetail={changeGC} idGC={timeGC?timeGC:""} />
+    {timeGCPhim?<DetailGiochieu infoDetailGC={infoDetailGC} closeDetail={changeGC} idGC={timeGCPhim} />:<></>}
 </div>
   )
   }
