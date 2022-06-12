@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./movieinfo.css";
-import ModalTrailer from "../../HomePage/ModalTrailer/ModalTrailer";
+import ModalTrailer from "../../HomePage/ModalTrailer/modaltrailer";
 import axios from "axios";
 export default function MovieInfo() {
   const [openT, setOpenT] = React.useState(false);
