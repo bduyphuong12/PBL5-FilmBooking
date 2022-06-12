@@ -35,11 +35,11 @@ function NavBar() {
             <img className="navbar-logo" src={logo} alt="logo" />
           </Link>
         </div>
-        
+
         <ModalTrailer openF={openF} handleToggleF={handleToggleF} />
       </div>
       <div className="nav-center">
-      <Link className="menu" to={"/allmovie"}>
+        <Link className="menu" to={"/allmovie"}>
           <img
             src="http://simpleicon.com/wp-content/uploads/film-3.png"
             className="menu-icon"
@@ -64,10 +64,7 @@ function NavBar() {
           Tin tức
         </a>
       </div>
-      
-
       <div className="nav-right-side ">
-        
         {buttons}
 
         {user ? (
