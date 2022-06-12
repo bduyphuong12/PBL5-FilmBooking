@@ -1,4 +1,9 @@
 const db = require('../common/connect');
+<<<<<<< HEAD
+=======
+const QRCode = require('qrcode');
+
+>>>>>>> parent of 4b247cd (tri-done)
 const MaVach = function (maVach) {
     this.id_ma_vach = maVach.id_ma_vach;
     this.id_giao_dich = maVach.id_giao_dich;
@@ -59,4 +64,12 @@ MaVach.update = function (u, result) {
 };
 ``
 
+<<<<<<< HEAD
+=======
+// MaVach.generate = function (u, result) {
+  
+// };
+
+
+>>>>>>> parent of 4b247cd (tri-done)
 module.exports = MaVach;

@@ -13,6 +13,7 @@ const Setting_form = () => {
           <h2>THÔNG TIN TÀI KHOẢN</h2>
           <div className="content">
             <Sidebar />
+
             <Switch>
               <Route path="/" exact>
                 <Infomation_user />
