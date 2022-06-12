@@ -24,7 +24,13 @@ function NavBar() {
   };
 
   const [openF, setOpenF] = useState(false);
-  const handleToggleF = (event) => setOpenF(!openF);
+  const handleToggleF = (event) => {
+    if (!user) {
+      history.push("/login");
+    } else {
+      setOpenF(!openF);
+    }
+  };
   let buttons;
 
   return (

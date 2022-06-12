@@ -30,6 +30,7 @@
   display: block;
   margin-left: 30px;
 }
+
 .tintuc {
   width: 25px;
   margin-left: 18px;
@@ -61,6 +62,10 @@
   font-weight: 700;
   font-size: 18px;
   margin-right: 50px;
+}
+.menu:hover {
+  cursor: pointer;
+  color: white;
 }
 .menu-icon {
   width: 25px;
