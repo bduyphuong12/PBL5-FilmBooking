@@ -1,11 +1,8 @@
 .navbar-search {
   max-width: 500px;
   background-color: silver;
-  height: 50px;
+  height: 42px;
   flex: 2;
- margin-left: 300px;
- margin-bottom: -80px;
-  margin-top: 100px;
   border-radius: 30px;
   display: flex;
   align-items: center;
@@ -27,7 +24,7 @@
 .navbar-search-btn {
   outline: none !important;
   position: relative;
-  background-color: #D2691E;
+  background-color: #d2691e;
   border: none;
   height: 23px;
   width: 40px;

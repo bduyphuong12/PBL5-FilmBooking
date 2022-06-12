@@ -1,22 +1,22 @@
-import React, {useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import "./movieinfo.css";
-import ModalTrailer from "../../HomePage/ModalTrailer/ModalTrailer";
-import axios from 'axios';
+import ModalTrailer from "../../HomePage/ModalTrailer/modaltrailer";
+import axios from "axios";
 export default function MovieInfo() {
   const [openT, setOpenT] = React.useState(false);
   const handleToggleTrailer = () => setOpenT(!openT);
-  const [phimDetail,setPhimDetail] = useState(null);
-  const getUrlPhim= window.location.href.split("/");
-  const phimID = getUrlPhim[getUrlPhim.length - 1]
-  
+  const [phimDetail, setPhimDetail] = useState(null);
+  const getUrlPhim = window.location.href.split("/");
+  const phimID = getUrlPhim[getUrlPhim.length - 1];
+
   useEffect(() => {
     const getPhimDetail = () => {
-      axios.get('/phim/detail/' + phimID).then(res => {
+      axios.get("/phim/detail/" + phimID).then((res) => {
         setPhimDetail(res.data);
-      })
-    }
+      });
+    };
     getPhimDetail();
-  },[phimID]);
+  }, [phimID]);
   const renderStar = (rating) => {
     if (rating > 5) rating = 5;
     var content = [];
@@ -35,7 +35,7 @@ export default function MovieInfo() {
   const countRatingMark = (rating) => {
     return rating * 0.5 + 10 * 0.5;
   };
-  if(phimDetail){
+  if (phimDetail) {
     return (
       <section className="movieInfo">
         <div className="full__background">
@@ -65,21 +65,19 @@ export default function MovieInfo() {
                   src={phimDetail.result[0].poster}
                   alt={phimDetail.result[0].poster}
                 />
-                <div className="play__btn" onClick={handleToggleTrailer} >
+                <div className="play__btn" onClick={handleToggleTrailer}>
                   <i className="fa fa-play" />
                 </div>
               </div>
             </div>
             <div className="movie__info col-6">
               <div>
-                <div className="showtime">
-                  
-                </div>
+                <div className="showtime"></div>
                 <div className="mb-3 d-flex justify-content-start align-items-center">
                   <span className="age--C">Meta</span>
                   <span className="name">{phimDetail.result[0].ten_phim}</span>
                 </div>
-  
+
                 <p className="during">{phimDetail.result[0].thoi_luong}</p>
                 <a href={"#movieTheater"}>
                   <button className="bookTicket-btn">Mua Vé</button>
@@ -89,7 +87,7 @@ export default function MovieInfo() {
             <div className="movie__rating d-flex justify-content-end col-3">
               <div>
                 <div className="rating__point">
-                {countRatingMark(phimDetail.result[0].so_sao)}
+                  {countRatingMark(phimDetail.result[0].so_sao)}
                   <div className="vongtronxanh"></div>
                 </div>
                 <div className="rating__stars">
@@ -110,14 +108,12 @@ export default function MovieInfo() {
           <div className="during">120 phút</div>
         </div>
         <ModalTrailer
-          trailer = {phimDetail.result[0].trailer}
-          idPhim ={phimDetail.result[0].id_phim}
+          trailer={phimDetail.result[0].trailer}
+          idPhim={phimDetail.result[0].id_phim}
           openT={openT}
           handleToggleTrailer={handleToggleTrailer}
         />
       </section>
     );
-
   }
-  
 }

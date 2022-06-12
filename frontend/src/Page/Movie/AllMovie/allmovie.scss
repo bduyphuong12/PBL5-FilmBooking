@@ -1,25 +1,22 @@
-.navbar-search{
-  margin-left: 410px;
-}
-.btn-reload{
+.btn-reload {
   display: block;
   margin-left: 800px;
   margin-top: 40px;
 }
 .movie-card {
-    margin-top: 100px;
-    display: inline-flex;
-    
+  margin-top: 100px;
+  display: inline-flex;
+
   .card-link {
     text-decoration: none;
     margin-left: 20px;
-    
+
     .card-content {
       color: #fff;
       height: 320px;
       width: 600px;
-      
-      position: relative;  
+
+      position: relative;
       margin-left: 20px;
       transition: all 0.4s;
       border-radius: 10px;
@@ -34,7 +31,7 @@
       .content-left {
         width: 100%;
         height: 100%;
-        
+
         z-index: 2;
         position: relative;
         background: linear-gradient(to right, #0d0d0c 50%, transparent 100%);
@@ -47,7 +44,6 @@
           position: relative;
           .movie-name {
             text-transform: capitalize;
-
           }
           .group-id {
             color: #60c5ef;
@@ -91,7 +87,7 @@
         position: absolute;
         border-radius: 11px;
         background-size: cover;
-        background-position: -100% 10% ;
+        background-position: -100% 10%;
       }
     }
   }
@@ -114,6 +110,5 @@
     &:hover {
       opacity: 0.6;
     }
-    
   }
 }
