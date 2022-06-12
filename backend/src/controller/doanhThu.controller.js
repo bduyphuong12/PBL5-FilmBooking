@@ -1,5 +1,5 @@
 const { response } = require('express');
-const DoanhThu = require('../models/doanhThu.model');
+const DoanhThu = require('../models/thongBao.model');
 
 
 exports.get_list = function (req, res) {

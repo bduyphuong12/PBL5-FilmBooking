@@ -1,6 +1,11 @@
+<<<<<<< Updated upstream
 const db = require("../common/connect");
 
 const QRCode = require("qrcode");
+=======
+const db = require('../common/connect');
+const QRCode = require('qrcode');
+>>>>>>> Stashed changes
 
 const MaVach = function (maVach) {
   this.id_ma_vach = maVach.id_ma_vach;
@@ -68,6 +73,16 @@ MaVach.update = function (u, result) {
     }
   );
 };
+<<<<<<< Updated upstream
 ``;
 
 module.exports = MaVach;
+=======
+
+// MaVach.generate = function (u, result) {
+  
+// };
+
+
+module.exports = MaVach;
+>>>>>>> Stashed changes

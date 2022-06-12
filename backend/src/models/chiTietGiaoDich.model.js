@@ -27,6 +27,16 @@ ChiTietGiaoDich.getById = function (id, result) {
     });
 };
 
+ChiTietGiaoDich.getByIdGD = function (id, result) {
+    db.query("select * from chi_tiet_giao_dich where id_giao_dich = ?", id, function (err, dv) {
+        if (err || dv.length == 0) {
+            result(err);
+        } else {
+            result(dv);
+        }
+    });
+};
+
 ChiTietGiaoDich.add = function (data, result) {
     db.query("INSERT INTO chi_tiet_giao_dich (id, id_giao_dich, id_hang, so_luong) VALUES (?,?,?,?);", [data.id, data.id_giao_dich, data.id_hang, data.so_luong], function (err, p) {
         console.log(err, data)

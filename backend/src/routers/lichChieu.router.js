@@ -11,5 +11,7 @@ module.exports = function (router) {
 
     router.put("/lc/update", lichChieuController.update);
 
+    router.get("/lc/getlc/:id/:rid", lichChieuController.getLCByRoomAndIdPhim);
+
     router.get("/lc/getByIdPhim/:id", lichChieuController.getByIdPhim);
 }

@@ -1,13 +1,15 @@
 module.exports = function (router) {
-    var tBController = require('../controller/giaoDich.controller');
+    var giaoDichController = require('../controller/giaoDich.controller');
 
-    router.get("/gd/list", tBController.get_list);
+    router.get("/dg/list", giaoDichController.get_list);
 
-    router.get("/tb/detail/:id", tBController.detail);
+    router.get("/dg/detail/:id", giaoDichController.detail);
 
-    router.post("/tb/add", tBController.add_tb);
+    router.post("/dg/add", giaoDichController.add);
 
-    router.delete("/tb/delete/:id", tBController.remove_tb);
+    router.delete("/dg/delete/:id", giaoDichController.remove);
 
-    router.put("/tb/update", tBController.update_tb);
+    router.put("/dg/update", giaoDichController.update);
+
+    router.get("/dg/getByIdUser/:id", giaoDichController.getByIdUser);
 }

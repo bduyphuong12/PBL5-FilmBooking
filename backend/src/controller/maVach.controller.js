@@ -36,4 +36,8 @@ exports.update = function (req, res) {
     });
 }
 
+// exports.generate = function (req, res) {
+ 
+// }
+
 

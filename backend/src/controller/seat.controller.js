@@ -19,3 +19,5 @@ exports.getByRoomId = function (req, res) {
         res.send({ result: response });
     });
 }
+
+

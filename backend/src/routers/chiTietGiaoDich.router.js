@@ -10,4 +10,6 @@ module.exports = function (router) {
     router.delete("/ctdg/delete/:id", CTGDController.remove);
 
     router.put("/ctdg/update", CTGDController.update);
+
+    router.get("/ctdg/getByIdGD/:id", CTGDController.getByIdGD);
 }

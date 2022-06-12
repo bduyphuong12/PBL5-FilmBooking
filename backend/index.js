@@ -1,5 +1,6 @@
 var express = require('express');
 const cors = require('cors');
+const QRCode = require('qrcode');
 
 var app = express();
 
@@ -28,6 +29,10 @@ require('./src/routers/lichChieu.router')(app);
 require('./src/routers/doanhThu.router')(app);
 require('./src/routers/giaoDich.router')(app);
 require('./src/routers/maVach.router')(app);
+require('./src/routers/chiTietGiaoDich.router')(app);
+require('./src/routers/seat.router')(app);
+require('./src/routers/seatNum.router')(app);
+require('./src/routers/room.router')(app);
 
 app.listen(5000, function() {
     console.log("Server listening on http://localhost:5000")

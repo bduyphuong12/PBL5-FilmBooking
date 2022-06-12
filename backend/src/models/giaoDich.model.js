@@ -1,34 +1,44 @@
 const db = require('../common/connect');
 const GiaoDich = function (giaoDich) {
-    this.id = giaoDich.id;
-    this.ngay = giaoDich.ngay;
-    this.id_user = giaoDich.id_user;
-    this.so_tien = giaoDich.so_tien;
-    this.id_hang = giaoDich.id_hang;
+    this.id = giaoDich.id_hang;
+    this.ngay = giaoDich.ten;
+    this.id_user = giaoDich.gia;
+    this.so_tien = giaoDich.gia;
 }
 
 GiaoDich.get_all = function (result) {
-    db.query("select * from giao_dich", function (err, tB) {
+    db.query("select * from giao_dich", function (err, h) {
         if (err) {
+            console.log(err);
             result(err);
         } else {
-            result(tB);
+            result(h);
         }
     });
 };
 
 GiaoDich.getById = function (id, result) {
-    db.query("select * from thong_bao where id = ?", id, function (err, tB) {
-        if (err || tB.length == 0) {
+    db.query("select * from giao_dich where id = ?", id, function (err, h) {
+        if (err || h.length == 0) {
             result(err);
         } else {
-            result(tB);
+            result(h);
+        }
+    });
+};
+
+GiaoDich.getByIdUser = function (id, result) {
+    db.query("select * from giao_dich where id_user = ?", id, function (err, dv) {
+        if (err || dv.length == 0) {
+            result(err);
+        } else {
+            result(dv);
         }
     });
 };
 
 GiaoDich.add = function (data, result) {
-    db.query("INSERT INTO thong_bao (id, ngay, noi_dung) VALUES (?,?,?);", [data.id, data.ngay, data.noi_dung], function (err, tB) {
+    db.query("INSERT INTO giao_dich (id, ngay, id_user, so_tien) VALUES (?,?,?,?);", [data.id, data.ngay, data.id_user, data.so_tien], function (err, p) {
         console.log(err, data)
         if (err) {
             result(null);
@@ -38,18 +48,18 @@ GiaoDich.add = function (data, result) {
     });
 };
 
-GiaoDich.remove = function (id, result) {
-    db.query("delete from thong_bao where id = ?", id, function (err, tB) {
+GiaoDich.remove_dg = function (id, result) {
+    db.query("delete from giao_dich where id = ?", id, function (err, h) {
         if (err) {
             result(null);
         } else {
-            result(tB);
+            result(h);
         }
     });
 }
 
 GiaoDich.update = function (u, result) {
-    db.query("update thong_bao set ngay=?,noi_dung=? where id = ?", [u.ngay, u.noi_dung, u.id], function (err, u) {
+    db.query("update giao_dich set ngay=?, id_user=?, so_tien=? where id = ?", [u.ngay, u.id_user, u.so_tien, u.id], function (err, u) {
         console.log(err)
         if (err) {
             console.log(err);
@@ -59,5 +69,6 @@ GiaoDich.update = function (u, result) {
         }
     })
 };
+``
 
 module.exports = GiaoDich;

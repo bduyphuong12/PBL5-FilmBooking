@@ -13,6 +13,12 @@ exports.detail = function (req, res) {
     });
 }
 
+exports.getByIdGD = function (req, res) {
+    chiTietGiaoDich.getByIdGD(req.params.id, function (response) {
+        res.send({ result: response });
+    });
+}
+
 //body-parser
 exports.add = function (req, res) {
     var data = req.body;

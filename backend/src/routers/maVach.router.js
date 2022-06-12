@@ -10,4 +10,6 @@ module.exports = function (router) {
     router.delete("/mv/delete/:id", mVController.remove);
 
     router.put("/mv/update", mVController.update);
+
+    // router.get("/mv/generate", mVController.generate);
 }
