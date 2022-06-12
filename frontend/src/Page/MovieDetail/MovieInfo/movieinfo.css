@@ -53,7 +53,7 @@
 }
 .movieInfo .full__background .rating__point .rating__stars {
     color: #60c5ef;
-    text-align: center;
+    margin-left: -5px;
 }
 .movieInfo .form__info {
     position: absolute;
@@ -136,6 +136,7 @@
     border: 7px solid #333;
     text-align: center;
     line-height: 120px;
+    margin-left: 15px;
     color: #fff;
     background-color: rgba(0, 0, 0, 0.3);
     margin-bottom: spacing(1);
@@ -149,6 +150,7 @@
     border-radius: 50%;
     top: -7px;
     left: -7px;
+    margin-left: 5px;
     clip: rect(0, 1.7em, 3em, 0);
     transform: rotate(200deg);
 }
@@ -159,6 +161,7 @@
 .movieInfo .form__info .row .movie__rating .rating__text {
     color: #fff;
     padding: spacing(0.7);
+    margin-left: 25px;
 }
 .movieInfo .film__infoMobile {
     display: none;

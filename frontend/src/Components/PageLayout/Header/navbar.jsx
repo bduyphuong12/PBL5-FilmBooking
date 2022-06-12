@@ -35,27 +35,11 @@ function NavBar() {
             <img className="navbar-logo" src={logo} alt="logo" />
           </Link>
         </div>
-        <div className="navbar-search">
-          <input
-            type="text"
-            class="navbar-search-input"
-            id="navbar-search-input"
-            placeholder="Search film..."
-          />
-          <button class="navbar-search-btn">
-            <i
-              class="fas fa-search navbar-search-btn-icon"
-              id="navbar-search-btn-icon"
-              alt="search"
-            />
-          </button>
-        </div>
-
+        
         <ModalTrailer openF={openF} handleToggleF={handleToggleF} />
       </div>
-
-      <div className="nav-right-side ">
-        <Link className="menu" to={"/allmovie"}>
+      <div className="nav-center">
+      <Link className="menu" to={"/allmovie"}>
           <img
             src="http://simpleicon.com/wp-content/uploads/film-3.png"
             className="menu-icon"
@@ -63,22 +47,27 @@ function NavBar() {
           />
           Phim
         </Link>
-        <div className="menu thongbao " onClick={handleToggleF}>
+        <div className="menu  " onClick={handleToggleF}>
           <img
             src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-bell-512.png"
             alt=""
-            className="menu-icon"
+            className="thongbao"
           />
           Thông báo
         </div>
-        <a href={"#tin"} className=" menu">
+        <a href={"#tin"} className="menu">
           <img
             src="https://cdn-icons-png.flaticon.com/512/464/464214.png"
             alt=""
-            className="menu-icon"
+            className="tintuc"
           />{" "}
           Tin tức
         </a>
+      </div>
+      
+
+      <div className="nav-right-side ">
+        
         {buttons}
 
         {user ? (

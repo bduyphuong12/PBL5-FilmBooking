@@ -8,18 +8,7 @@ export default function ShowTime() {
   var moment = require("moment");
   const [lcDetail,setLCPhimDetail] = useState(null);
   const getUrlPhim= window.location.href.split("/");
-  const phimID = getUrlPhim[getUrlPhim.length - 1]
-  const [lcByRoomPhimID,setlcByRoomPhimID] = useState(null);
-  useEffect(() => {
-    const getLCByRoomPhimID = () => {
-      
-      axios.get('/lc/getlc/' + phimID + '' ).then(res => {
-        setlcByRoomPhimID(res.data);
-      })
-    }
-    getLCByRoomPhimID();
-  },[phimID]);
-  console.log(lcByRoomPhimID);
+  const phimID = getUrlPhim[getUrlPhim.length - 1];
   
   useEffect(() => {
     const getLCDetail = () => {

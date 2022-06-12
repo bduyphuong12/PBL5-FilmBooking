@@ -4,7 +4,7 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { NavLink } from "react-router-dom";
-import ModalTrailer from "../ModalTrailer/modaltrailer";
+
 
 function MovieCarousel({ listFilm }) {
   const [openT, setOpenT] = useState(false);
@@ -48,12 +48,7 @@ function MovieCarousel({ listFilm }) {
               ))
             )}
           </OwlCarousel>
-          <ModalTrailer
-            trailer={listFilm.result[0].trailer}
-            idPhim={listFilm.result[0].id_phim}
-            openT={openT}
-            handleToggleTrailer={handleToggleTrailer}
-          />
+          
         </div>
       </div>
     );
