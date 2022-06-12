@@ -13,9 +13,6 @@ const movies = [
 ]
 export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
   var moment = require("moment");
-  const getUrlPhim= window.location.href.split("/");
-  const phimID = getUrlPhim[getUrlPhim.length - 2]
-  const roomID = getUrlPhim[getUrlPhim.length - 1]
   const [selectedMovie, setSelectedMovie] = useState(movies[0])
    const [selectedSeats, setSelectedSeats] = useState([])
   const [counter, setCounter] = useState(60 * 5);
