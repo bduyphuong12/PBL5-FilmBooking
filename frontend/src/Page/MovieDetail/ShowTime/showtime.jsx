@@ -1,83 +1,90 @@
-import React, {useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import "./showtime.css";
 import Description from "../Description/description";
 // import Comment from "../Comment/Comment";
-import axios from 'axios';
+import axios from "axios";
 export default function ShowTime() {
   var moment = require("moment");
-  const [lcDetail,setLCPhimDetail] = useState(null);
-  const getUrlPhim= window.location.href.split("/");
+  const [lcDetail, setLCPhimDetail] = useState(null);
+  const getUrlPhim = window.location.href.split("/");
   const phimID = getUrlPhim[getUrlPhim.length - 1];
-  
+  const user = useSelector((state) => state.auth.login.currentUser);
   useEffect(() => {
     const getLCDetail = () => {
-      axios.get('/lc/getByIdPhim/' + phimID).then(res => {
+      axios.get("/lc/getByIdPhim/" + phimID).then((res) => {
         setLCPhimDetail(res.data);
-      })
-    }
+      });
+    };
     getLCDetail();
-  },[phimID]);
-  
+  }, [phimID]);
+
   const renderRap = () => {
-    if(lcDetail) {
+    if (lcDetail) {
       return (
         <div>
-          { React.Children.toArray(
-            lcDetail.result.map((d) =>(
-          <a
-          
-          className="nav-link"
-          id="v-pills-cgv-tab"
-          data-toggle="pill"
-          href={`#${lcDetail.room_id}`}
-          // href=""
-          role="tab"
-          aria-controls="v-pills-cgv"
-          aria-selected="true"
-        >
-              <div className="img__content">
-            <img src="https://i.ibb.co/cvb2Rk6/theater.jpg" alt=""/>
-            
-            <div className="img__text">
-              <div className="img__name">Rạp {d.room_id}</div>
-            </div>
-          </div>
-        </a>
-          )))}
+          {React.Children.toArray(
+            lcDetail.result.map((d) => (
+              <a
+                className="nav-link"
+                id="v-pills-cgv-tab"
+                data-toggle="pill"
+                href={`#${lcDetail.room_id}`}
+                // href=""
+                role="tab"
+                aria-controls="v-pills-cgv"
+                aria-selected="true"
+              >
+                <div className="img__content">
+                  <img src="https://i.ibb.co/cvb2Rk6/theater.jpg" alt="" />
+
+                  <div className="img__text">
+                    <div className="img__name">Rạp {d.room_id}</div>
+                  </div>
+                </div>
+              </a>
+            ))
+          )}
         </div>
-        
       );
     }
   };
- 
+
   const renderTime = () => {
-    if(lcDetail){
+    if (lcDetail) {
       return (
         <div>
-          {
-            React.Children.toArray(
-              lcDetail.result.map((d) => (
-                <ul className=" flex-wrapp" >
-                <div className="timeshow__item" >
-                  <NavLink
-                  
-                    className="timeshow__link"
-                    to={'/booking/'+ d.id_phim + '/'+d.room_id}
-                  >
-                    <div className="time__begin mb-2">
-                    {moment(d.thoi_gian_chieu).format("DD/MM/yyyy")}
-                      <p>
-                      {moment(d.thoi_gian_chieu).format("hh:mm A")}
-                      </p>
-                    </div>
-                  </NavLink>
+          {React.Children.toArray(
+            lcDetail.result.map((d) => (
+              <ul className=" flex-wrapp">
+                <div className="timeshow__item">
+                  {user ? (
+                    <NavLink
+                      className="timeshow__link"
+                      to={"/booking/" + d.id_phim + "/" + d.room_id}
+                    >
+                      <div className="time__begin mb-2">
+                        {moment(d.thoi_gian_chieu).format("DD/MM/yyyy")}
+                        <p>{moment(d.thoi_gian_chieu).format("hh:mm A")}</p>
+                      </div>
+                    </NavLink>
+                  ) : (
+                    <NavLink className="timeshow__link" to={"/login"}>
+                      <div className="time__begin mb-2">
+                        {moment(d.thoi_gian_chieu).format("DD/MM/yyyy")}
+                        <p>{moment(d.thoi_gian_chieu).format("hh:mm A")}</p>
+                      </div>
+                    </NavLink>
+                  )}
                 </div>
-          </ul>
-              )))}
+              </ul>
+            ))
+          )}
         </div>
       );
-    }};
+    }
+  };
 
   return (
     <section className="tabBookMovie">
@@ -157,7 +164,7 @@ export default function ShowTime() {
             role="tabpanel"
             aria-labelledby="pills-info-tab"
           >
-            <Description  />
+            <Description />
           </div>
           {/**Bình luận */}
           <div
