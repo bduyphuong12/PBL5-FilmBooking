@@ -6,7 +6,6 @@ import axios from 'axios'
 
 export default function Giochieuphim({infogiochieu,modalCloseInfo,time,timeFilm,idFilm}) {
   const [infoDetailGC,setGC] = useState(false);
-  const [idLC, setIdLC] = useState(1);
   const [dataLC,setDataLC] = useState(null);
   const [timeGCPhim,setTimeGCPhim] = useState(null);
   const changeGC = (val,id) => {
@@ -29,14 +28,9 @@ export default function Giochieuphim({infogiochieu,modalCloseInfo,time,timeFilm,
   if(infogiochieu){
     document.getElementById("myTimeLC1").value="";
   }
-  if(dataLC){
-    dataLC.result.map((d)=>{
-      if(idLC==d.id) setIdLC(idLC+1);
-    })
-  }
   const getDataTimeLC = (idRoom) => {
       return dataTimeLC = {
-          id: idLC===26?27:idLC, 
+          id: null, 
           id_phim: idFilm,
           thoi_gian_chieu: time+" "+timeLC+":00",
           room_id: idRoom
@@ -48,14 +42,15 @@ export default function Giochieuphim({infogiochieu,modalCloseInfo,time,timeFilm,
       return el.Status.localeCompare("OFF")===0;
     })
     if(emptyRoom.length!==0) {
+      await axios.post('/lc/add',dataTimeLC);
+      var lcList = await axios.get("/lc/list");
       const dataRoom = {
         Status: 'ON', 
-        Id_lich_chieu: data.id,
+        Id_lich_chieu: lcList.data.result[lcList.data.result.length-1].id,
         Room_Id: emptyRoom[0].Room_Id
       }
       getDataTimeLC(emptyRoom[0].Room_Id);
       await axios.put('/room/update',dataRoom);
-      await axios.post('/lc/add',dataTimeLC);
       window.alert("Added successfully!");
       window.location.reload();
     }
