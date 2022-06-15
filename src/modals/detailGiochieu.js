@@ -90,21 +90,6 @@ export default function DetailGiochieu({infoDetailGC,closeDetail,idGC}) {
     )
   }
 }
-function xuliDay(val){
-  var date = new Date(val);
-  var year = date.getFullYear();
-  var month = date.getMonth()+1;
-  var dt = date.getDate();
-  
-  if (dt < 10) {
-    dt = '0' + dt;
-  }
-  if (month < 10) {
-    month = '0' + month;
-  }
-  var day = year+'-' + month + '-'+dt;
-  return(day);
-}
 function xuliDate(val){
   var date = new Date(val);
   var hour = date.getHours();

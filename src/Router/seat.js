@@ -5,7 +5,7 @@ const Seat = ({seatId,seatName,clickFunc,closeRoom}) => {
  
   return (
     <div class="row">
-        <SeatNum seatId={seatId} seatName={seatName} clickFunc={clickFunc} closeRoom={closeRoom}/>    
+        <SeatNum seatId={seatId} seatName={seatName}/>    
     </div>
   )
 }

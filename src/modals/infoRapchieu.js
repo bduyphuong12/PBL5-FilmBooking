@@ -7,23 +7,23 @@ import axios from 'axios'
      const [dataSeatRow, setDataRow] = useState(null);
      const [listSeatCol, setListSeatCol] = useState(null);
      const [tenFilm, setTenFilm] = useState("");
-     const [listChoose, setListChoose] = useState([]); //
-     const [closeRoom, setCloseRoom] = useState(false); //
-     const changeCloseRoom = () => {        //
-      setCloseRoom(!closeRoom);             //
-     }                                      //
-     const updateListChoose = (id) => {     //
-       if(!listChoose.includes(id)) setListChoose(arr => [...arr,id] )   //
-       else {                                       //
-         let newArr = [...listChoose];              //
-         newArr.splice(listChoose.indexOf(id),1);   //
-         setListChoose(newArr); //                  //
-       }                                    //
-     }                                      //
-     const resetListChoose = () => {        //
-       setListChoose([]);                   // 
-     }                                      //
-     console.log(listChoose);               //
+    //  const [listChoose, setListChoose] = useState([]); //
+    //  const [closeRoom, setCloseRoom] = useState(false); //
+    //  const changeCloseRoom = () => {        //
+    //   setCloseRoom(!closeRoom);             //
+    //  }                                      //
+    //  const updateListChoose = (id) => {     //
+    //    if(!listChoose.includes(id)) setListChoose(arr => [...arr,id] )   //
+    //    else {                                       //
+    //      let newArr = [...listChoose];              //
+    //      newArr.splice(listChoose.indexOf(id),1);   //
+    //      setListChoose(newArr); //                  //
+    //    }                                    //
+    //  }                                      //
+    //  const resetListChoose = () => {        //
+    //    setListChoose([]);                   // 
+    //  }                                      //
+    //  console.log(listChoose);               //
      var lengthSeat=0;
      useEffect(() => {
         const getSeatRow = async () => {
@@ -75,7 +75,7 @@ import axios from 'axios'
     return (
         <div className="bg-modal" style={{display: infoRoom ? 'flex' : 'none' }}>
             <div className="modal-cinema" >
-                <div className="close" onClick={function(event){modalCloseDetail(false);resetListChoose();changeCloseRoom()}}>+</div>
+                <div className="close" onClick={function(event){modalCloseDetail(false)}}>+</div>
                 <h3 style={{fontFamily: 'Segoe UI'}}>ROOM {roomId}: {tenFilm}</h3>
                 <div className='size-canvas'>
                 <ul class="showcase">
@@ -97,7 +97,7 @@ import axios from 'axios'
                     <div class="screen"></div>
                     {React.Children.toArray(
                     dataSeatRow.result.sort(compare).map(d=>(
-                     <Seat seatId={d.Seat_Id} seatName={d.Row_No} clickFunc={updateListChoose} closeRoom={closeRoom}/>
+                     <Seat seatId={d.Seat_Id} seatName={d.Row_No}/>
                     )))}
                     </div>
                 </div>

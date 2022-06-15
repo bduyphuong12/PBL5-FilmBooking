@@ -36,7 +36,7 @@ export default function Giochieuphim({infogiochieu,modalCloseInfo,time,timeFilm,
   }
   const getDataTimeLC = (idRoom) => {
       return dataTimeLC = {
-          id: idLC, 
+          id: idLC===26?27:idLC, 
           id_phim: idFilm,
           thoi_gian_chieu: time+" "+timeLC+":00",
           room_id: idRoom
