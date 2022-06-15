@@ -34,14 +34,28 @@ export default function DetailFilm({infoFilm,modalCloseFilm,detailFilm,actorFilm
     const changeOpenT = () => setOpenTrailer(!openTrailer);
     if(detailFilm){
     const deleteFilm = async () => {
+        var roomList = await axios.get('/room/list');
+        var roomFill = roomList.data.result.filter(function (el) {
+            return el.Status.toString().localeCompare("ON")===0;
+        })
+        var lc;
+        for(var i = 0; i < roomFill.length; i++){
+            lc = await axios.get(`/lc/detail/${roomFill[i].Id_lich_chieu}`);
+            if(lc.data.result[0].id_phim.toString().localeCompare(detailFilm.result[0].id_phim.toString())===0){
+                window.alert("Check your room detail !");
+                return;
+            }
+        }
         if (window.confirm("Do you want to delete?") == true) {
             await axios.delete(`/dv/deleteByIdPhim/${detailFilm.result[0].id_phim}`);
+            await axios.delete(`/lc/deleteByIdPhim/${detailFilm.result[0].id_phim}`);
             await axios.delete(`/phim/delete/${detailFilm.result[0].id_phim}`);
             window.alert("Delete film successfully!");
             window.location.reload();
           } else {
             return;
           }
+        
     }
     if(actorFilm){
     if(actorFilm.result){

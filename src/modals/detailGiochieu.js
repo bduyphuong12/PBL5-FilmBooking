@@ -5,41 +5,38 @@ import axios from 'axios'
 
 export default function DetailGiochieu({infoDetailGC,closeDetail,idGC}) {
   const [dataTimeGC,setdataTimeGC] = useState(null);
+  const [dataRoom, setDataRoom] = useState(null);
   useEffect(()=>{
     const getDataGC = async () =>{
       var res = await axios.get(`/lc/detail/${idGC}`);
       setdataTimeGC(res.data);
     }
-    getDataGC();
-  },[])
-  var timeStart1="";
-  var dataTimeSt;
-  const getData = () =>{
-    timeStart1 = document.getElementById("timestart1").value;
-    timeStart1 === "" ? timeStart1 = document.getElementById("timestart1").placeholder : timeStart1 = document.getElementById("timestart1").value;
-  }
-  const editGC = async (data) => {
-    await axios.put('/lc/update',data);
-    window.alert("Updated successfully!");
-    window.location.reload();
+    const getDataRoom = async () =>{
+      var res = await axios.get("/room/list");
+      setDataRoom(res.data);
     }
-    const getDataUser = () => {
-      return dataTimeSt = {
-        id: dataTimeGC?dataTimeGC.result[0].id:"", 
-        id_phim: dataTimeGC?dataTimeGC.result[0].id_phim:"",
-        thoi_gian_chieu: dataTimeGC?xuliDay(dataTimeGC.result[0].thoi_gian_chieu).substring(0,10)+" "+timeStart1+":00":"",
-        room_id: dataTimeGC?dataTimeGC.result[0].room_id:""
-      }
-  }
-  const updateUser = () => {
-    getData();
-    editGC(dataTimeSt);
-    closeDetail(false)
-  }
-  if(dataTimeGC){
+    getDataGC();
+    getDataRoom();
+  },[])
+  if(dataTimeGC&&dataRoom){
     const deleteGC = async (id) => {
+      var idRoom = "";
+      dataRoom.result.map((d)=>{
+        if(d.Id_lich_chieu.toString().localeCompare(id.toString())===0){
+            idRoom = d.Room_Id;
+        }
+      })
       if (window.confirm("Do you want to delete?") == true) {
           await axios.delete(`/lc/delete/${id}`);
+          if(idRoom!==""){
+            const dataRoom = {
+              Status: 'OFF', 
+              Id_lich_chieu: "NULL",
+              Room_Id: idRoom
+            }
+            await axios.put('/room/update',dataRoom);
+            await axios.put(`/seat/reset/${idRoom}`);
+          }
           window.alert("Delete successfully!");
           window.location.reload();
         } else {
@@ -61,11 +58,10 @@ export default function DetailGiochieu({infoDetailGC,closeDetail,idGC}) {
           </tr>
           <tr>
             <td className="no_border">TimeStart</td>
-              <td className="no_border"><input type="text" className="inputE" name="timestart1" autoComplete='off' onChange={getData} placeholder={xuliDate(dataTimeGC.result[0].thoi_gian_chieu)} id="timestart1"  size="15"/></td>
+              <td className="no_border"><input type="text" className="inputE" name="timestart1" autoComplete='off' readOnly value={xuliDate(dataTimeGC.result[0].thoi_gian_chieu)} id="timestart1"  size="15"/></td>
           </tr>
         </tbody></div>
       </form>
-      <a className="button1" onClick={function(event){getDataUser();updateUser();}} >Save</a>
     </div>
 </div>
   )}
@@ -85,11 +81,10 @@ export default function DetailGiochieu({infoDetailGC,closeDetail,idGC}) {
             </tr>
             <tr>
               <td className="no_border">TimeStart</td>
-                <td className="no_border"><input type="text" className="inputE" name='timestart1' placeholder='NULL' onChange={getData} autoComplete='off' id="timestart1"  size="15"/></td>
+                <td className="no_border"><input type="text" className="inputE" name='timestart1' placeholder='NULL' autoComplete='off' id="timestart1"  size="15"/></td>
             </tr>
           </tbody></div>
         </form>
-        <a className="button1" onClick={function(event){getDataUser();updateUser();}}>Save</a>
       </div>
   </div>
     )

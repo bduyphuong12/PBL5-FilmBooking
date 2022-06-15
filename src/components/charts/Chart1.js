@@ -10,10 +10,10 @@ const Chart1 = ({dataFilm}) =>{
         <Bar height={250} width={430}
             data={{
               labels: [
-                phimTitles[0]+"...",
-                phimTitles[1]+"...",
-                phimTitles[2]+"...",
-                phimTitles[3]+"...",
+                phimTitles[0]?phimTitles[0]+"...":"Null",
+                phimTitles[1]?phimTitles[1]+"...":"Null",
+                phimTitles[2]?phimTitles[2]+"...":"Null",
+                phimTitles[3]?phimTitles[3]+"...":"Null",
                 phimTitles[4]?phimTitles[4]+"...":"Null"
               ],
               datasets: [

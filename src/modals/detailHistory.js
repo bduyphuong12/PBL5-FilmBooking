@@ -1,26 +1,35 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
+import axios from 'axios'
+import InfoHoaDon from '../Router/infoHoaDon';
 
-
-export default function DetailHistory({infoDetail}) {
+export default function DetailHistory({infoDetail,idGD,mnGD}) {
+  const [infoGD, setInfoGD] = useState(null);
+  useEffect(()=>{
+    const getInfoGD = () =>{
+      axios.get(`/ctdg/getByIdGD/${idGD}`).then((res)=>{
+        setInfoGD(res.data);
+      })
+    }
+    getInfoGD();
+  },[idGD])
+  if(infoGD){
   return (
     <div style={{display: infoDetail ? 'flex' : 'none' }}>
         <div className="modal-detail" >
             <h3 style={{color: "white"}}>CHI TIẾT HÓA ĐƠN</h3>
             <div className='detail-up'>
-                <a className='detail-left'>Vé xem phim x2</a>
-                <a className='detail-right'>120.000</a>
-                <a className='detail-left'>Bắp vị caramen x2</a>
-                <a className='detail-right'>100.000</a>
-                <a className='detail-left'>Coca x2</a>
-                <a className='detail-right'>60.000</a>
+            {React.Children.toArray(
+                    infoGD.result.map(d=>(
+                <InfoHoaDon dataHD={d}/>
+              )))}
             </div>
             <div className='detail-down'>
                 <hr className='hr-class'/>
                 <br/>
                 <a className='detail-left'>Tổng</a>
-                <a className='detail-right'>280.000</a>
+                <a className='detail-right'>{mnGD}.000</a>
             </div>
         </div>
     </div>
-  )
+  )}
 }

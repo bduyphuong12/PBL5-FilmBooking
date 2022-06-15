@@ -1,10 +1,14 @@
 import React from 'react'
 import axios from 'axios'
 
-export default function EditUser({infoEdit,modalClose,userData}) {
+export default function EditUser({infoEdit,modalClose,userData,roleData}) {
   var userName="",number="";
   var dataUser;
+  var role = roleData?roleData.result!==null?roleData.result[0].per_id:2:2;
+  var getRole = role;
   const getData = () =>{
+    if(document.getElementById('manRadioCheck').checked) getRole = 1;
+    else if(document.getElementById('womanRadioCheck').checked) getRole = 2;
     userName = document.getElementById("fullnameuser").value;
     number = document.getElementById("phoneuser").value;
     userName === "" ? userName = document.getElementById("fullnameuser").placeholder : userName = document.getElementById("fullnameuser").value;
@@ -20,6 +24,7 @@ export default function EditUser({infoEdit,modalClose,userData}) {
     window.location.reload();
     }
   if(infoEdit){
+    role === 2? document.getElementById("womanRadioCheck").checked = true : document.getElementById("manRadioCheck").checked = true;
     document.getElementById("fullnameuser").value="";
     document.getElementById("phoneuser").value="";
     getStartData();
@@ -33,12 +38,28 @@ export default function EditUser({infoEdit,modalClose,userData}) {
         Phone_Number: number
     }
 }
+const changeRole = () =>{
+  if(parseInt(role)!==parseInt(getRole)){
+    if(userData){
+    if(role===2){
+      const data ={
+        id:userData.result[0].ID_User
+      }
+      axios.put("/admin/setadmin",data);
+    }else{
+      axios.delete(`/admin/deleteadmin/${userData.result[0].ID_User}`);
+    }
+  }
+  }
+}
 const updateUser = () => {
   getData();
   editUser(dataUser);
+  changeRole();
   modalClose(false);
 }
   if(userData){
+    
   return (
     <div className="bg-modal" style={{display: infoEdit ? 'flex' : 'none' }}>
     <div className="modal-editUser" >
@@ -66,6 +87,12 @@ const updateUser = () => {
             <td className="no_border"><input type="text" id="phoneuser" name="phoneuser" autoComplete='off' placeholder={userData.result[0].Phone_Number} className="inputE" onChange={getData}
           size="30"/></td>
           </tr>
+          <tr>
+              <td className="no_border">Role</td>
+              <td className="no_border"><input type="radio" id="manRadioCheck" name="drone" value="admin"
+          /><label> Admin </label> <input type="radio" id="womanRadioCheck" name="drone" value="user"
+          /><label> User </label></td>
+            </tr>
         </tbody></div>
       </form>
       <a className="button1" onClick={function(event){getDataUser();updateUser()}} >Save</a>
@@ -77,7 +104,6 @@ const updateUser = () => {
       <div className="bg-modal" style={{display: infoEdit ? 'flex' : 'none' }}>
       <div className="modal-editUser" >
         <div className="close" onClick={function(event){modalClose(false);}}>+</div>
-        <img width="130px" height="130px" id="out1" src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg"/>
         <form action>
         <div className="table_content">
           <tbody>
@@ -100,6 +126,12 @@ const updateUser = () => {
             <td className="no_border">PhoneNum</td>
               <td className="no_border"><input type="text" id="phoneuser" name="phoneuser" placeholder="Null" className="inputE" onChange={getData}
             size="32"/></td>
+            </tr>
+            <tr>
+              <td className="no_border">Role</td>
+              <td className="no_border"><input type="radio" id="manRadioCheck" name="drone" value="admin" checked
+          /><label> Admin </label> <input type="radio" id="womanRadioCheck" name="drone" value="user"
+          /><label> User </label></td>
             </tr>
           </tbody></div>
         </form>

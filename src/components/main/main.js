@@ -36,7 +36,7 @@ const Main = () => {
   const [dataPhim,setDataPhim] = useState(null);
   useEffect(() => {
     const getDataVenue = () => {
-      axios.get('/gd/list').then(res => {
+      axios.get('/dg/list').then(res => {
         setDataVenue(res.data);
       })
     }

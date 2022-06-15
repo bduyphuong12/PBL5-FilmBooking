@@ -1,8 +1,19 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useRef} from 'react'
 import axios from 'axios'
 
-const SeatNum = ({seatId,seatName}) => {
+const SeatNum = ({seatId,seatName,clickFunc,closeRoom}) => {
   const [dataSeatCol, setDataCol] = useState(null);
+  const [activeList, setActiveList] = useState([]);  //
+  useEffect(()=> {                                   //
+    setActiveList(                                   //
+      Array(10).fill(false)                          //
+    )                                                //
+  }, [closeRoom]);                                   //
+  const onClickSeat = (id) => {                      //
+    let newArr = [...activeList];                    //
+    newArr[id] = !activeList[id];                    //
+    setActiveList(newArr);                           //
+  };                                                 //
      useEffect(() => {
         const getSeatCol = async () => {
             await axios.get(`/seatNo/getBySeatId/${seatId}`).then(res => {
@@ -10,7 +21,8 @@ const SeatNum = ({seatId,seatName}) => {
             })
           }
           getSeatCol();
-     },[])
+     },[seatId])
+     const nothinginhere = () => {return;}
   const compare =( a, b ) => {
     if ( parseInt(a.Seat_No) < parseInt(b.Seat_No) ){
       return -1;
@@ -25,7 +37,7 @@ const SeatNum = ({seatId,seatName}) => {
     <>
       {React.Children.toArray(
           dataSeatCol.result.sort(compare).map(d=>(
-        <div class={d.Status === '1'?"seat occupied":"seat"} >{seatName}{d.Seat_No}</div>
+        <div className={d.Status === '1'?"seat occupied":activeList[parseInt(d.Seat_No)-1]?"seat occupied":"seat"} onClick={d.Status !== '1'?function(e){onClickSeat(parseInt(d.Seat_No)-1);clickFunc(d.id)}:function(e){nothinginhere()}}>{d.Status === '1'?"":seatName+d.Seat_No}</div>
       )))}
     </>
   )}

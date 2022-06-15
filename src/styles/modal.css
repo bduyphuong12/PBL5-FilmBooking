@@ -63,7 +63,7 @@
 } */
 .modal-editAdmin{
 	width: 480px;
-	height: 490px;
+	height: 470px;
 	background-color: rgb(255, 225, 252);
 	border-radius: 6px;
 	text-align: center;
@@ -73,6 +73,15 @@
 .modal-content{
 	width: 450px;
 	height: 510px;
+	background-color: rgb(255, 225, 252);
+	border-radius: 6px;
+	text-align: center;
+	padding: 20px;
+	position: relative;
+}
+.modal-changePW{
+	width: 450px;
+	height: 380px;
 	background-color: rgb(255, 225, 252);
 	border-radius: 6px;
 	text-align: center;
@@ -139,7 +148,7 @@
 }
 .modal-detailGC{
 	width: 400px;
-	height: 255px;
+	height: 205px;
 	background-color: rgb(255, 225, 252);
 	border-radius: 6px;
 	text-align: center;
@@ -271,7 +280,7 @@
 }
 .modal-editUser{
 	width: 500px;
-	height: 410px;
+	height: 440px;
 	background-color: rgb(255, 225, 252);
 	border-radius: 6px;
 	text-align: center;

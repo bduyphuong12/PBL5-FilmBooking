@@ -27,10 +27,10 @@ function QliRap (){
     <div className='bg-qlirap'>
     {React.Children.toArray(
       roomData.result.map(d=>(
-      <Rapchieu modalOpenDetail={openRoomDetail} roomId={d.Room_Id} roomName={d.Room_Name}/>
+      <Rapchieu modalOpenDetail={openRoomDetail} roomId={d.Room_Id} roomName={d.Room_Name} roomStatus={d.Status} roomIdLC={d.Id_lich_chieu}/>
       )))}
     </div>
-    <InfoRapchieu infoRoom={infoRoom} modalCloseDetail={closeRoomDetail} roomData={roomId}/>
+    {roomId===1?<InfoRapchieu infoRoom={infoRoom} modalCloseDetail={closeRoomDetail} roomId={1} roomData={roomData}/>:<InfoRapchieu infoRoom={infoRoom} modalCloseDetail={closeRoomDetail} roomData={roomData} roomId={roomId}/>}
     </main>
   )}
 }

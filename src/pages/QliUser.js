@@ -11,12 +11,16 @@ export default function QliUser() {
   const [infoEdit, setInfoEdit] = useState(false);
   const openEdit = value => setInfoEdit(value);
   const closeEdit = value => setInfoEdit(value);  
-
+  const [idHistory, setIdHistory] = useState(1);
   const [user, getDataUser] = useState(null);
+  const [roleData, setRoleData] = useState(null);
   const [loadData, setLoadData] = useState(false);
 
   const [infoHis, setStateHis] = useState(false);
-  const openHis = value => setStateHis(value);
+  const openHis = (value,id) => {
+    setStateHis(value);
+    setIdHistory(id);
+  }
   const closeHis = value => setStateHis(value);
 
   const [userData, setUserData] = useState(null);
@@ -91,6 +95,9 @@ export default function QliUser() {
       axios.get(`/user/detail/${id}`).then((response) => {
           getDataUser(response.data);
       })
+      axios.get(`/userPer/getByUserId/${id}`).then((response) =>{
+        setRoleData(response.data);
+      });
   }
   if(userFilter){
   return (
@@ -113,9 +120,9 @@ export default function QliUser() {
          <Userlist openHis={openHis} modalOpen={openEdit} dataUser={currentPosts} getDataUser={getUserDetail}/>
        </tbody>
      </table>
-     <HistoryUser openHis={infoHis} modalCloseHis={closeHis}/>
+     {idHistory===1?<HistoryUser openHis={infoHis} modalCloseHis={closeHis} idHis={1}/>:<HistoryUser openHis={infoHis} modalCloseHis={closeHis} idHis={idHistory}/>}
      <PaginationTest postsPerPage={postsPerPage} totalPosts={userFilter.length} paginate={paginate} search={search} searchDone={searchDone}/>
-     <EditUser infoEdit={infoEdit} modalClose={closeEdit} userData={user?user:null}/>
+     <EditUser infoEdit={infoEdit} modalClose={closeEdit} userData={user?user:null} roleData={roleData?roleData:null}/>
     </div>
   </div>
   )}
