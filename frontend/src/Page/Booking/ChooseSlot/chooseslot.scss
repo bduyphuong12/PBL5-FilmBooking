@@ -1,129 +1,116 @@
-@import url('https://fonts.googleapis.com/css?family=Exo+2&display=swap');
-
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-}
 
 
-.ChooseSlotCopy {
-  text-align: center;
-  margin-top: 100px;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-}
-
-.Movies {
-  margin-bottom: 24px;
-}
-
-.Movies select {
-  appearance: none;
-  background: white;
-  font-size: 14px;
-  margin-left: 19px;
-  border-radius: 4px;
-  padding: 6px 24px;
-}
-
-.ShowCase {
-  margin: 0 0 48px;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  background: #3b3b3b;
-  padding: 12px;
-  border-radius: 4px;
-  color: #7e7e7e;
-}
 
 
-.Cinema {
-  margin-bottom: 18px;
-  perspective: 450px;
+// .Movies {
+//   margin-bottom: 24px;
+// }
 
-  display: grid;
-  place-items: center;
-  grid-gap: 20px;
-}
+// .Movies select {
+//   appearance: none;
+//   background: white;
+//   font-size: 14px;
+//   margin-left: 19px;
+//   border-radius: 4px;
+//   padding: 6px 24px;
+// }
+
+// .ShowCase {
+//   margin: 0 0 48px;
+//   padding: 0;
+//   list-style: none;
+//   display: flex;
+//   justify-content: center;
+//   background: #3b3b3b;
+//   padding: 12px;
+//   border-radius: 4px;
+//   color: #7e7e7e;
+// }
 
 
-.Cinema .seats {
-  display: grid;
-  grid-gap: 16px;
+// .Cinema {
+//   margin-bottom: 18px;
+//   perspective: 450px;
+
+//   display: grid;
+//   place-items: center;
+//   grid-gap: 20px;
+// }
+
+
+// .Cinema .seats {
+//   display: grid;
+//   grid-gap: 16px;
  
-  grid-template-columns: repeat(8, min-content);
-  align-items: center;
+//   grid-template-columns: repeat(8, min-content);
+//   align-items: center;
   
-}
+// }
 
 
 
-.Cinema .seats .seat:not(.occupied):hover,
-.Cinema .seats .seat:not(.occupied):focus {
-  cursor: pointer;
-  background: #c1eac5;
-  transform: scale(1.2);
+// .Cinema .seats .seat:not(.occupied):hover,
+// .Cinema .seats .seat:not(.occupied):focus {
+//   cursor: pointer;
+//   background: #c1eac5;
+//   transform: scale(1.2);
   
   
-}
+// }
 
-.Cinema .seats .seat.selected::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 8;
+// .Cinema .seats .seat.selected::after {
+//   content: '';
+//   position: absolute;
+//   top: 0;
+//   left: 8;
  
-  border-radius: 100%;
-  background: transparent;
-  border: 2px solid #7bc47f;
-  animation: show-off 0.8s;
-  visibility: hidden;
+//   border-radius: 100%;
+//   background: transparent;
+//   border: 2px solid #7bc47f;
+//   animation: show-off 0.8s;
+//   visibility: hidden;
  
-}
+// }
 
-@keyframes show-off {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-    visibility: visible;
-  }
+// @keyframes show-off {
+//   0% {
+//     transform: scale(1);
+//     opacity: 1;
+//     visibility: visible;
+//   }
 
-  100% {
-    transform: scale(3);
-    opacity: 0;
+//   100% {
+//     transform: scale(3);
+//     opacity: 0;
     
-  }
-}
+//   }
+// }
 
-.seat {
-  display: inline-block;
-  background: #626262;
-  width: 26px;
-  height: 22px;
-  padding: 20px;
+// .seat {
+//   display: inline-block;
+//   background: #626262;
+//   width: 24px;
+//   height: 22px;
+//   padding: 20px;
  
-  transition: transform 0.3s ease-in-out;
+//   transition: transform 0.3s ease-in-out;
 
-  position: relative;
-  top: 1px;
-}
+//   position: relative;
+//   top: 1px;
+// }
 
-.seat.selected {
-  background: #7bc47f !important;
-  width: 26px;
-  height: 22px;
+// .seat.selected {
+//   background: #7bc47f !important;
+//   width: 26px;
+//   height: 22px;
   
-}
+// }
 
-.seat.occupied {
-  background: #cfcfcf;
-  width: 26px;
-  height: 22px;
-}
+// .seat.occupied {
+//   background: #cfcfcf;
+//   width: 26px;
+//   height: 22px;
+// }
 
 .info .count {
   color: #7bc47f;
@@ -229,8 +216,8 @@
       .chooseSlot {
         .screen__img {
           img {
-            margin-left: 200px;
-            width: 55%;
+            margin-left: 160px;
+            width: 65%;
           }
         }
         .picking {
@@ -238,14 +225,7 @@
           padding: 0 spacing(5);
           margin-bottom: spacing(3);
           
-          .row__name {
-            .row__list {
-              list-style: none;
-              .list__item {
-                margin-bottom: spacing(0.36);
-              }
-            }
-          }
+          
           .slot__picking {
             padding-left: 50px; ;
            
@@ -265,6 +245,7 @@
             margin-right: spacing(1.5);
             font-size: 20px;
           }
+         
         }
       }
     }

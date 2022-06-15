@@ -3,18 +3,52 @@ import "./chooseslot.scss";
 import axios from 'axios';
 import swal from "sweetalert";
 import clsx from 'clsx'
+import Seat from "./seat";
+import SeatNum from "./seatNum";
 const seats = Array.from({ length: 8 * 8 }, (_, i) => i)
+console.log(seats);
 const movies = [
   {
-    name: 'Avenger',
-    price: 10,
+   
     occupied: [20, 21, 30, 1, 2, 8],
   },
 ]
 export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
   var moment = require("moment");
-  const [selectedMovie, setSelectedMovie] = useState(movies[0])
-   const [selectedSeats, setSelectedSeats] = useState([])
+  const [dataSeatRow, setDataRow] = useState(null);
+  const [listSeatCol, setListSeatCol] = useState(null);
+  const getUrlPhim= window.location.href.split("/");
+  const roomID = getUrlPhim[getUrlPhim.length - 1]
+  useEffect(() => {
+    const getSeatRow = async () => {
+        await axios.get('/seat/getByRoomId/'+roomID).then(res => {
+            setDataRow(res.data);
+        })
+      }
+      const getListSeatCol = async () => {
+        await axios.get('/seatNo/list').then(res => {
+            setListSeatCol(res.data);
+        })
+      }
+      getListSeatCol();
+      getSeatRow();
+      
+ },[])
+       const compare =( a, b ) => {
+          if ( a.Room_Name < b.Room_Name ){
+            return -1;
+      }
+       if ( a.Room_Name > b.Room_Name ){
+          return 1;
+         }
+            return 0;
+        }
+  
+ const [selectedMovie, setSelectedMovie] = useState(movies[0])
+  const [selectedSeats, setSelectedSeats] = useState([])
+ 
+
+  // console.log(listSeatCol)
   const [counter, setCounter] = useState(60 * 5);
   useEffect(() => {
     counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
@@ -28,7 +62,12 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
     }
   }, [counter]);
   
-  if(phimDetail){
+  
+ 
+ 
+ 
+
+  if(phimDetail && dataSeatRow ){
     return (
       <div className="checkOut__left col-md-9 col-sm-12 p-0">
         <div className="bookSlot">
@@ -56,22 +95,28 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
               <div className="screen__img">
                 <img src="https://i.ibb.co/zWgWjtg/screen.png" alt="screen" />
               </div>
-              <div className="picking row">
+              <div className="picking ">
                 <div className="slot__picking col-11">
                   <div className="slot__row">
                     <div >
                     
-                    <Cinema
+                    {/* <Cinema
                      movie={selectedMovie}
                     selectedSeats={selectedSeats}
                     onSelectedSeatsChange={selectedSeats => setSelectedSeats(selectedSeats)}
-                    />
+                    /> */}
+                    
+                    {React.Children.toArray(
+                    dataSeatRow.result.sort(compare).map(d=>(
+                     <Seat  seatId={d.Seat_Id} seatName={d.Row_No}/>
+                    )))}
+                    
  
                     <p className="info">
                           You have selected <span className="count">{selectedSeats.length}</span>{' '}
                           seats for the price of{' '}
                         <span className="total">
-                          {selectedSeats.length * selectedMovie.price}$
+                          {selectedSeats.length * 10}$
                         </span>
                     </p>
                     
@@ -117,6 +162,7 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
         {seats.map(seat => {
           const isSelected = selectedSeats.includes(seat)
           const isOccupied = movie.occupied.includes(seat)
+          
           return (
             <span
               tabIndex="0"
@@ -127,15 +173,7 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
                 isOccupied && 'occupied',
               )}
               onClick={isOccupied ? null : () => handleSelectedState(seat)}
-              onKeyPress={
-                isOccupied
-                  ? null
-                  : e => {
-                      if (e.key === 'Enter') {
-                        handleSelectedState(seat)
-                      }
-                    }
-              }
+              
             />
           )
         })}

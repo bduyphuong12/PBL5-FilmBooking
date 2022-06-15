@@ -3,7 +3,7 @@
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Collapse } from "reactstrap";
-import { logoutUser } from "../../../Redux/apiReques";
+import { logoutUser } from "../../../Redux/apiReques.js";
 import "./navbar.css";
 import { useEffect, useState } from "react";
 import { createAxios } from "../../../createInstance";
@@ -41,11 +41,11 @@ function NavBar() {
             <img className="navbar-logo" src={logo} alt="logo" />
           </Link>
         </div>
-
+        
         <ModalTrailer openF={openF} handleToggleF={handleToggleF} />
       </div>
       <div className="nav-center">
-        <Link className="menu" to={"/allmovie"}>
+      <Link className="menu" to={"/allmovie"}>
           <img
             src="http://simpleicon.com/wp-content/uploads/film-3.png"
             className="menu-icon"
@@ -70,7 +70,10 @@ function NavBar() {
           Tin tức
         </a>
       </div>
+      
+
       <div className="nav-right-side ">
+        
         {buttons}
 
         {user ? (
