@@ -4,27 +4,15 @@ div.history {
   width: 500px;
   display: flex;
   flex-direction: column;
+  position: relative;
+  div.his-detail {
+    position: absolute;
+    left: 430px;
+    top: 0;
+  }
   table {
     width: 100%;
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-  }
-
-  .button-hoanve {
-    display: flex;
-    justify-content: center;
-    button {
-      cursor: pointer;
-      border-radius: 99px;
-      background-color: #fdb73b;
-      width: 150px;
-      height: 40px;
-
-      font-size: 18px;
-      border: 0;
-      &:hover {
-        background-color: #ffa402;
-      }
-    }
   }
 }
