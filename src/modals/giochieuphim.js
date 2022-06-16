@@ -36,7 +36,7 @@ export default function Giochieuphim({infogiochieu,modalCloseInfo,time,timeFilm,
           room_id: idRoom
       }
   }
-  const newLC = async (data) => {
+  const newLC = async () => {
     var listRoom = await axios.get('/room/list');
     var emptyRoom = listRoom.data.result.filter(function (el) {
       return el.Status.localeCompare("OFF")===0;
@@ -139,7 +139,7 @@ export default function Giochieuphim({infogiochieu,modalCloseInfo,time,timeFilm,
       return false;
     }
     else {
-      newLC(dataTimeLC);
+      newLC();
       modalCloseInfo(false);changeGC(false);
     }
   }

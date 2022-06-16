@@ -2,7 +2,6 @@ import React,{useState} from 'react'
 import moment from 'moment';
 
 const AddDienVien = ({addActor,closeForm,dataActor,idFilm,newActor}) => {
-  const [idA, setIdA] = useState(1);
   var nameF="",bdayA="",nationA="",avatar="";
   var dataA;
   const getData = () =>{
@@ -18,12 +17,9 @@ const AddDienVien = ({addActor,closeForm,dataActor,idFilm,newActor}) => {
     document.getElementById("bday").value="";
   }
   if(dataActor){
-    dataActor.result.map((d)=>{
-      if(idA==d.id_dien_vien) setIdA(idA+1);
-    })
     const getDataActor = () => {
       return dataA = {
-          id_dien_vien: idA, 
+          id_dien_vien: null, 
           ten_dien_vien: nameF,
           avatar: avatar,
           ngay_sinh: bdayA+" 07:00:00",
