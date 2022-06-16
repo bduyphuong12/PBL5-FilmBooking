@@ -13,6 +13,8 @@
     padding: 0;
   }
   .input-container {
+    display: flex;
+    justify-content: center;
     input &:focus {
       &::-webkit-input-placeholde {
         position: absolute;
@@ -36,16 +38,21 @@
     text-decoration: none;
     color: black;
   }
-  button {
-    cursor: pointer;
-    border-radius: 99px;
-    background-color: #fdb73b;
-    width: 150px;
-    height: 40px;
-    font-size: 18px;
-    border: 0;
-    &:hover {
-      background-color: #ffa402;
+  .save {
+    display: flex;
+    justify-content: center;
+    button {
+      cursor: pointer;
+      border-radius: 99px;
+      background-color: #fdb73b;
+      width: 150px;
+      height: 40px;
+      font-size: 18px;
+      border: 0;
+      margin-left: 50px;
+      &:hover {
+        background-color: #ffa402;
+      }
     }
   }
 }

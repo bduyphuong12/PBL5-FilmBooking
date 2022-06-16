@@ -7,7 +7,7 @@ const Sidebar = () => {
       <ul>
         <li>
           <NavLink to="info" activeClassName="active">
-            Thông tin tài khoản
+            Thông tin
           </NavLink>
         </li>
         <li>
@@ -17,7 +17,7 @@ const Sidebar = () => {
         </li>
         <li>
           <NavLink to="history" activeClassName="active">
-            Lịch sử giao dịch
+            Lịch sử
           </NavLink>
         </li>
       </ul>

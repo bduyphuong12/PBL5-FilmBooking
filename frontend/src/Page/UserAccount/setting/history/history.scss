@@ -1,16 +1,30 @@
-div.content {
-  color: red;
-  #customers {
+div.history {
+  color: rgb(248, 212, 7);
+  padding: 0px 20px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  table {
+    width: 100%;
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 100%;
   }
 
-  #customers th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #04aa6d;
-    color: white;
+  .button-hoanve {
+    display: flex;
+    justify-content: center;
+    button {
+      cursor: pointer;
+      border-radius: 99px;
+      background-color: #fdb73b;
+      width: 150px;
+      height: 40px;
+
+      font-size: 18px;
+      border: 0;
+      &:hover {
+        background-color: #ffa402;
+      }
+    }
   }
 }

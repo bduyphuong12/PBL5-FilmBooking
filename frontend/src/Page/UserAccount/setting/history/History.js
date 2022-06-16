@@ -2,20 +2,22 @@ import React from "react";
 import "./history.scss";
 const History = () => {
   return (
-    <div className="content">
+    <div className="history">
       <table id="customer">
         <thead>
           <tr>
-            <th>Tên phim</th>
             <th>Ngày đặt</th>
-            <th>Giá vé</th>
-            <th>Rạp</th>
-            <th>Bắp</th>
+            <th>Phim</th>
+            <th>Đồ ăn</th>
             <th>Tổng tiền</th>
+            <th>Hoàn Vé</th>
           </tr>
         </thead>
         <tbody></tbody>
       </table>
+      <div className="button-hoanve">
+        <button>Hoàn vé</button>
+      </div>
     </div>
   );
 };

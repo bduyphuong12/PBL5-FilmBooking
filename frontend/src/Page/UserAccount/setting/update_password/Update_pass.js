@@ -22,6 +22,7 @@ const Update_pass = () => {
   const [newpass, setNewPass] = useState("");
   const [newpass1, setNewPass1] = useState("");
   const [msgVal, setmsgVal] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const onSubmitForm = (event) => {
     event.preventDefault();
@@ -65,6 +66,9 @@ const Update_pass = () => {
     const isValid = validateAll();
     if (!isValid) return;
   };
+  const handleShowPassWord = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <>
@@ -72,7 +76,7 @@ const Update_pass = () => {
         <div className="input-container">
           <i className="fa fa-lock icon" style={{ width: 22.5 }}></i>
           <input
-            type="text"
+            type={showPassword ? "text" : "password"}
             placeholder="Mật khẩu cũ..."
             className="input"
             name="oldpassword"
@@ -84,7 +88,7 @@ const Update_pass = () => {
         <div className="input-container">
           <i className="fa fa-key icon"></i>
           <input
-            type="text"
+            type={showPassword ? "text" : "password"}
             placeholder="Mật khẩu mới..."
             className="input"
             name="newpassword"
@@ -96,7 +100,7 @@ const Update_pass = () => {
         <div className="input-container">
           <i className="fa fa-check icon"></i>
           <input
-            type="text"
+            type={showPassword ? "text" : "password"}
             placeholder="Nhập lại mật khẩu..."
             className="input"
             name="password1"
@@ -105,7 +109,19 @@ const Update_pass = () => {
           />
         </div>
         <p>{msgVal.newpass1}</p>
-        <button onClick={onSubmitSave}>Đổi mật khẩu</button>
+        <div className="showpassword">
+          <input
+            type="checkbox"
+            id="showPassWord"
+            name="showPassWord"
+            value="show"
+            onClick={handleShowPassWord}
+          />
+          <label for="showPassWord">Show Password</label>
+        </div>
+        <div className="button-submit">
+          <button onClick={onSubmitSave}>Đổi mật khẩu</button>
+        </div>
       </form>
       <ToastContainer />
     </>

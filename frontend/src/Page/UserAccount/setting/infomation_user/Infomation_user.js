@@ -90,7 +90,9 @@ const Infomation_user = () => {
           />
         </div>
         <br></br>
-        <button>LƯU</button>
+        <div className="save">
+          <button>LƯU</button>
+        </div>
       </form>
       <ToastContainer />
     </>
