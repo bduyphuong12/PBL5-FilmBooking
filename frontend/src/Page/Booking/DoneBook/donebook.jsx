@@ -62,7 +62,7 @@ function DoneBook() {
           <div>
             <QRCode
               id='qrcode'
-              value={getMaVach()}
+              value={'Mã giao dịch: '}
               size={290}
               level={'H'}
               includeMargin={true}

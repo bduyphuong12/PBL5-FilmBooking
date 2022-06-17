@@ -63,11 +63,13 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
     setListChoose([]);                   // 
   }           
   
-  const datVe = (subMoney) =>{
+  const datVe = (subMoney,seatNumber) =>{
     localStorage.setItem('gia',subMoney)
+    localStorage.setItem('soGhe',seatNumber)
   }
   
   const money = listChoose.length*50000
+  const seatNumber = listChoose.length
 
  
 
@@ -147,6 +149,7 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
           </div>
           <div className="count__slot">
           <div>Số ghế chọn: {listChoose.length} </div>
+          <div className="slot"></div>
           </div>
           <div className="discountForm d-flex justify-content-between">
             <div className="discountForm__content">
@@ -187,7 +190,7 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
             
           }
           
-          onClick={money >0 ?datVe(money):function(e){alert('Vui lòng chọn ghế!') 
+          onClick={money >0 ?datVe(money,seatNumber):function(e){alert('Vui lòng chọn ghế!') 
             window.location.reload()}}
           
           

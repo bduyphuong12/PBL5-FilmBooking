@@ -19,6 +19,7 @@ function CornAndWater({lcByRoomPhimID,phimDetail}) {
 
   const [item, setItem] =  useState(null);
   var subTotal = localStorage.getItem('gia')
+  var soGhe = localStorage.getItem('soGhe')
   console.log(subTotal)
   const [countN, setCountN] = useState(0)
   const [countB, setCountB] = useState(0)
@@ -162,18 +163,13 @@ function CornAndWater({lcByRoomPhimID,phimDetail}) {
             {moment(lcByRoomPhimID.result[0].thoi_gian_chieu).format("DD/MM/yyyy")}  {moment(lcByRoomPhimID.result[0].thoi_gian_chieu).format("hh:mm A")}
 
             </p>
-            {/* <p className="theater__name">
-              {thongTinPhongVe.thongTinPhim?.tenCumRap}
-            </p> */}
-            {/* <p className="film__address">
-              {thongTinPhongVe.thongTinPhim?.diaChi}
-            </p> */}
+            
           </div>
-          {/* <div className="count__slot">
-            <div>Ghế đã chọn: </div>
+          <div className="count__slot">
+            <div>Số ghế đã chọn: {soGhe}</div>
             <div className="slot"></div>
             
-          </div> */}
+          </div>
           <div className="discountForm d-flex justify-content-between">
             <div className="discountForm__content">
               <label className="label__name">Mã giảm giá</label>
