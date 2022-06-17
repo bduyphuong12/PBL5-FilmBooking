@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const Setting_form = () => {
   return (
     <Router>
-      <div className="container">
+      <div className="container-setting">
         <div className="setting-container">
           <h2>THÔNG TIN TÀI KHOẢN</h2>
           <div className="content">

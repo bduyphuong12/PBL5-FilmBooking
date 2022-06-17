@@ -1,9 +1,9 @@
 import React, { Fragment, useState, useEffect } from "react";
 import ChooseSlot from "./ChooseSlot/chooseslot";
-import Checkout from "./CheckOut/checkout";
+
 import axios from 'axios';
 
-export default function BookingTicket() {
+export default function BookingTicket(props) {
   
   const getUrlPhim= window.location.href.split("/");
   const phimID = getUrlPhim[getUrlPhim.length - 2]
@@ -29,18 +29,23 @@ export default function BookingTicket() {
     getPhimDetail();
   },[phimID]);
  
-  
+ 
   return (
     <Fragment>
       <div className="container-fluid bg-light" style={{ paddingTop: 30 }}>
         <div className="bookTicket__content row mt-5">
           <ChooseSlot lcByRoomPhimID = {lcByRoomPhimID}
                       phimDetail={phimDetail}
+                     
+                      
           />
-          <Checkout lcByRoomPhimID = {lcByRoomPhimID}
+          {/* <Checkout lcByRoomPhimID = {lcByRoomPhimID}
                       phimDetail={phimDetail}
+                      total={props}
+                      
+                      
             
-          />
+          /> */}
           
         </div>
         

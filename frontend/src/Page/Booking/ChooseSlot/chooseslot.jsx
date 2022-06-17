@@ -2,17 +2,9 @@ import React, { Fragment, useEffect, useState } from "react";
 import "./chooseslot.scss";
 import axios from 'axios';
 import swal from "sweetalert";
-import clsx from 'clsx'
 import Seat from "./seat";
-import SeatNum from "./seatNum";
-const seats = Array.from({ length: 8 * 8 }, (_, i) => i)
-console.log(seats);
-const movies = [
-  {
-   
-    occupied: [20, 21, 30, 1, 2, 8],
-  },
-]
+import { Link } from "react-router-dom";
+import CreditModal from "../CornAndWater/CreditModal/CreditModal";
 export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
   var moment = require("moment");
   const [dataSeatRow, setDataRow] = useState(null);
@@ -20,13 +12,13 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
   const getUrlPhim= window.location.href.split("/");
   const roomID = getUrlPhim[getUrlPhim.length - 1]
   useEffect(() => {
-    const getSeatRow = async () => {
-        await axios.get('/seat/getByRoomId/'+roomID).then(res => {
+    const getSeatRow =  () => {
+         axios.get('/seat/getByRoomId/'+roomID).then(res => {
             setDataRow(res.data);
         })
       }
-      const getListSeatCol = async () => {
-        await axios.get('/seatNo/list').then(res => {
+      const getListSeatCol =  () => {
+         axios.get('/seatNo/list').then(res => {
             setListSeatCol(res.data);
         })
       }
@@ -44,11 +36,6 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
             return 0;
         }
   
- const [selectedMovie, setSelectedMovie] = useState(movies[0])
-  const [selectedSeats, setSelectedSeats] = useState([])
- 
-
-  // console.log(listSeatCol)
   const [counter, setCounter] = useState(60 * 5);
   useEffect(() => {
     counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
@@ -63,12 +50,30 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
   }, [counter]);
   
   
- 
- 
+  const [listChoose, setListChoose] = useState([]);
+  const updateListChoose = (id) => {     //
+    if(!listChoose.includes(id)) setListChoose(arr => [...arr,id] )   //
+    else {                                       //
+      let newArr = [...listChoose];              //
+      newArr.splice(listChoose.indexOf(id),1);   //
+      setListChoose(newArr); //                  //
+    }                                    //
+  }                                      //
+  const resetListChoose = () => {        //
+    setListChoose([]);                   // 
+  }           
+  
+  const datVe = (subMoney) =>{
+    localStorage.setItem('gia',subMoney)
+  }
+  
+  const money = listChoose.length*50000
+
  
 
-  if(phimDetail && dataSeatRow ){
+  if(phimDetail  ){
     return (
+      <>
       <div className="checkOut__left col-md-9 col-sm-12 p-0">
         <div className="bookSlot">
           <div className="bookSlot__content">
@@ -97,88 +102,108 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
               </div>
               <div className="picking ">
                 <div className="slot__picking col-11">
-                  <div className="slot__row">
+                  
                     <div >
-                    
-                    {/* <Cinema
-                     movie={selectedMovie}
-                    selectedSeats={selectedSeats}
-                    onSelectedSeatsChange={selectedSeats => setSelectedSeats(selectedSeats)}
-                    /> */}
                     
                     {React.Children.toArray(
                     dataSeatRow.result.sort(compare).map(d=>(
-                     <Seat  seatId={d.Seat_Id} seatName={d.Row_No}/>
+                     <Seat  seatId={d.Seat_Id} seatName={d.Row_No} clickFunc={updateListChoose}/>
                     )))}
-                    
- 
-                    <p className="info">
-                          You have selected <span className="count">{selectedSeats.length}</span>{' '}
-                          seats for the price of{' '}
-                        <span className="total">
-                          {selectedSeats.length * 10}$
-                        </span>
-                    </p>
-                    
-                    </div>
                   </div>
                 </div>
               </div>
               <div className="slot__detail row">
                 <div className="col-md-3 col-sm-6 col-xs-6">
-                  <span className="seat" /> <small>N/A</small>
+                  <span className="seat" />  <span className="slot__text">N/A</span>
                 </div>
                 <div className="col-md-3 col-sm-6 col-xs-6">
-                  <span className="seat selected" /> <small>Selected</small>
+                  <span className="seat selected" /> <span className="slot__text">Selected</span> 
                 </div>
                 <div className="col-md-3 col-sm-6 col-xs-6">
-                  <span className="seat occupied" /> <small>Occupied</small>
+                  <span className="seat occupied" /> <span className="slot__text">Occupied</span> 
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div className="checkOut__right col-md-3 col-sm-12">
+        <div className="checkout__form">
+          <div className="total__price">
+            <span className="price">{listChoose.length * 50000}VND</span>
+          </div>
+          <div className="film__info">
+            <span className="film__age--C">
+              Rạp {lcByRoomPhimID.result[0].room_id}
+            </span>
+            <span className="film__name">
+              {phimDetail.result[0].ten_phim}
+            </span>
+            <p className="film__detail">
+            {moment(lcByRoomPhimID.result[0].thoi_gian_chieu).format("DD/MM/yyyy")}  {moment(lcByRoomPhimID.result[0].thoi_gian_chieu).format("hh:mm A")}
+            
+            </p>
+           
+          </div>
+          <div className="count__slot">
+          <div>Số ghế chọn: {listChoose.length} </div>
+          </div>
+          <div className="discountForm d-flex justify-content-between">
+            <div className="discountForm__content">
+              <label className="label__name">Mã giảm giá</label>
+              <input
+                type="text"
+                name="code"
+                id="txtDiscountCode"
+                className="form-control d-inline"
+                
+              />
+            </div>
+            <button id="btnCheckCode" className="btn mb-2">
+              Áp dụng
+            </button>
+          </div>
+          <div className="payForm">
+            <a className="pay__link" href="/#">
+              <span className="title__text">Hình thức thanh toán</span>
+              <p className="text__notification">
+                Vui lòng chọn ghế để hiển thị phương thức thanh toán phù hợp.
+              </p>
+            </a>
+          </div>
+        </div>
+        <div className="textNotification text-center">
+          <i className="fa fa-info-circle text-danger mr-1" />
+          <span className="noti__text">
+            Vé đã mua không thể đổi hoặc hoàn tiền Mã vé sẽ được gửi qua tin nhắn{" "}
+            <span className="noti__link">ZMS</span> (tin nhắn Zalo) và{" "}
+            <span className="noti__link">Email</span> đã nhập.{" "}
+          </span>
+        </div>
+        <div>
+        <Link
+          className="btnContinue"
+          to={'/cornAwater/'+ lcByRoomPhimID.result[0].id_phim + '/'+ lcByRoomPhimID.result[0].room_id 
+            
+          }
+          
+          onClick={money >0 ?datVe(money):function(e){alert('Vui lòng chọn ghế!') 
+            window.location.reload()}}
+          
+          
+        >
+          Tiếp theo
+        </Link>
+        </div>
+        
+        
+      </div>
+      </>
+      
     );
   }
 }
 
 
-function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
-  function handleSelectedState(seat) {
-    const isSelected = selectedSeats.includes(seat)
-    if (isSelected) {
-      onSelectedSeatsChange(
-        selectedSeats.filter(selectedSeat => selectedSeat !== seat),
-      )
-    } else {
-      onSelectedSeatsChange([...selectedSeats, seat])
-    }
-  }
 
-  return (
-    <div className="Cinema">
-      <div className="seats">
-        {seats.map(seat => {
-          const isSelected = selectedSeats.includes(seat)
-          const isOccupied = movie.occupied.includes(seat)
-          
-          return (
-            <span
-              tabIndex="0"
-              key={seat}
-              className={clsx(
-                'seat',
-                isSelected && 'selected',
-                isOccupied && 'occupied',
-              )}
-              onClick={isOccupied ? null : () => handleSelectedState(seat)}
-              
-            />
-          )
-        })}
-      </div>
-    </div>
-  )
-}
 

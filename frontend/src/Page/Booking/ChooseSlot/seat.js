@@ -1,20 +1,13 @@
-import axios from 'axios';
+import React from 'react'
 import SeatNum from './seatNum'
-import React, { Fragment, useEffect, useState } from "react";
-import './seat.css'
-const Seat = ({seatId,seatName}) => {
-  
-  
 
-    return (
-      <div >
-         <SeatNum  
-          
-         seatId={seatId} seatName={seatName} />
-      </div>
-    ) 
-  
+const Seat = ({seatId,seatName,clickFunc,closeRoom}) => {
  
+  return (
+    <div className='row-seat'>
+        <SeatNum seatId={seatId} seatName={seatName} clickFunc={clickFunc} closeRoom={closeRoom}/>    
+    </div>
+  )
 }
 
 export default Seat

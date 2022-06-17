@@ -9,6 +9,11 @@
     overflow: hidden;
     margin-top: 70px;
 }
+.poster__movie{
+    width: 220px;
+    height: 300px;
+    object-fit: cover;
+}
 .movieInfo .full__background {
     width: 100%;
 }
@@ -58,13 +63,15 @@
 .movieInfo .form__info {
     position: absolute;
 }
-.movieInfo .form__info .row .movie__poster .poster__img {
+.movieInfo .form__info .row    .poster__img {
     position: relative;
+    
 }
-.movieInfo .form__info .row .movie__poster .poster__img:hover .play__btn {
+.movieInfo .form__info .row    .poster__img:hover .play__btn {
     opacity: 1;
+    
 }
-.movieInfo .form__info .row .movie__poster .poster__img .play__btn {
+.movieInfo .form__info .row    .poster__img .play__btn {
     position: absolute;
     opacity: 0;
     width: 75px;
@@ -80,7 +87,7 @@
     cursor: pointer;
     transition: linear 0.2s;
 }
-.movieInfo .form__info .row .movie__poster .poster__img .play__btn .fa-play {
+.movieInfo .form__info .row    .poster__img .play__btn .fa-play {
     color: #fff;
 }
 .movieInfo .form__info .row .movie__info {
@@ -108,6 +115,7 @@
 }
 .movieInfo .form__info .row .movie__info .during {
     margin-top: spacing(0.5);
+    margin-left: -1px;
     color: #fff;
     
 }

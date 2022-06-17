@@ -106,20 +106,21 @@ export default class CreditModal extends Component {
                   </div>
                 </div>
               </div>
-              <Link 
+              <div 
                 className="modal-footer"
-                to={'/donebook'}
+                // to={'/donebook'}
                 >
                 <button
                   type="button"
                   className="btn-style draw-border"
                   onClick={() => {
                     this.props.datVe();
+                    // alert('Đặt vé thành công, chúc bạn xem phim vui vẻ.')
                   }}
                 >
                   Đặt vé
                 </button>
-              </Link>
+              </div>
             </div>
           </div>
         </div>

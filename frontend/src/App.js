@@ -12,7 +12,7 @@ import BookingTicket from "./Page/Booking/bookticket";
 import TableCornAndWater from "./Page/Booking/CornAndWater/tableCornandWater";
 import DoneBook from "./Page/Booking/DoneBook/donebook";
 import Movie from "./Page/Movie/movie";
-import ChooseSlotCopy from "./Page/Booking/ChooseSlot/chooseslotcopy";
+import CornAndWater from "./Page/Booking/CornAndWater/CornAWater/cornandwater";
 import AllMovie from "./Page/Movie/AllMovie/allmovie";
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
         <Route path="/register" component={() => <Register />} />
         <Route path="/setting" component={() => <Setting_form />} />
         <Route path="/allmovie" component={() => <AllMovie />} />
-        <Route path="/cs" component={() => <ChooseSlotCopy />} />
+        
       </Switch>
 
       <div className="App-footer ">
