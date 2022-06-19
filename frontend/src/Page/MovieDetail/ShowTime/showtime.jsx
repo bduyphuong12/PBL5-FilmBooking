@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./showtime.css";
 import Description from "../Description/description";
 // import Comment from "../Comment/Comment";
+import Lichchieu from "./lichchieu";
 import axios from "axios";
 export default function ShowTime() {
   var moment = require("moment");
@@ -19,44 +20,45 @@ export default function ShowTime() {
     };
     getLCDetail();
   }, [phimID]);
-
-  const renderRap = () => {
-    if (lcDetail) {
-      return (
-        <div>
-          {React.Children.toArray(
-            lcDetail.result.map((d) => (
-              <a
-                className="nav-link"
-                id="v-pills-cgv-tab"
-                data-toggle="pill"
-                href={`#${lcDetail.room_id}`}
-                // href=""
-                role="tab"
-                aria-controls="v-pills-cgv"
-                aria-selected="true"
-              >
-                <div className="img__content">
-                  <img src="https://i.ibb.co/cvb2Rk6/theater.jpg" alt="" />
-
-                  <div className="img__text">
-                    <div className="img__name">Rạp {d.room_id}</div>
-                  </div>
-                </div>
-              </a>
-            ))
-          )}
-        </div>
-      );
+    const dateNow = moment(Date().toLocaleString()).format("yyyy-MM-DD")
+    const [dateLC,setDateLC] = useState(dateNow);
+    const openModal = (time) => {
+        
+        var nextDay = new Date();
+        nextDay.setDate(nextDay.getDate()+time);
+        setDateLC(nextDay.toISOString().slice(0, 10));
     }
-  };
+    
+    if(lcDetail){
+      var newArray = lcDetail.result.filter(function (el) {
+        return xuliDay(el.thoi_gian_chieu).toString().substring(0,10).indexOf(dateLC) > -1;
+      });
+    }
+    console.log(newArray);
+    function xuliDay(val){
+      var date = new Date(val);
+      var year = date.getFullYear();
+      var month = date.getMonth()+1;
+      var dt = date.getDate();
+      
+      if (dt < 10) {
+        dt = '0' + dt;
+      }
+      if (month < 10) {
+        month = '0' + month;
+      }
+      var day = year+'-' + month + '-'+dt;
+      return(day);
+    }
+    
+    
 
   const renderTime = () => {
-    if (lcDetail) {
+    if (newArray) {
       return (
         <div>
           {React.Children.toArray(
-            lcDetail.result.map((d) => (
+            newArray.map((d) => (
               <ul className=" flex-wrapp">
                 <div className="timeshow__item">
                   {user ? (
@@ -65,7 +67,7 @@ export default function ShowTime() {
                       to={"/booking/" + d.id_phim + "/" + d.room_id}
                     >
                       <div className="time__begin mb-2">
-                        {moment(d.thoi_gian_chieu).format("DD/MM/yyyy")}
+                      
                         <p>{moment(d.thoi_gian_chieu).format("hh:mm A")}</p>
                       </div>
                     </NavLink>
@@ -116,19 +118,7 @@ export default function ShowTime() {
               Thông Tin
             </a>
           </li>
-          <li className="nav-item">
-            <a
-              className="nav-link"
-              id="pills-contact-tab"
-              data-toggle="pill"
-              href="#pills-comment"
-              role="tab"
-              aria-controls="pills-comment"
-              aria-selected="false"
-            >
-              Đánh Giá
-            </a>
-          </li>
+          
         </ul>
         {/* TAB LỊCH CHIẾU */}
         <div id="movieTheater" className="tab-content">
@@ -146,7 +136,7 @@ export default function ShowTime() {
                   role="tablist"
                   aria-orientation="vertical"
                 >
-                  {/* {renderRap()} */}
+                  <Lichchieu openInfo={openModal} />
                 </div>
               </div>
               <div
@@ -166,15 +156,7 @@ export default function ShowTime() {
           >
             <Description />
           </div>
-          {/**Bình luận */}
-          <div
-            className="tab-pane fade"
-            id="pills-comment"
-            role="tabpanel"
-            aria-labelledby="pills-comment-tab"
-          >
-            {/* <Comment thongTin={phim} maPhim={maPhim} /> */}
-          </div>
+          
         </div>
       </div>
     </section>

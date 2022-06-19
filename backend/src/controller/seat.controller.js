@@ -7,9 +7,22 @@ exports.get_seat = function (req, res) {
     });
 }
 
-exports.update = function (req, res) {
-    var data = req.body;
-    Seat.updateStatus(data, function (response) {
+exports.get_seat_info = function (req, res) {
+    Seat.get_info(req.params.id, function (data) {
+        res.send({ result: data });
+    });
+}
+
+
+
+exports.updatePo = function (req, res) {
+    Seat.updateStatusPo(req.params.id, function (response) {
+        res.send({ result: response });
+    })
+}
+
+exports.reset = function (req, res) {
+    Seat.resetByIdRoom(req.params.id, function (response) {
         res.send({ result: response });
     });
 }
@@ -19,5 +32,3 @@ exports.getByRoomId = function (req, res) {
         res.send({ result: response });
     });
 }
-
-

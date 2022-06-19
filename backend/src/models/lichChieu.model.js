@@ -17,6 +17,16 @@ LichChieu.get_all = function (result) {
     });
 };
 
+LichChieu.remove_dv_byIdPhim = function (id, result) {
+    db.query("delete from lich_chieu where id_phim = ?", id, function (err, dv) {
+        if (err) {
+            result(null);
+        } else {
+            result(dv);
+        }
+    });
+}
+
 LichChieu.getById = function (id, rid, result) {
     db.query("select * from lich_chieu where id = ?", id, function (err, h) {
         if (err || h.length == 0) {

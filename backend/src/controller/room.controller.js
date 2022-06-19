@@ -8,4 +8,11 @@ exports.get_list = function (req, res) {
     });
 }
 
+exports.update_room = function(req, res) {
+    var data = req.body;
+    Room.update(data, function(response){
+        res.send({ result: response});
+    });
+ }
+
 

@@ -5,5 +5,9 @@ module.exports = function (router) {
 
     router.get("/seat/getByRoomId/:id", seatController.getByRoomId);
 
-    router.put("/seat/update/:id", seatController.update);
+    router.put("/seat/updatePo/:id", seatController.updatePo);
+
+    router.put("/seat/reset/:id", seatController.reset);
+
+    router.get("/seat/info/:id", seatController.get_seat_info);
 }

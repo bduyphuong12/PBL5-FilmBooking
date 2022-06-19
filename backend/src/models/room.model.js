@@ -15,5 +15,15 @@ Room.get_all = function (result) {
 };
 
 
-
+Room.update = function (u, result) {
+    db.query("update room set Status=?,Id_lich_chieu=? where Room_Id = ?", [u.Status,u.Id_lich_chieu,u.Room_Id], function(err, u){
+        console.log(err)
+        if (err) {
+            console.log(err);
+            result(err);
+        } else {
+            result(u);
+        }
+    })
+};
 module.exports = Room;

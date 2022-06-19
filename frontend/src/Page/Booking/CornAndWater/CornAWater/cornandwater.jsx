@@ -19,8 +19,10 @@ function CornAndWater({lcByRoomPhimID,phimDetail}) {
 
   const [item, setItem] =  useState(null);
   var subTotal = localStorage.getItem('gia')
-  var soGhe = localStorage.getItem('soGhe')
-  console.log(subTotal)
+  
+  const soGhe = localStorage.getItem('soGhe')
+  
+  console.log(soGhe)
   const [countN, setCountN] = useState(0)
   const [countB, setCountB] = useState(0)
   const [countCB1, setCountCB1] = useState(0)
@@ -47,6 +49,12 @@ function CornAndWater({lcByRoomPhimID,phimDetail}) {
     id_user: user.ID_User,
     so_tien: totalAll/1000
   }
+  // const dataDetailGD = {
+  //   id: null,
+  //   id_giao_dich: data.id,
+  //   id_hang: item.id_hang,
+  //   so_luong:countB
+  // }
   const datVe = async () => {
     
       swal({
@@ -61,6 +69,8 @@ function CornAndWater({lcByRoomPhimID,phimDetail}) {
             icon: "success",
           });
            axios.post('/dg/add',data)
+          //  axios.post('/ctdg/add',dataDetailGD)
+
           setTimeout(() => {
             window.location.assign('/donebook/'+phimID+'/'+roomID);
           }, 2000);
@@ -93,8 +103,19 @@ function CornAndWater({lcByRoomPhimID,phimDetail}) {
                       </tr>
                     </thead>
                     <tbody>
-                      
-                      <tr>
+                      {
+                        React.Children.toArray(
+                          item.result.map(e =>(
+                          <tr>
+                        
+                        <td>{e.ten}</td>
+                        <td>{e.gia}.000</td>
+                        
+                        
+                      </tr>
+                          )))
+                      }
+                      {/* <tr>
                         
                         <td>Cocacola</td>
                         <td>25.000</td>
@@ -137,11 +158,33 @@ function CornAndWater({lcByRoomPhimID,phimDetail}) {
                         <input className="plus is-form" type="button" value="+" onClick = {() => setCountCB2(countCB2+1)}/>
                         </td>
                         
-                      </tr>
+                      </tr> */}
                       
                       
                     </tbody>
+                   
                   </Table>
+                  <div className="quantity-N">
+                        <input className="minus is-form" type="button" value="-" onClick = { countN >=1?function(){setCountN(countN-1)}:"" }/>
+                        <input aria-label="quantity" class="input-qty-n" max="10" min="0" name="" type="number" value={countN}/>                        
+                        <input className="plus is-form" type="button" value="+" onClick = {() => setCountN(countN+1)}/>
+                    </div>
+                    <div className="quantity-B">
+                    <input className="minus is-form" type="button" value="-" onClick = {countB >=1?function(){setCountB(countB-1)}:""}/>
+                        <input aria-label="quantity" class="input-qty-b" max="10" min="0" name="" type="number" value={countB}/>                        
+                        <input className="plus is-form" type="button" value="+" onClick = {() => setCountB(countB+1)}/>
+                    </div>
+                    <div className="quantity-CB1">
+                    <input className="minus is-form" type="button" value="-" onClick = {countCB1 >=1?function(){setCountCB1(countCB1-1)}:""}/>
+                        <input aria-label="quantity" class="input-qty-cb1" max="10" min="0" name="" type="number" value={countCB1}/>                        
+                        <input className="plus is-form" type="button" value="+" onClick = {() => setCountCB1(countCB1+1)}/>
+                    </div>
+                    <div className="quantity-CB2">
+                    <input className="minus is-form" type="button" value="-" onClick = {countCB2 >=1?function(){setCountCB2(countCB2-1)}:""}/>
+                        <input aria-label="quantity" class="input-qty-cb2" max="10" min="0" name="" type="number" value={countCB2}/>                        
+                        <input className="plus is-form" type="button" value="+" onClick = {() => setCountCB2(countCB2+1)}/>
+                    </div>
+                    
                 </CardBody>
               </Card>
             </Col>

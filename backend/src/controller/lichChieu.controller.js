@@ -7,6 +7,13 @@ exports.get_list = function (req, res) {
     });
 }
 
+exports.removeByIdPhim = function (req, res) {
+    var id = req.params.id;
+    LichChieu.remove_dv_byIdPhim(id, function (response) {
+        res.send({ result: response });
+    })
+}
+
 exports.detail = function (req, res) {
     LichChieu.getById(req.params.id, function (response) {
         res.send({ result: response });

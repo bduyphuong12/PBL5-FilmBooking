@@ -11,6 +11,7 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
   const [listSeatCol, setListSeatCol] = useState(null);
   const getUrlPhim= window.location.href.split("/");
   const roomID = getUrlPhim[getUrlPhim.length - 1]
+  const [load,setLoad] = useState(false)
   useEffect(() => {
     const getSeatRow =  () => {
          axios.get('/seat/getByRoomId/'+roomID).then(res => {
@@ -27,10 +28,10 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
       
  },[])
        const compare =( a, b ) => {
-          if ( a.Room_Name < b.Room_Name ){
+          if ( a.Row_No < b.Row_No ){
             return -1;
       }
-       if ( a.Room_Name > b.Room_Name ){
+       if ( a.Row_No > b.Row_No ){
           return 1;
          }
             return 0;
@@ -40,7 +41,7 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
   useEffect(() => {
     counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
     if (counter === 0) {
-      swal("Bạn đã chọn vé quá lâu! Ahihi", {
+      swal("Bạn đã chọn vé quá lâu!", {
         icon: "error",
       });
       setTimeout(() => {
@@ -50,18 +51,71 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
   }, [counter]);
   
   
+                                    //
+
+
+ 
+
+ 
+
+  // useEffect(() => {
+  //   const updateDetailSeat = (id) => {     
+  //     if(!detailSeat.includes(id)) setDetailSeat(arr => [...arr,id] )   
+  //     else {                                       
+  //       let newArr1 = [...detailSeat];              
+  //       newArr1.splice(detailSeat.indexOf(id),1);   
+  //       setDetailSeat(newArr1);                  
+  //     }                                    
+  //   }
+  // }, [detailSeat]);
+  const[detailSeat,setDetailSeat] = useState([]);
   const [listChoose, setListChoose] = useState([]);
-  const updateListChoose = (id) => {     //
-    if(!listChoose.includes(id)) setListChoose(arr => [...arr,id] )   //
-    else {                                       //
-      let newArr = [...listChoose];              //
-      newArr.splice(listChoose.indexOf(id),1);   //
-      setListChoose(newArr); //                  //
-    }                                    //
-  }                                      //
-  const resetListChoose = () => {        //
-    setListChoose([]);                   // 
-  }           
+  const updateListChoose = async (id_Seat) => {     
+    // var b = axios.get('/seat/info/' + id_Seat)
+    
+    if(!listChoose.includes(id_Seat)) {
+      setListChoose(arr => [...arr,id_Seat] ) 
+      setLoad(!load)
+    }   
+    else {                                       
+      let newArr = [...listChoose];              
+      newArr.splice(listChoose.indexOf(id_Seat),1);   
+      setListChoose(newArr); 
+
+      var a = detailSeat.filter(e => {
+        return e.id.toString() !== id_Seat.toString()
+      })
+      let b = [...a];
+      setDetailSeat([])
+      setDetailSeat(b)
+      
+    }                                   
+  }    
+  console.log(detailSeat)
+  
+  useEffect(() => {
+    const getSeatDetail = async () => {
+      if(listChoose.length!==0){
+        var elemet = listChoose[listChoose.length-1]
+      console.log(elemet)
+      await axios.get('/seat/info/' + elemet).then(res => {
+        setDetailSeat([...detailSeat,res.data.result[0]]);
+
+      })
+      }
+      
+      //  listChoose.forEach(element => {
+      //     axios.get('/seat/info/' + element).then(res => {
+      //     setDetailSeat([...detailSeat,res.data.result[0]]);
+
+      //   })
+      // }
+      // );
+      
+    }
+    getSeatDetail();
+  },[load]);
+  
   
   const datVe = (subMoney,seatNumber) =>{
     localStorage.setItem('gia',subMoney)
@@ -69,7 +123,9 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
   }
   
   const money = listChoose.length*50000
-  const seatNumber = listChoose.length
+  const seatNumber = detailSeat.map(e =>{
+    return e.Row_No + ''+e.Seat_No
+  })
 
  
 
@@ -109,7 +165,7 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
                     
                     {React.Children.toArray(
                     dataSeatRow.result.sort(compare).map(d=>(
-                     <Seat  seatId={d.Seat_Id} seatName={d.Row_No} clickFunc={updateListChoose}/>
+                     <Seat seatId={d.Seat_Id} seatName={d.Row_No} clickFunc={updateListChoose}/>
                     )))}
                   </div>
                 </div>
@@ -148,8 +204,14 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
            
           </div>
           <div className="count__slot">
-          <div>Số ghế chọn: {listChoose.length} </div>
-          <div className="slot"></div>
+          <div>Số ghế chọn:  </div>
+            {
+              React.Children.toArray(
+                detailSeat.map(d =>(
+                  <span className="slot">{d.Row_No}{d.Seat_No} </span>
+                ))
+              )
+            }
           </div>
           <div className="discountForm d-flex justify-content-between">
             <div className="discountForm__content">

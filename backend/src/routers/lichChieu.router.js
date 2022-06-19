@@ -14,4 +14,5 @@ module.exports = function (router) {
     router.get("/lc/getlc/:id/:rid", lichChieuController.getLCByRoomAndIdPhim);
 
     router.get("/lc/getByIdPhim/:id", lichChieuController.getByIdPhim);
-}
+    
+    router.delete("/lc/deleteByIdPhim/:id", lichChieuController.removeByIdPhim);}
