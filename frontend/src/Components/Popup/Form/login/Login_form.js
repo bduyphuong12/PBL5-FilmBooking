@@ -80,9 +80,9 @@ const Login_form = () => {
           ĐĂNG NHẬP
         </button>
         <div className="register">
-          <label htmlFor="register">Bạn chưa có tài khoản?</label>
-          <Link id="register" to={"/register"}>
-            <button>ĐĂNG KÝ</button>
+          <Link to={"/register"}>
+            <label htmlFor="register">Bạn chưa có tài khoản?</label>
+            <button id="register">ĐĂNG KÝ</button>
           </Link>
         </div>
       </form>

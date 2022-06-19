@@ -15,14 +15,12 @@ const Infomation_user = () => {
   const [name, setName] = useState(user?.User_Name);
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState(user?.Phone_Number);
-  const [msgVal, setmsgVal] = useState("");
 
   const dispatch = useDispatch();
   const history = useHistory();
   const accessToken = user?.accessToken;
   console.log("access token", accessToken);
   console.log("userne", user);
-  const id = user?.ID_User;
   let axiosJWT = createAxios(user, dispatch, loginSuccess);
 
   const onchangeName = (event) => {
@@ -37,19 +35,16 @@ const Infomation_user = () => {
 
   const onSubmitForm = (event) => {
     event.preventDefault();
-
     const newUser = {
       id: user.ID_User,
       username: name,
       phone: phone,
     };
-    console.log(newUser);
     updateUser(dispatch, newUser, accessToken, user, axiosJWT);
   };
   return (
     <>
       <form action="" className="infomation" onSubmit={onSubmitForm}>
-        <p>{}</p>
         <div className="input-container ">
           <i className="fa fa-id-card icon" style={{ width: 22.5 }}></i>
           <input
@@ -62,7 +57,6 @@ const Infomation_user = () => {
             required
           />
         </div>
-        <p>{msgVal.name}</p>
         <div className="input-container ">
           <i className="fa fa-envelope icon" style={{ width: 22.5 }}></i>
           <input
@@ -75,8 +69,6 @@ const Infomation_user = () => {
             onChange={onchangeEmail}
           />
         </div>
-        <br></br>
-        <br></br>
         <div className="input-container ">
           <i className="fa fa-phone icon" style={{ width: 22.5 }}></i>
           <input

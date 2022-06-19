@@ -2,14 +2,16 @@
   display: flex;
   justify-content: center;
   margin-top: 100px;
+  margin-bottom: 20px;
   .setting-container {
-    width: 850px;
+    width: 750px;
     height: 500px;
-    background-color: #d2691e;
+    background-color: #eeaa18;
     color: black;
     border-radius: 150px;
+
     h2 {
-      font-size: 20px;
+      font-size: 30px;
       font-weight: normal;
       text-align: center;
       padding-top: 10px;

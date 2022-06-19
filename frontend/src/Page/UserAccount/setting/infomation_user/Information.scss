@@ -1,8 +1,8 @@
 .infomation {
-  margin-top: 0px;
   color: black;
-  height: 450px;
-  width: 450px;
+  height: 300px;
+  width: 330px;
+  margin-top: 10px;
   p {
     display: block;
     height: 40px;
@@ -28,6 +28,8 @@
       border-bottom: 1px solid grey;
       width: 270px;
       font-size: 15px;
+      margin-bottom: 40px;
+      border-radius: 4px;
     }
     i {
       margin-right: 10px;
@@ -44,14 +46,15 @@
     button {
       cursor: pointer;
       border-radius: 99px;
-      background-color: #fdb73b;
+
       width: 150px;
       height: 40px;
       font-size: 18px;
       border: 0;
       margin-left: 50px;
+      background-color: #fffb00;
       &:hover {
-        background-color: #ffa402;
+        background-color: #ffee02;
       }
     }
   }

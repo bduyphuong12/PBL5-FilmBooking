@@ -143,10 +143,9 @@ const Register_form = () => {
         <p>{msgVal.phone}</p>
         <button onClick={onSubmitLogin}>ĐĂNG KÝ</button>
         <div className="register">
-          <label htmlFor="register">Bạn đã có tài khoản?</label>
-
           <Link id="register" to={"/login"}>
-            <button>ĐĂNG nhập</button>
+            <label htmlFor="register">Bạn đã có tài khoản?</label>
+            <button id="register">ĐĂNG NHẬP</button>
           </Link>
         </div>
       </form>

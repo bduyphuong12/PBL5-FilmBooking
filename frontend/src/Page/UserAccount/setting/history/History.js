@@ -12,7 +12,7 @@ const History = () => {
   const user = useSelector((state) => state.auth.login.currentUser);
   console.log(showhisDetail);
   useEffect(() => {
-    axios.get(`/dg/getByIdUser/${user.ID_User}`).then((res) => {
+    axios.get(`/dg/getByIdUser/${user?.ID_User}`).then((res) => {
       if (res.data.result) {
         setHistoryGD(res.data);
         console.log(res.data);
@@ -34,7 +34,6 @@ const History = () => {
           <table id="customer">
             <thead>
               <tr>
-                <th>ID</th>
                 <th>Ngày đặt</th>
                 <th>Tổng tiền</th>
                 <th>Xem chi tiết</th>
@@ -45,7 +44,6 @@ const History = () => {
               {React.Children.toArray(
                 historyGD.result.map((history) => (
                   <tr>
-                    <td>{history.id}</td>
                     <td>
                       {xuliDate(history.ngay) + " " + xuliDay(history.ngay)}
                     </td>
@@ -74,6 +72,10 @@ const History = () => {
             />
           </div>
         </div>
+      );
+    } else {
+      return (
+        <h4 style={{ color: "black" }}>Người dùng chưa thực hiện giao dịch!</h4>
       );
     }
   } else {

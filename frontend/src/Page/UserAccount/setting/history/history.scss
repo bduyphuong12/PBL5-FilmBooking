@@ -1,5 +1,5 @@
 div.history {
-  color: rgb(248, 212, 7);
+  color: rgb(0, 0, 0);
   padding: 0px 20px;
   width: 500px;
   display: flex;
@@ -12,7 +12,24 @@ div.history {
   }
   table {
     width: 100%;
+    border: 1px solid black;
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
+    tr {
+      border: 1px solid black;
+    }
+    th {
+      text-align: center;
+      border: 1px solid black;
+    }
+    td {
+      text-align: center;
+      border: 1px solid black;
+    }
+  }
+
+  h4 {
+    color: black;
+    font-size: 20px;
   }
 }

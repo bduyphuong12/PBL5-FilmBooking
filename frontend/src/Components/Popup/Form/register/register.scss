@@ -3,15 +3,19 @@
   align-items: center;
   justify-content: center;
   margin-top: 90px;
+  margin-bottom: 30px;
 }
 .register_form {
-  background-color: white;
+  background-color: #ffa402;
   color: black;
-  height: 530px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
   width: 450px;
   border-radius: 150px;
-  padding-left: 100px;
-
   h2 {
     font-size: 36px;
     font-weight: normal;
@@ -40,6 +44,7 @@
       border-bottom: 1px solid grey;
       width: 270px;
       font-size: 15px;
+      border-radius: 4px;
     }
     i {
       margin-right: 10px;
@@ -53,14 +58,14 @@
   button {
     cursor: pointer;
     border-radius: 99px;
-    background-color: #fdb73b;
+
     width: 150px;
     height: 40px;
     font-size: 18px;
     border: 0;
-    margin-left: 100px;
+    background-color: #fbff00;
     &:hover {
-      background-color: #ffa402;
+      background-color: #ffcd77;
     }
   }
   .register {
@@ -69,11 +74,12 @@
       width: 100px;
       height: 30px;
       border-radius: 99px;
-      background-color: #fdb73b;
+
       font-size: 14px;
       border: 0;
+      background-color: #fbff00;
       &:hover {
-        background-color: #ffa402;
+        background-color: #ffcd77;
       }
     }
     label {
