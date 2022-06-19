@@ -56,7 +56,7 @@ const Login_form = () => {
           <i className="fa fa-user icon" style={{ width: 22.5 }}></i>
           <input
             type="text"
-            placeholder="Tài khoản..."
+            placeholder="Email..."
             className="input"
             name="username"
             value={email}
