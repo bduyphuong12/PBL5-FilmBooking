@@ -132,11 +132,14 @@ function CornAndWater({lcByRoomPhimID,phimDetail}) {
            if(countCB2>0){
             axios.post('/ctdg/add',dataDetailGDCB2)
            }
-          //  seatIdArray.forEach(e => {
-          //   axios.put('/seat/updatePo/', e)
-          //  });
+           seatIdArray.forEach(e => {
+            axios.put('/seat/updatePo/', e)
+           });
            
-          //  axios.post('/ctdg/add',dataDetailGD)
+
+          seatIdArray.forEach(id => {
+            axios.put(`/seat/updatePo/${id}`)
+          });
 
           setTimeout(() => {
             window.location.assign('/donebook/'+phimID+'/'+roomID);
