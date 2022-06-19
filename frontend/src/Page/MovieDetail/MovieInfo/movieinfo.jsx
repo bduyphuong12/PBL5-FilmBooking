@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./movieinfo.css";
-import ModalTrailer from "../../HomePage/ModalTrailer/ModalTrailer";
+import ModalTrailer from "../../HomePage/ModalTrailer/modaltrailer";
 import axios from "axios";
 export default function MovieInfo() {
   const [openT, setOpenT] = React.useState(false);
@@ -57,7 +57,7 @@ export default function MovieInfo() {
           <div className="row">
             <div className="movie__poster text-left col-3">
               <div
-                style={{ width: 220, height: 300}}
+                style={{ width: 220, height: 300 }}
                 className="poster__img d-flex justify-content-center align-items-center"
               >
                 <img

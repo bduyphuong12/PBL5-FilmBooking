@@ -49,7 +49,7 @@ const History = () => {
                     <td>
                       {xuliDate(history.ngay) + " " + xuliDay(history.ngay)}
                     </td>
-                    <td>{history.so_tien}</td>
+                    <td>{history.so_tien}.000đ</td>
                     <td>
                       <BsEye
                         onMouseOver={() => {
@@ -76,6 +76,8 @@ const History = () => {
         </div>
       );
     }
+  } else {
+    return <h4>Người dùng chưa thực hiện giao dịch!</h4>;
   }
 };
 function xuliDay(val) {

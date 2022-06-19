@@ -79,10 +79,10 @@ export const updateUser = async (
     };
     dispatch(loginSuccess(currentUser));
     console.log("check", currentUser);
-    toast("Update thông tin thành công!");
+    toast("Thay đổi thông tin thành công!");
   } catch (error) {
     console.log("loi", error);
-    toast("Gặp lỗi khi update!");
+    toast("Thay đổi thông tin thất bại!");
   }
 };
 export const updatePassWord = async (
@@ -102,10 +102,10 @@ export const updatePassWord = async (
       }
     );
     // dispatch(updateSuccess());
-    toast("Update password thanh cong!!!");
+    toast("Đổi mật khẩu thành công!");
   } catch (error) {
     // dispatch(updateFailed());
-    toast("update password that bai!!!");
+    toast("Đổi mật khẩu thất bại!");
   }
 };
 

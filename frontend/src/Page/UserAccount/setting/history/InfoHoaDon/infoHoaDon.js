@@ -17,7 +17,7 @@ const InfoHoaDon = ({ dataHD }) => {
         <div className="detail-up">
           <p>
             {dataMatHang.result[0].ten} x{dataHD.so_luong}:{" "}
-            {parseInt(dataMatHang.result[0].gia) * dataHD.so_luong}đ
+            {parseInt(dataMatHang.result[0].gia) * dataHD.so_luong}.000đ
           </p>
         </div>
       </>
