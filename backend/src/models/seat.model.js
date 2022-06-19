@@ -48,7 +48,7 @@ Seat.resetByIdRoom = function (id, result) {
 }
 
 Seat.updateStatusPo = function (id, result) {
-    db.query("update seat_no set Seat_status='1' where id = ?", id , function(err, u){
+    db.query("update seat_no set Status='1' where id = ?", id , function(err, u){
         console.log(err)
         if (err) {
             console.log(err);

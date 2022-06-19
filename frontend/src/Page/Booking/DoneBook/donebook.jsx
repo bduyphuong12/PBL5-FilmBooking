@@ -18,7 +18,7 @@ function DoneBook() {
     }
     getLCByRoomPhimID();
   },[phimID,roomID]);
-  console.log(lcByRoomPhimID)
+  
   const [phimDetail,setPhimDetail] = useState(null);
   useEffect(() => {
     const getPhimDetail = () => {
@@ -28,9 +28,10 @@ function DoneBook() {
     }
     getPhimDetail();
   },[phimID]);
-  console.log(phimDetail)
-  const user = useSelector((state) => state.auth.login.currentUser);
   
+  const user = useSelector((state) => state.auth.login.currentUser);
+  const soGhe = localStorage.getItem('soGhe')
+  const idGd = localStorage.getItem('idgd')
   
   // const [userDetail, setuserDetail] = useState(null);
   // useEffect(() => {
@@ -65,8 +66,8 @@ function DoneBook() {
           <div>
             <QRCode
               id='qrcode'
-              value={'Email: ' + user.Email
-              + 'Tên phim: '+ phimDetail.ten_phim + 'Suất chiếu: ' + moment(lcByRoomPhimID.thoi_gian_chieu).format("DD/MM/yyyy") + 'Rạp số: ' + lcByRoomPhimID.room_id + 'Ghế: '
+              value={ 'id giao dịch: '+ idGd + '.   ' +'id khách hàng: ' + user.ID_User +'.    ' + 'Suất chiếu: ' + moment(lcByRoomPhimID.thoi_gian_chieu).format("DD/MM/yyyy") + '.    ' +  'Rạp số: ' + lcByRoomPhimID.room_id + '.    ' +   'Ghế: ' + soGhe
+               
             
             }
               size={290}
@@ -83,6 +84,7 @@ function DoneBook() {
               <p>Ngày đặt: {moment(Date().toLocaleString()).format("DD/MM/yyyy  hh:mm A") }</p>
               <p>Suất chiếu: {moment(lcByRoomPhimID.thoi_gian_chieu).format("DD/MM/yyyy")}  {moment(lcByRoomPhimID.thoi_gian_chieu).format("hh:mm A")}</p>
               <p>Rạp số: {lcByRoomPhimID.room_id}</p>
+              <p>Số ghế: {soGhe}</p>
         </div>
       </div>
     );

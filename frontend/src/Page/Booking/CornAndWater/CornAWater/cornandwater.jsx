@@ -21,8 +21,10 @@ function CornAndWater({lcByRoomPhimID,phimDetail}) {
   var subTotal = localStorage.getItem('gia')
   
   const soGhe = localStorage.getItem('soGhe')
+  const seatID = localStorage.getItem('IDGhe')
   
-  console.log(soGhe)
+  var seatIdArray = seatID.split(',').map(Number);
+  console.log(seatIdArray);
   const [countN, setCountN] = useState(0)
   const [countB, setCountB] = useState(0)
   const [countCB1, setCountCB1] = useState(0)
@@ -35,13 +37,13 @@ function CornAndWater({lcByRoomPhimID,phimDetail}) {
   useEffect(() => {
     const getItem = () => {
       axios.get('/mh/list' ).then(res => {
-        setItem(res.data);
+        setItem(res.data.result);
       })
     }
     getItem();
   },[]);
   const user = useSelector((state) => state.auth.login.currentUser);
-  console.log(user.ID_User  )
+  
   var moment = require("moment");
   const data = {
     id: null,
@@ -49,12 +51,60 @@ function CornAndWater({lcByRoomPhimID,phimDetail}) {
     id_user: user.ID_User,
     so_tien: totalAll/1000
   }
-  // const dataDetailGD = {
-  //   id: null,
-  //   id_giao_dich: data.id,
-  //   id_hang: item.id_hang,
-  //   so_luong:countB
-  // }
+  const id = data.id;
+  const getIdGd = (id) =>{
+    localStorage.setItem('idgd',id_gd)
+  }
+ 
+  if(item){
+    console.log(item[0].id_hang)
+  }
+  
+  const iduser = user.ID_User;
+  const [DetailGD, setDetailGD] = useState(null);
+  useEffect(() => {
+    const getDetailGD = () => {
+      axios.get('/dg/getByIdUser/' + iduser ).then(res => {
+        setDetailGD(res.data.result);
+      })
+    }
+    getDetailGD();
+  },[iduser]);  
+  
+  var id_gd;
+  if (DetailGD){
+     id_gd = DetailGD[DetailGD.length-1].id
+  }
+  const dataDetailGDVe = {
+    id: null,
+    id_giao_dich: id_gd,
+    id_hang: '1',
+    so_luong:sbTotal/50000
+  }
+  const dataDetailGDN = {
+    id: null,
+    id_giao_dich: id_gd,
+    id_hang: '2',
+    so_luong:countN
+  }
+  const dataDetailGDB = {
+    id: null,
+    id_giao_dich: id_gd,
+    id_hang: '3',
+    so_luong:countB
+  }
+  const dataDetailGDCB1 = {
+    id: null,
+    id_giao_dich: id_gd,
+    id_hang: '4',
+    so_luong:countCB1
+  }
+  const dataDetailGDCB2 = {
+    id: null,
+    id_giao_dich: id_gd,
+    id_hang: '5',
+    so_luong:countCB2
+  }
   const datVe = async () => {
     
       swal({
@@ -69,6 +119,23 @@ function CornAndWater({lcByRoomPhimID,phimDetail}) {
             icon: "success",
           });
            axios.post('/dg/add',data)
+           axios.post('/ctdg/add',dataDetailGDVe)
+           if(countN>0){
+            axios.post('/ctdg/add',dataDetailGDN)
+           }
+           if(countB>0){
+            axios.post('/ctdg/add',dataDetailGDB)
+           }
+           if(countCB1>0){
+            axios.post('/ctdg/add',dataDetailGDCB1)
+           }
+           if(countCB2>0){
+            axios.post('/ctdg/add',dataDetailGDCB2)
+           }
+          //  seatIdArray.forEach(e => {
+          //   axios.put('/seat/updatePo/', e)
+          //  });
+           
           //  axios.post('/ctdg/add',dataDetailGD)
 
           setTimeout(() => {
@@ -105,7 +172,7 @@ function CornAndWater({lcByRoomPhimID,phimDetail}) {
                     <tbody>
                       {
                         React.Children.toArray(
-                          item.result.map(e =>(
+                          item.map(e =>(
                           <tr>
                         
                         <td>{e.ten}</td>
@@ -209,8 +276,8 @@ function CornAndWater({lcByRoomPhimID,phimDetail}) {
             
           </div>
           <div className="count__slot">
-            <div>Số ghế đã chọn: {soGhe}</div>
-            <div className="slot"></div>
+            <div >Số ghế đã chọn: </div>
+            <div className="slot">{soGhe}</div>
             
           </div>
           <div className="discountForm d-flex justify-content-between">
@@ -250,9 +317,7 @@ function CornAndWater({lcByRoomPhimID,phimDetail}) {
           className="btnBook"
           data-toggle="modal"
           data-target="#CreditModal"
-          // onClick={() => {
-          //   datVe();
-          // }}
+          onClick={getIdGd(id)}
         >
           Đặt vé
         </div>

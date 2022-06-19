@@ -49,25 +49,6 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
       }, 3000);
     }
   }, [counter]);
-  
-  
-                                    //
-
-
- 
-
- 
-
-  // useEffect(() => {
-  //   const updateDetailSeat = (id) => {     
-  //     if(!detailSeat.includes(id)) setDetailSeat(arr => [...arr,id] )   
-  //     else {                                       
-  //       let newArr1 = [...detailSeat];              
-  //       newArr1.splice(detailSeat.indexOf(id),1);   
-  //       setDetailSeat(newArr1);                  
-  //     }                                    
-  //   }
-  // }, [detailSeat]);
   const[detailSeat,setDetailSeat] = useState([]);
   const [listChoose, setListChoose] = useState([]);
   const updateListChoose = async (id_Seat) => {     
@@ -91,7 +72,6 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
       
     }                                   
   }    
-  console.log(detailSeat)
   
   useEffect(() => {
     const getSeatDetail = async () => {
@@ -104,27 +84,23 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
       })
       }
       
-      //  listChoose.forEach(element => {
-      //     axios.get('/seat/info/' + element).then(res => {
-      //     setDetailSeat([...detailSeat,res.data.result[0]]);
-
-      //   })
-      // }
-      // );
-      
     }
     getSeatDetail();
   },[load]);
   
   
-  const datVe = (subMoney,seatNumber) =>{
+  const datVe = (subMoney,seatNumber,seatID) =>{
     localStorage.setItem('gia',subMoney)
     localStorage.setItem('soGhe',seatNumber)
+    localStorage.setItem('IDGhe',seatID)
   }
   
   const money = listChoose.length*50000
   const seatNumber = detailSeat.map(e =>{
     return e.Row_No + ''+e.Seat_No
+  })
+  const seatID = detailSeat.map(e =>{
+    return e.id
   })
 
  
@@ -252,7 +228,7 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
             
           }
           
-          onClick={money >0 ?datVe(money,seatNumber):function(e){alert('Vui lòng chọn ghế!') 
+          onClick={money >0 ?datVe(money,seatNumber,seatID):function(e){alert('Vui lòng chọn ghế!') 
             window.location.reload()}}
           
           
