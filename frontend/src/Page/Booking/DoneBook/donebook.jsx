@@ -58,7 +58,7 @@ function DoneBook() {
       <div>
         <header className='doneBook'>
             <p>Chúc mừng bạn đã đặt vé thành công</p>
-            <p>Vui lòng đưa mã QR Code này cho nhân viên bán vé để kiểm tra thông tin</p>
+            <h4>Lưu ý: Hãy chụp mã QR Code này rồi đưa mã cho nhân viên bán vé để kiểm tra thông tin</h4>
           <div>
             <QRCode
               id='qrcode'

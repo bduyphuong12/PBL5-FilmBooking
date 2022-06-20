@@ -132,7 +132,7 @@ export default class News extends Component {
                           <div className="contentnews">
                             <span className="authornews">Minh Trí</span>
                             <h1 className="titlenews">
-                              <a className="title__link" href="/#">
+                              <a className="title__link" href="/" >
                                 Stranger Things: The sound of the Upside Down
                               </a>
                             </h1>
@@ -150,9 +150,7 @@ export default class News extends Component {
                     </div>
                   </div>
 
-                  <div className="readMore">
-                    <button className="btn btn__readmore">XEM THÊM</button>
-                  </div>
+                  
                 </div>
               </div>
               <div
@@ -353,7 +351,7 @@ export default class News extends Component {
                     </div>
                   </div>
                   <div className="readMore">
-                    <button className="btn btn__readmore">XEM THÊM</button>
+                    
                   </div>
                 </div>
               </div>
@@ -549,7 +547,7 @@ export default class News extends Component {
                     </div>
                   </div>
                   <div className="readMore">
-                    <button className="btn btn__readmore">XEM THÊM</button>
+                    
                   </div>
                 </div>
               </div>

@@ -13,7 +13,7 @@ a{
     font-weight: 500;
     color: blue;
 }
-.item-lichchieu:not(item-lichchieu):hover {
+.item-lichchieu:not(item-lichchieu):hover ,.item-lichchieu.active {
     cursor: pointer;
     transform: scale(1);
     color: red;
