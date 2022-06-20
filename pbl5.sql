@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 19, 2022 lúc 11:55 AM
+-- Thời gian đã tạo: Th6 20, 2022 lúc 03:57 AM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.12
 
@@ -45,6 +45,17 @@ CREATE TABLE `chi_tiet_giao_dich` (
   `id_hang` varchar(10) NOT NULL,
   `so_luong` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `chi_tiet_giao_dich`
+--
+
+INSERT INTO `chi_tiet_giao_dich` (`id`, `id_giao_dich`, `id_hang`, `so_luong`) VALUES
+(15, 44, '1', 2),
+(16, 45, '1', 2),
+(17, 45, '2', 1),
+(18, 44, '3', 1),
+(19, 44, '4', 1);
 
 -- --------------------------------------------------------
 
@@ -123,7 +134,8 @@ CREATE TABLE `giao_dich` (
 --
 
 INSERT INTO `giao_dich` (`id`, `ngay`, `id_user`, `so_tien`) VALUES
-(13, '2022-06-19 11:34:40', 10, 125);
+(44, '2022-06-20 08:43:14', 16, 180),
+(45, '2022-06-20 08:45:18', 16, 125);
 
 -- --------------------------------------------------------
 
@@ -148,7 +160,9 @@ INSERT INTO `lich_chieu` (`id_phim`, `thoi_gian_chieu`, `room_id`, `id`) VALUES
 ('1', '2022-06-19 17:04:00', 1, 35),
 ('3', '2022-06-18 19:00:00', 1, 36),
 ('1', '2022-06-16 10:00:00', 1, 37),
-('1', '2022-06-18 23:54:58', 2, 38);
+('1', '2022-06-18 23:54:58', 2, 38),
+('1', '2022-06-20 09:32:21', 1, 39),
+('1', '2022-06-21 10:32:50', 2, 40);
 
 -- --------------------------------------------------------
 
@@ -167,6 +181,7 @@ CREATE TABLE `mat_hang` (
 --
 
 INSERT INTO `mat_hang` (`id_hang`, `ten`, `gia`) VALUES
+('1', 'Vé xem phim', 50),
 ('2', 'CocaCola', 25),
 ('3', 'Bắp', 20),
 ('4', 'Combo 1 bắp + 2 nước', 60),
@@ -179,7 +194,7 @@ INSERT INTO `mat_hang` (`id_hang`, `ten`, `gia`) VALUES
 --
 
 CREATE TABLE `ma_vach` (
-  `id_ma_vach` varchar(10) NOT NULL,
+  `id_ma_vach` varchar(200) NOT NULL,
   `id_giao_dich` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -241,7 +256,7 @@ CREATE TABLE `phim` (
 
 INSERT INTO `phim` (`id_phim`, `ten_phim`, `noi_dung`, `thoi_luong`, `so_sao`, `nha_san_xuat`, `dao_dien`, `the_loai`, `trailer`, `poster`, `so_ve`) VALUES
 ('1', 'JURASSIC WORLD DOMINION', 'Bốn năm sau kết thúc Jurassic World: Fallen Kingdom, những con khủng long đã thoát khỏi nơi giam cầm và tiến vào thế giới loài người. Giờ đây, chúng xuất hiện ở khắp mọi nơi. Sinh vật to lớn ấy không còn chỉ ở trên đảo như trước nữa mà gần ngay trước mắt, thậm chí còn có thể chạm tới. Owen Grady may mắn gặp lại cô khủng long mà anh và khán giả vô cùng yêu mến - Blue. Tuy nhiên, Blue không đi một mình mà còn đem theo một chú khủng long con khác. Điều này khiến Owen càng quyết tâm bảo vệ mẹ con cô được sinh sống an toàn. Thế nhưng, hai giống loài quá khác biệt. Liệu có thể tồn tại một kỷ nguyên mà khủng long và con người sống chung một cách hòa bình? Chris Pratt và Bryce Dallas Howard tiếp tục vào vai hai nhân vật chính Owen Grady và Claire Dearing. Ngoài ra, thật tuyệt vời khi Laura Dern, Sam Neill, Jeff Goldblum và BD Wong quay lại diễn những nhân vật thời Jurassic Parkl: Tiến sĩ Ellie Sattler, Tiến sĩ Alan Grant, Tiến sĩ Ian Malcolm và Tiến sĩ Henry Wu. ', '01:45:02', 9, 'Universal Pictures', 'Colin Trevorrow', 'Action, Horror', 'https://www.youtube.com/embed/X0Peh-AClUM', 'https://cafecomnerd.com.br/wp-content/uploads/2022/04/JURASSIC-WORLD-DOMINION-Novo-poster-divulgado-pela-Universal-Pictures-combina-passado-com-presente.jpg', 25000),
-('2', 'Doctor Strange In The Multiverse Of Madness', 'Lỡ tay làm phép khiến đa vũ trụ nảy sinh vấn đề ở Spider-Man: No Way Home, Doctor Strange “trả nghiệp” thế nào trong Doctor Strange In The Multiverse Of Madness? Có thể nói, chưa bao giờ Stephen Strange phải đối mặt với nhiều mối nguy như hiện tại. “Scarlet Witch” Wanda Maximoff tẩy não cả thị trấn (WandaVision), Loki và Sylvie quậy tung Cơ quan quản lí phương sai \nthời gian (Loki) và đỉnh điểm là điều ước thay đổi quá nhiều lần của Spider-Man Peter Parker khiến mọi thứ vô cùng hỗn loạn. Cố gắng giải quyết vấn đề, Stephen Strange tìm đến Wanda, nhờ cô \ngiúp đỡ. Tuy nhiên, nữ phù thủy vừa trải qua nỗi đau mất đi những người thân yêu cộng thêm tâm tính bất ổn có phải là cộng sự thích hợp? Wanda đáng thương sẽ thành phản diện ở phần này? Người bạn cũ Mordo nay đã quay lưng và trở thành kẻ thù không đội trời chung với  Strange quay trở lại. Gần như chắc chắn, hắn là kẻ ngáng đường. Chưa dừng lại ở đó, một phiên bản hắc ám của Doctor Strange – mạnh hơn và điên cuồng hơn cũng góp mặt. Gã đến từ đâu và mục đích của gã là gì? Strange hắc ám này là Strange Supreme từng khuấy đảo series What If…? Bi đát hơn, cô người yêu \nChristine của Strange sắp bước vào lễ đường mà chú rể chẳng phải là anh.', '02:07:01', 9, 'Sam Raimi', 'Marvel Studios', 'Action, Horror', 'https://www.youtube.com/embed/ijQGIHy88JM', 'https://scontent.fdad3-6.fna.fbcdn.net/v/t39.30808-6/278577098_385580690243466_9220501655297017119_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=e3f864&_nc_ohc=of4j9HXv-qsAX8tNyQ-&_nc_ht=scontent.fdad3-6.fna&oh=00_AT_6-Ty-hrHGhqP9_bcL0QoXxYCYOKM8JBfooFaJYqYVQg&oe=62A8BC43', 100000),
+('2', 'Doctor Strange In The Multiverse Of Madness', 'Lỡ tay làm phép khiến đa vũ trụ nảy sinh vấn đề ở Spider-Man: No Way Home, Doctor Strange “trả nghiệp” thế nào trong Doctor Strange In The Multiverse Of Madness? Có thể nói, chưa bao giờ Stephen Strange phải đối mặt với nhiều mối nguy như hiện tại. “Scarlet Witch” Wanda Maximoff tẩy não cả thị trấn (WandaVision), Loki và Sylvie quậy tung Cơ quan quản lí phương sai \nthời gian (Loki) và đỉnh điểm là điều ước thay đổi quá nhiều lần của Spider-Man Peter Parker khiến mọi thứ vô cùng hỗn loạn. Cố gắng giải quyết vấn đề, Stephen Strange tìm đến Wanda, nhờ cô \ngiúp đỡ. Tuy nhiên, nữ phù thủy vừa trải qua nỗi đau mất đi những người thân yêu cộng thêm tâm tính bất ổn có phải là cộng sự thích hợp? Wanda đáng thương sẽ thành phản diện ở phần này? Người bạn cũ Mordo nay đã quay lưng và trở thành kẻ thù không đội trời chung với  Strange quay trở lại. Gần như chắc chắn, hắn là kẻ ngáng đường. Chưa dừng lại ở đó, một phiên bản hắc ám của Doctor Strange – mạnh hơn và điên cuồng hơn cũng góp mặt. Gã đến từ đâu và mục đích của gã là gì? Strange hắc ám này là Strange Supreme từng khuấy đảo series What If…? Bi đát hơn, cô người yêu \nChristine của Strange sắp bước vào lễ đường mà chú rể chẳng phải là anh.', '02:07:01', 9, 'Sam Raimi', 'Marvel Studios', 'Action, Horror', 'https://www.youtube.com/embed/ijQGIHy88JM', 'https://vcdn1-giaitri.vnecdn.net/2022/05/12/doctor-strange-2.jpg?w=900&h=540&q=100&dpr=1&fit=crop&s=wrRoA7M4Vm1JL3UwNDZaDw', 100000),
 ('3', 'My Hero Academia: World Heroes\' Mission', 'Một nhóm những người chống đối những người có năng lực đã phá hủy một thành phố bằng việc giải phóng một loại khí, khiến cho tất cả năng lực của những người dân nơi đây bị vượt tầm kiểm soát, những người hùng vĩ đại nhất của Nhật Bản đã phân tán khắp thế giới để tìm kiếm kẻ cầm đầu và đưa hắn ta ra trước công lý. Là một phần của đội Endeavour, Deku, Bakugo và Todoroki đi đến quốc gia Otheon ở Châu Âu. Nhưng sau khi ngăn chặn một vụ cướp không thành công, Deku vô tình bị buộc tội giết người hàng loạt và đang chạy trốn với một tên tội phạm, cùng dưới sự truy đuổi gắt gao của cảnh sát và những kẻ khủng bố đang theo dõi mình.', '01:30:00', 9, 'Bones', 'Kenji Nagasaki', 'Anime', 'https://www.youtube.com/embed/XGUh4WeOJFw', 'https://truthan.vn/giai-cuu-the-gioi-phan-3/imager_42981.jpg', 40000),
 ('5', 'DORAEMON: NOBITA VÀ CUỘC CHIẾN VŨ TRỤ TÍ HON 2021', 'Nobita tình cờ gặp được người ngoài hành tinh tí hon Papi, vốn là Tổng thống của hành tinh Pirika, chạy trốn tới Trái Đất để thoát khỏi những kẻ nổi loạn nơi quê nhà. Doraemon, Nobita và hội bạn thân dùng bảo bối đèn pin thu nhỏ biến đổi theo kích cỡ giống Papi để chơi cùng cậu bé. Thế nhưng, một tàu chiến không gian tấn công cả nhóm. Cảm thấy có trách nhiệm vì liên lụy mọi người, Papi quyết định một mình đương đầu với quân phiến loạn tàn ác. Doraemon và các bạn lên đường đến hành tinh Pirika, sát cánh bên người bạn của mình.', '01:39:00', 9, 'NB', 'Yamaguchi Susumu', 'Family, Anime', 'https://www.youtube.com/embed/bALKXsKhEEs', 'https://i.rada.vn/data/image/2022/04/21/Doraemon-Nobita-no-Little-Wars-1.jpg', 70000);
 
@@ -373,8 +388,8 @@ CREATE TABLE `seat_no` (
 
 INSERT INTO `seat_no` (`id`, `Seat_Id`, `Seat_No`, `Status`) VALUES
 (1, '1', '1', '1'),
-(2, '1', '2', 'null'),
-(3, '1', '3', 'null'),
+(2, '1', '2', '1'),
+(3, '1', '3', '1'),
 (4, '1', '4', 'null'),
 (5, '1', '5', 'null'),
 (6, '1', '6', 'null'),
@@ -394,7 +409,7 @@ INSERT INTO `seat_no` (`id`, `Seat_Id`, `Seat_No`, `Status`) VALUES
 (20, '2', '1', 'null'),
 (21, '3', '3', 'null'),
 (22, '3', '4', 'null'),
-(23, '3', '5', 'null'),
+(23, '3', '5', '1'),
 (24, '3', '6', 'null'),
 (25, '3', '7', 'null'),
 (26, '3', '8', 'null'),
@@ -406,14 +421,14 @@ INSERT INTO `seat_no` (`id`, `Seat_Id`, `Seat_No`, `Status`) VALUES
 (32, '4', '3', 'null'),
 (33, '4', '4', 'null'),
 (34, '4', '5', 'null'),
-(35, '4', '6', 'null'),
+(35, '4', '6', '1'),
 (36, '4', '7', 'null'),
 (37, '4', '8', 'null'),
 (38, '4', '9', 'null'),
 (39, '4', '10', 'null'),
 (40, '4', '2', 'null'),
 (41, '4', '1', 'null'),
-(42, '5', '3', 'null'),
+(42, '5', '3', '1'),
 (43, '5', '4', 'null'),
 (44, '5', '5', 'null'),
 (45, '5', '6', 'null'),
@@ -430,7 +445,7 @@ INSERT INTO `seat_no` (`id`, `Seat_Id`, `Seat_No`, `Status`) VALUES
 (56, '10', '1', 'null'),
 (57, '6', '2', 'null'),
 (58, '6', '3', 'null'),
-(59, '6', '4', 'null'),
+(59, '6', '4', '1'),
 (60, '6', '5', 'null'),
 (61, '6', '6', 'null'),
 (62, '6', '7', 'null'),
@@ -442,8 +457,8 @@ INSERT INTO `seat_no` (`id`, `Seat_Id`, `Seat_No`, `Status`) VALUES
 (68, '7', '4', 'null'),
 (69, '7', '5', 'null'),
 (70, '7', '6', 'null'),
-(71, '7', '7', 'null'),
-(72, '7', '8', 'null'),
+(71, '7', '7', '1'),
+(72, '7', '8', '1'),
 (73, '7', '9', 'null'),
 (74, '7', '10', 'null'),
 (75, '8', '2', 'null'),
@@ -1076,7 +1091,7 @@ ALTER TABLE `user_per`
 -- AUTO_INCREMENT cho bảng `chi_tiet_giao_dich`
 --
 ALTER TABLE `chi_tiet_giao_dich`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT cho bảng `dien_vien`
@@ -1088,13 +1103,13 @@ ALTER TABLE `dien_vien`
 -- AUTO_INCREMENT cho bảng `giao_dich`
 --
 ALTER TABLE `giao_dich`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT cho bảng `lich_chieu`
 --
 ALTER TABLE `lich_chieu`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT cho bảng `seat_no`

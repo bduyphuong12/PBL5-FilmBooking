@@ -66,7 +66,7 @@ function DoneBook() {
           <div>
             <QRCode
               id='qrcode'
-              value={ 'id giao dịch: '+ idGd + '.   ' +'id khách hàng: ' + user.ID_User +'.    ' + 'Suất chiếu: ' + moment(lcByRoomPhimID.thoi_gian_chieu).format("DD/MM/yyyy") + '.    ' +  'Rạp số: ' + lcByRoomPhimID.room_id + '.    ' +   'Ghế: ' + soGhe
+              value={ 'idGD: '+ idGd + '.   ' +'idUser: ' + user.ID_User +'.    ' + 'Time: ' + moment(lcByRoomPhimID.thoi_gian_chieu).format("DD/MM/yyyy hh:mm A") + '.    ' +  'Room: ' + lcByRoomPhimID.room_id + '.    ' +   'Seat: ' + soGhe
                
             
             }
