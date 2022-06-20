@@ -9,7 +9,7 @@ export default function Lichchieu({openInfo}) {
     getValueDay(day);
   return (
     <div>
-        <a style={{color:'red'}} className={arr[0]==0?'item-lichchieu sunday':'item-lichchieu'} onClick={function(event){openInfo(0)}}>{daily[arr[0]]}</a>
+        <a  className={arr[0]==0?'item-lichchieu sunday':'item-lichchieu'} onClick={function(event){openInfo(0)}}>{daily[arr[0]]}</a>
         <a className={arr[1]==0?'item-lichchieu sunday':'item-lichchieu'} onClick={function(event){openInfo(1)}}>{daily[arr[1]]}</a>
         <a className={arr[2]==0?'item-lichchieu sunday':'item-lichchieu'} onClick={function(event){openInfo(2)}}>{daily[arr[2]]}</a>
         <a className={arr[3]==0?'item-lichchieu sunday':'item-lichchieu'} onClick={function(event){openInfo(3)}}>{daily[arr[3]]}</a>
