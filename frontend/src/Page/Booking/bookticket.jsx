@@ -6,10 +6,21 @@ import axios from 'axios';
 export default function BookingTicket(props) {
   
   const getUrlPhim= window.location.href.split("/");
-  const phimID = getUrlPhim[getUrlPhim.length - 2]
-  const roomID = getUrlPhim[getUrlPhim.length - 1]
-
+  const phimID = getUrlPhim[getUrlPhim.length - 3]
+  const roomID = getUrlPhim[getUrlPhim.length - 2]
+  const id = getUrlPhim[getUrlPhim.length-1]
+  
   const [lcByRoomPhimID,setlcByRoomPhimID] = useState(null);
+  const [lcbyid,setlcbyid] = useState(null);
+  useEffect(() => {
+    const getLCID = () => {
+      axios.get('/lc/detail/' + id ).then(res => {
+        setlcbyid(res.data);
+      })
+    }
+    getLCID();
+  },[id]);
+  
   useEffect(() => {
     const getLCByRoomPhimID = () => {
       axios.get('/lc/getlc/' + phimID + '/'+ roomID ).then(res => {
@@ -18,7 +29,7 @@ export default function BookingTicket(props) {
     }
     getLCByRoomPhimID();
   },[phimID,roomID]);
-
+  
   const [phimDetail,setPhimDetail] = useState(null);
   useEffect(() => {
     const getPhimDetail = () => {
@@ -36,6 +47,7 @@ export default function BookingTicket(props) {
         <div className="bookTicket__content row mt-5">
           <ChooseSlot lcByRoomPhimID = {lcByRoomPhimID}
                       phimDetail={phimDetail}
+                      lcbyid = {lcbyid}
                      
                       
           />

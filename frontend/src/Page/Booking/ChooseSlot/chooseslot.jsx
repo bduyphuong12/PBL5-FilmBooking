@@ -5,12 +5,12 @@ import swal from "sweetalert";
 import Seat from "./seat";
 import { Link } from "react-router-dom";
 import CreditModal from "../CornAndWater/CreditModal/CreditModal";
-export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
+export default function ChooseSlot({lcByRoomPhimID,phimDetail,lcbyid}) {
   var moment = require("moment");
   const [dataSeatRow, setDataRow] = useState(null);
   const [listSeatCol, setListSeatCol] = useState(null);
   const getUrlPhim= window.location.href.split("/");
-  const roomID = getUrlPhim[getUrlPhim.length - 1]
+  const roomID = getUrlPhim[getUrlPhim.length - 2]
   const [load,setLoad] = useState(false)
   useEffect(() => {
     const getSeatRow =  () => {
@@ -77,7 +77,7 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
     const getSeatDetail = async () => {
       if(listChoose.length!==0){
         var elemet = listChoose[listChoose.length-1]
-      console.log(elemet)
+      
       await axios.get('/seat/info/' + elemet).then(res => {
         setDetailSeat([...detailSeat,res.data.result[0]]);
 
@@ -121,7 +121,7 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
                     </span>
                   </span>
                   <p className="showtime">
-                    Giờ chiếu: {moment(lcByRoomPhimID.result[0].thoi_gian_chieu).format("hh:mm A")}
+                    Giờ chiếu: {moment(lcbyid.result[0].thoi_gian_chieu).format("hh:mm A")}
                   </p>
                 </div>
               </div>
@@ -174,7 +174,7 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
               {phimDetail.result[0].ten_phim}
             </span>
             <p className="film__detail">
-            {moment(lcByRoomPhimID.result[0].thoi_gian_chieu).format("DD/MM/yyyy")}  {moment(lcByRoomPhimID.result[0].thoi_gian_chieu).format("hh:mm A")}
+            {moment(lcbyid.result[0].thoi_gian_chieu).format("DD/MM/yyyy")}  {moment(lcbyid.result[0].thoi_gian_chieu).format("hh:mm A")}
             
             </p>
            
@@ -224,7 +224,7 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail}) {
         <div>
         <Link
           className="btnContinue"
-          to={'/cornAwater/'+ lcByRoomPhimID.result[0].id_phim + '/'+ lcByRoomPhimID.result[0].room_id 
+          to={'/cornAwater/'+ lcByRoomPhimID.result[0].id_phim + '/'+ lcByRoomPhimID.result[0].room_id + '/'+lcbyid.result[0].id
             
           }
           

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./movieinfo.css";
-import ModalTrailer from "../../HomePage/ModalTrailer/modaltrailer";
+import ModalTrailer from "../../HomePage/ModalTrailer/ModalTrailer";
 import axios from "axios";
 export default function MovieInfo() {
   const [openT, setOpenT] = React.useState(false);
@@ -8,7 +8,7 @@ export default function MovieInfo() {
   const [phimDetail, setPhimDetail] = useState(null);
   const getUrlPhim = window.location.href.split("/");
   const phimID = getUrlPhim[getUrlPhim.length - 1];
-
+  
   useEffect(() => {
     const getPhimDetail = () => {
       axios.get("/phim/detail/" + phimID).then((res) => {

@@ -17,7 +17,7 @@ export default function ModalTrailer({openF, handleToggleF }) {
     }
     getNotification();
   },[]);
-  console.log(notification);
+  
   const style = {
     position: "absolute",
     bottom: "0",

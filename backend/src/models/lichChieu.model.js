@@ -17,6 +17,8 @@ LichChieu.get_all = function (result) {
     });
 };
 
+<<<<<<< Updated upstream
+=======
 LichChieu.remove_dv_byIdPhim = function (id, result) {
     db.query("delete from lich_chieu where id_phim = ?", id, function (err, dv) {
         if (err) {
@@ -27,7 +29,8 @@ LichChieu.remove_dv_byIdPhim = function (id, result) {
     });
 }
 
-LichChieu.getById = function (id, rid, result) {
+>>>>>>> Stashed changes
+LichChieu.getById = function (id, result) {
     db.query("select * from lich_chieu where id = ?", id, function (err, h) {
         if (err || h.length == 0) {
             result(err);

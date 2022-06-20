@@ -19,7 +19,7 @@ export default function AllMovie({props}) {
     }
     getListFilm();
   },[]);
-  console.log(listFilm)
+  
   // const filteredData = useState(null);
   
   //  var  filteredData  = listFilm.result.filter((el) => {

@@ -7,8 +7,19 @@ import axios from 'axios';
 function DoneBook() {
   var moment = require("moment");
   const getUrlPhim= window.location.href.split("/");
-  const phimID = getUrlPhim[getUrlPhim.length - 2]
-  const roomID = getUrlPhim[getUrlPhim.length - 1]
+  const phimID = getUrlPhim[getUrlPhim.length - 3]
+  const roomID = getUrlPhim[getUrlPhim.length - 2]
+  const id = getUrlPhim[getUrlPhim.length-1]
+  const [lcbyid,setlcbyid] = useState(null);
+    useEffect(() => {
+      const getLCID = () => {
+        axios.get('/lc/detail/' + id ).then(res => {
+          setlcbyid(res.data.result[0]);
+        })
+      }
+      getLCID();
+    },[id]);
+ 
   const [lcByRoomPhimID,setlcByRoomPhimID] = useState(null);
   useEffect(() => {
     const getLCByRoomPhimID = () => {
@@ -32,31 +43,16 @@ function DoneBook() {
   const user = useSelector((state) => state.auth.login.currentUser);
   const soGhe = localStorage.getItem('soGhe')
   const idGd = localStorage.getItem('idgd')
+  const [gd,setGd] = useState(null)
+  useEffect(() => {
+    const getgd = () => {
+      axios.get('/dg/detail/' + idGd).then(res => {
+        setGd(res.data.result[0]);
+      })
+    }
+    getgd();
+  },[idGd]);
   
-  // const [userDetail, setuserDetail] = useState(null);
-  // useEffect(() => {
-  //   const getUser = () => {
-  //     axios.get('/user/detail/' + idUser).then(res => {
-  //       setuserDetail(res.data);
-  //     })
-  //   }
-  //   getUser();
-  // },[idUser]);
-  // console.log(userDetail)
-  // console.log(userDetail)
-  // const getMaVach =() =>{
-  //   return (
-  //     <div>
-  //       <p>Email: {userDetail.result[0].Email}  </p>
-  //       <p>Tên phim: {phimDetail.result[0].ten_phim}</p>
-  //       <p>Suất chiếu: {moment(lcByRoomPhimID.result[0].thoi_gian_chieu).format("DD/MM/yyyy")}  {moment(lcByRoomPhimID.result[0].thoi_gian_chieu).format("hh:mm A")}</p>
-  //       <p>Rạp số: {lcByRoomPhimID.result[0].room_id}</p>
-  //       <p>Số vé: </p>
-  //       <p>Đã thanh toán online</p>
-        
-  //     </div>
-  //   );
-  // }
   if(phimDetail ){
     return (
       <div>
@@ -66,7 +62,7 @@ function DoneBook() {
           <div>
             <QRCode
               id='qrcode'
-              value={ 'idGD: '+ idGd + '.   ' +'idUser: ' + user.ID_User +'.    ' + 'Time: ' + moment(lcByRoomPhimID.thoi_gian_chieu).format("DD/MM/yyyy hh:mm A") + '.    ' +  'Room: ' + lcByRoomPhimID.room_id + '.    ' +   'Seat: ' + soGhe
+              value={ 'idGD: '+ idGd + '.   ' +'idUser: ' + user.ID_User +'.    ' + 'Time: ' + moment(lcbyid.thoi_gian_chieu).format("DD/MM/yyyy hh:mm A") + '.    ' +  'Room: ' + lcByRoomPhimID.room_id + '.    ' +   'Seat: ' + soGhe + '.   '+'Total: ' + gd.so_tien +'000' 
                
             
             }
@@ -82,7 +78,7 @@ function DoneBook() {
               <p>Email: {user.Email}  </p>
               <p>Tên phim: {phimDetail.ten_phim}</p>
               <p>Ngày đặt: {moment(Date().toLocaleString()).format("DD/MM/yyyy  hh:mm A") }</p>
-              <p>Suất chiếu: {moment(lcByRoomPhimID.thoi_gian_chieu).format("DD/MM/yyyy")}  {moment(lcByRoomPhimID.thoi_gian_chieu).format("hh:mm A")}</p>
+              <p>Suất chiếu: {moment(lcbyid.thoi_gian_chieu).format("DD/MM/yyyy")}  {moment(lcbyid.thoi_gian_chieu).format("hh:mm A")}</p>
               <p>Rạp số: {lcByRoomPhimID.room_id}</p>
               <p>Số ghế: {soGhe}</p>
         </div>

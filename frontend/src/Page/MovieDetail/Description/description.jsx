@@ -6,6 +6,15 @@ export default function Description() {
   const [phimDetail,setPhimDetail] = useState(null);
   const getUrlPhim= window.location.href.split("/");
   const phimID = getUrlPhim[getUrlPhim.length - 1]
+  const [actor,setActor] = useState(null);
+  useEffect(() => {
+    const getActorByPhim = () => {
+      axios.get("/dv/getByIdPhim/" + phimID).then((res) => {
+        setActor(res.data);
+      });
+    };
+    getActorByPhim();
+  }, [phimID]);
   
   useEffect(() => {
     const getPhimDetail = () => {
@@ -38,6 +47,17 @@ export default function Description() {
           <div className="category__item">
             <p className="category__name">Định dạng</p>
             <p className="category__content">2D/Digital</p>
+          </div>
+          <div className="category__item">
+          <p className="category__name">Diễn viên</p>
+            {
+              React.Children.toArray(
+                actor.result.map(e =>(
+                  <p className="category__content">{e.ten_dien_vien},</p>
+                ))
+              )
+            }
+            
           </div>
         </div>
         <div className="info__content col-md-6 col-sm-12">

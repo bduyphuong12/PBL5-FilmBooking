@@ -5,10 +5,20 @@ import { useLocation } from "react-router-dom";
 
 export default function TableCornAndWater() {
     const getUrlPhim= window.location.href.split("/");
-    const phimID = getUrlPhim[getUrlPhim.length - 2]
-    const roomID = getUrlPhim[getUrlPhim.length - 1]
+    const phimID = getUrlPhim[getUrlPhim.length - 3]
+    const roomID = getUrlPhim[getUrlPhim.length - 2]
+    const id = getUrlPhim[getUrlPhim.length-1]
     const location = useLocation()
     const [lcByRoomPhimID,setlcByRoomPhimID] = useState(null);
+    const [lcbyid,setlcbyid] = useState(null);
+    useEffect(() => {
+      const getLCID = () => {
+        axios.get('/lc/detail/' + id ).then(res => {
+          setlcbyid(res.data);
+        })
+      }
+      getLCID();
+    },[id]);
     useEffect(() => {
       const getLCByRoomPhimID = () => {
         axios.get('/lc/getlc/' + phimID + '/'+ roomID ).then(res => {
@@ -28,7 +38,7 @@ export default function TableCornAndWater() {
       getPhimDetail();
     },[phimID]);
 
-    console.log(location.state)
+    
   return (
     <div>
       <div className="container-fluid bg-light" style={{ paddingTop: 20 }}>
@@ -36,6 +46,7 @@ export default function TableCornAndWater() {
           <CornAndWater 
             lcByRoomPhimID={lcByRoomPhimID}
             phimDetail={phimDetail}
+            lcbyid={lcbyid}
           />
         </div>
       </div>

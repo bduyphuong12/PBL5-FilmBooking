@@ -30,11 +30,39 @@ export default function ShowTime() {
     }
     
     if(lcDetail){
+      
       var newArray = lcDetail.result.filter(function (el) {
         return xuliDay(el.thoi_gian_chieu).toString().substring(0,10).indexOf(dateLC) > -1;
       });
+      var newArr2 = newArray
+      if(newArray[0]!==undefined){
+        if(xuliDay(newArray[0].thoi_gian_chieu).localeCompare(getTimeNow())===0){
+          newArr2 =newArray.filter(e =>{
+           return !checkTimeNow(xuliDate(e.thoi_gian_chieu))
+           
+           
+          })
+          
+        }
+      }
+      
     }
-    console.log(newArray);
+    
+    function xuliDate(val){
+      var date = new Date(val);
+      var hour = date.getHours();
+      var minute = date.getMinutes();
+      
+      if (hour < 10) {
+        hour = '0' + hour;
+      }
+      if (minute < 10) {
+        minute = '0' + minute;
+      }
+      var daytime = hour+':'+ minute;
+      return(daytime);
+    }
+
     function xuliDay(val){
       var date = new Date(val);
       var year = date.getFullYear();
@@ -50,21 +78,59 @@ export default function ShowTime() {
       var day = year+'-' + month + '-'+dt;
       return(day);
     }
-    
+    function getTimeNow(){
+      var date = new Date();
+      var year = date.getFullYear();
+      var month = date.getMonth()+1;
+      var dt = date.getDate();
+      
+      if (dt < 10) {
+        dt = '0' + dt;
+      }
+      if (month < 10) {
+        month = '0' + month;
+      }
+      var day = year+'-' + month + '-'+dt;
+      return(day);
+    }
+    function checkTimeNow(timeLC){
+      var date = new Date();
+      var hour = date.getHours();
+      var minute = date.getMinutes();
+      
+      if (hour < 10) {
+        hour = '0' + hour;
+      }
+      if (minute < 10) {
+        minute = '0' + minute;
+      }
+      const myArray = timeLC.split(":");
+      if(parseInt(myArray[0])-parseInt(hour)>0){
+        return false;
+      }else if(parseInt(myArray[0])-parseInt(hour)===0){
+        if(parseInt(myArray[1])-parseInt(minute)>0){
+          return false;
+        }else{
+          return true;
+        }
+      }else{
+        return true;
+      }
+    }
     
 
   const renderTime = () => {
-    if (newArray) {
+    if (newArr2) {
       return (
         <div>
           {React.Children.toArray(
-            newArray.map((d) => (
+            newArr2.map((d) => (
               <ul className=" flex-wrapp">
                 <div className="timeshow__item">
                   {user ? (
                     <NavLink
                       className="timeshow__link"
-                      to={"/booking/" + d.id_phim + "/" + d.room_id}
+                      to={"/booking/" + d.id_phim + "/" + d.room_id + '/'+d.id}
                     >
                       <div className="time__begin mb-2">
                       
