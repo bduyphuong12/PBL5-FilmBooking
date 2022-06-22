@@ -34,6 +34,7 @@ require("./src/routers/seat.router")(app);
 require("./src/routers/seatNum.router")(app);
 require("./src/routers/room.router")(app);
 require("./src/routers/admin.router")(app);
+require("./src/routers/userPer.router")(app);
 
 app.listen(5000, function () {
   console.log("Server listening on http://localhost:5000");

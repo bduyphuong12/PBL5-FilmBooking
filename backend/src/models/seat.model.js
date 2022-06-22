@@ -37,7 +37,7 @@ Seat.getByRoomId = function (id, result) {
 };
 
 Seat.resetByIdRoom = function (id, result) {
-    db.query("UPDATE seat_no INNER JOIN seat on seat_no.Seat_Id = seat.Seat_Id INNER JOIN room on seat.Room_Id = room.Room_Id SET seat_no.Seat_status = 'null' WHERE room.Room_Id = ?", id, function (err, phim) {
+    db.query("UPDATE seat_no INNER JOIN seat on seat_no.Seat_Id = seat.Seat_Id INNER JOIN room on seat.Room_Id = room.Room_Id SET seat_no.Status = 'null' WHERE room.Room_Id = ?", id, function (err, phim) {
         if (err) {
             result(null);
             console.log(err);
