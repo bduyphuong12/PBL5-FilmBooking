@@ -10,7 +10,7 @@ const InfoHoaDon = ({ dataHD }) => {
       });
     };
     getMatHang();
-  });
+  },[dataHD]);
   if (dataMatHang) {
     return (
       <>
