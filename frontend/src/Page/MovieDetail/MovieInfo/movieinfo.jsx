@@ -17,6 +17,8 @@ export default function MovieInfo() {
     };
     getPhimDetail();
   }, [phimID]);
+  
+  
   const renderStar = (rating) => {
     if (rating > 5) rating = 5;
     var content = [];

@@ -24,7 +24,7 @@ export default function BookingTicket(props) {
   useEffect(() => {
     const getLCByRoomPhimID = () => {
       axios.get('/lc/getlc/' + phimID + '/'+ roomID ).then(res => {
-        setlcByRoomPhimID(res.data);
+        setlcByRoomPhimID(res.data.result[0]);
       })
     }
     getLCByRoomPhimID();
@@ -34,7 +34,7 @@ export default function BookingTicket(props) {
   useEffect(() => {
     const getPhimDetail = () => {
       axios.get('/phim/detail/' + phimID).then(res => {
-        setPhimDetail(res.data);
+        setPhimDetail(res.data.result[0]);
       })
     }
     getPhimDetail();

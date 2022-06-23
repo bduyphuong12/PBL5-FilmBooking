@@ -69,5 +69,15 @@ Phim.update = function (u, result) {
         }
     })
 };
-
+Phim.update_sove = function (id, soVe, result) {  
+    db.query("update phim set so_ve=? where id_phim = ?", [soVe, id], function(err, u){
+        console.log(err)
+        if (err) {
+            console.log(err);
+            result(err);
+        } else {
+            result(u);
+        }
+    })
+};
 module.exports = Phim;

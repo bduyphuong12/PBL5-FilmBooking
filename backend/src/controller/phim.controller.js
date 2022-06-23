@@ -35,5 +35,12 @@ exports.update_phim = function(req, res) {
         res.send({ result: response});
     });
  }
+ exports.update_sove = function (req, res) {
+    var id = req.params.id;
+    var soVe = req.params.sove;
+    Phim.update_sove(id, soVe, function (response) {
+        res.send({ result: response });
+    })
+}
 
 

@@ -1,14 +1,13 @@
 import React, { Fragment, useState, useEffect } from "react";
 import CornAndWater from "./CornAWater/cornandwater";
 import axios from 'axios';
-import { useLocation } from "react-router-dom";
+
 
 export default function TableCornAndWater() {
     const getUrlPhim= window.location.href.split("/");
     const phimID = getUrlPhim[getUrlPhim.length - 3]
     const roomID = getUrlPhim[getUrlPhim.length - 2]
     const id = getUrlPhim[getUrlPhim.length-1]
-    const location = useLocation()
     const [lcByRoomPhimID,setlcByRoomPhimID] = useState(null);
     const [lcbyid,setlcbyid] = useState(null);
     useEffect(() => {
@@ -32,7 +31,7 @@ export default function TableCornAndWater() {
     useEffect(() => {
       const getPhimDetail = () => {
         axios.get('/phim/detail/' + phimID).then(res => {
-          setPhimDetail(res.data);
+          setPhimDetail(res.data.result[0]);
         })
       }
       getPhimDetail();

@@ -9,3 +9,17 @@ var pool = mysql.createPool({
 pool.query('select 1 + 1', (err, rows) => { /* */ });
 
 module.exports = pool;
+// var mysql = require('mysql');
+
+// var connection = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: '',
+//     database: 'pbl5'
+// });
+
+// connection.connect(function (err, connection) {
+//     if(err) console.log("ket noi that bai");
+// });
+
+// module.exports = connection;

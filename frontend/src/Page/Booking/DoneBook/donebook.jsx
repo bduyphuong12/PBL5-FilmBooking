@@ -10,7 +10,13 @@ function DoneBook() {
   const phimID = getUrlPhim[getUrlPhim.length - 3]
   const roomID = getUrlPhim[getUrlPhim.length - 2]
   const id = getUrlPhim[getUrlPhim.length-1]
+  const [phimDetail,setPhimDetail] = useState(null);
+  const user = useSelector((state) => state.auth.login.currentUser);
+  const iduser = user.ID_User
+  const soGhe = localStorage.getItem('soGhe')
+  const [DetailGD, setDetailGD] = useState(null);
   const [lcbyid,setlcbyid] = useState(null);
+  const [lcByRoomPhimID,setlcByRoomPhimID] = useState(null);
     useEffect(() => {
       const getLCID = () => {
         axios.get('/lc/detail/' + id ).then(res => {
@@ -20,7 +26,7 @@ function DoneBook() {
       getLCID();
     },[id]);
  
-  const [lcByRoomPhimID,setlcByRoomPhimID] = useState(null);
+  
   useEffect(() => {
     const getLCByRoomPhimID = () => {
       axios.get('/lc/getlc/' + phimID + '/'+ roomID ).then(res => {
@@ -30,7 +36,6 @@ function DoneBook() {
     getLCByRoomPhimID();
   },[phimID,roomID]);
   
-  const [phimDetail,setPhimDetail] = useState(null);
   useEffect(() => {
     const getPhimDetail = () => {
       axios.get('/phim/detail/' + phimID).then(res => {
@@ -40,29 +45,42 @@ function DoneBook() {
     getPhimDetail();
   },[phimID]);
   
-  const user = useSelector((state) => state.auth.login.currentUser);
-  const soGhe = localStorage.getItem('soGhe')
-  const idGd = localStorage.getItem('idgd')
+  useEffect(() => {
+    const getDetailGD = () => {
+      axios.get('/dg/getByIdUser/' + iduser ).then(res => {
+        setDetailGD(res.data.result);
+      })
+    }
+    getDetailGD();
+  },[iduser]);  
+  
+  var id_gd;
+  if (DetailGD){
+     id_gd = DetailGD[DetailGD.length-1].id
+  }
+  
+  // const idGd = localStorage.getItem('idgd')
+  // console.log(idGd)
   const [gd,setGd] = useState(null)
   useEffect(() => {
     const getgd = () => {
-      axios.get('/dg/detail/' + idGd).then(res => {
+      axios.get('/dg/detail/' + id_gd).then(res => {
         setGd(res.data.result[0]);
       })
     }
     getgd();
-  },[idGd]);
+  },[id_gd]);
   
-  if(phimDetail ){
+  if(phimDetail && lcbyid && gd){
     return (
       <div>
         <header className='doneBook'>
-            <p>Chúc mừng bạn đã đặt vé thành công</p>
-            <h4>Lưu ý: Hãy chụp mã QR Code này rồi đưa mã cho nhân viên bán vé để kiểm tra thông tin</h4>
+            <h3>Chúc mừng bạn đã đặt vé thành công</h3>
+            <h4>Lưu ý: Hãy chụp mã QR Code này rồi đưa mã cho nhân viên bán vé để kiểm tra thông tin!</h4>
           <div>
             <QRCode
               id='qrcode'
-              value={ 'idGD: '+ idGd + '.   ' +'idUser: ' + user.ID_User +'.    ' + 'Time: ' + moment(lcbyid.thoi_gian_chieu).format("DD/MM/yyyy hh:mm A") + '.    ' +  'Room: ' + lcByRoomPhimID.room_id + '.    ' +   'Seat: ' + soGhe + '.   '+'Total: ' + gd.so_tien +'000' 
+              value={ 'idGD: '+ id_gd + '.   ' +'idUser: ' + user.ID_User +'.    ' + 'Time: ' + moment(lcbyid.thoi_gian_chieu).format("DD/MM/yyyy hh:mm A") + '.    ' +  'Room: ' + lcByRoomPhimID.room_id + '.    ' +   'Seat: ' + soGhe + '.   '+'Total: ' + gd.so_tien +'000' 
                
             
             }

@@ -3,6 +3,7 @@ import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import "./CreditModal.scss";
 import { Link } from "react-router-dom";
+
 export default class CreditModal extends Component {
   state = {
     cvc: "",
@@ -10,7 +11,10 @@ export default class CreditModal extends Component {
     focus: "",
     name: "",
     number: "",
+    msg: ""
   };
+  
+  
   handleInputFocus = (e) => {
     this.setState({ focus: e.target.name });
   };
@@ -64,8 +68,9 @@ export default class CreditModal extends Component {
                             className="w-100"
                             onChange={this.handleInputChange}
                             onFocus={this.handleInputFocus}
+                            
                           />
-                          <div className="placeholder">Card Number</div>
+                          <div className="cardnum">Card Number</div>
                         </div>
                         <div className="row">
                           <div className="col-6" style={{ paddingRight: 0 }}>
@@ -76,7 +81,7 @@ export default class CreditModal extends Component {
                                 onChange={this.handleInputChange}
                                 onFocus={this.handleInputFocus}
                               />
-                              <div className="placeholder">Valid</div>
+                              <div className="valid">Valid</div>
                             </div>
                           </div>
                           <div className="col-6">
@@ -87,7 +92,7 @@ export default class CreditModal extends Component {
                                 onChange={this.handleInputChange}
                                 onFocus={this.handleInputFocus}
                               />
-                              <div className="placeholder">CVC</div>
+                              <div className="cvc">CVC</div>
                             </div>
                           </div>
                         </div>
@@ -99,7 +104,7 @@ export default class CreditModal extends Component {
                             onChange={this.handleInputChange}
                             onFocus={this.handleInputFocus}
                           />
-                          <div className="placeholder">Name</div>
+                          <div className="name">Name</div>
                         </div>
                       </form>
                     </div>

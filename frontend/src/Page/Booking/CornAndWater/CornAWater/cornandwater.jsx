@@ -16,13 +16,14 @@ function CornAndWater({lcByRoomPhimID,phimDetail,lcbyid}) {
   const getUrlPhim= window.location.href.split("/");
   const phimID = getUrlPhim[getUrlPhim.length - 3]
   const roomID = getUrlPhim[getUrlPhim.length - 2]
-  const idPhim = getUrlPhim[getUrlPhim.length-1]
+  const idlc = getUrlPhim[getUrlPhim.length-1]
 
   const [item, setItem] =  useState(null);
   var subTotal = localStorage.getItem('gia')
   
   const soGhe = localStorage.getItem('soGhe')
   const seatID = localStorage.getItem('IDGhe')
+
   
   var seatIdArray = seatID.split(',').map(Number);
   
@@ -35,6 +36,7 @@ function CornAndWater({lcByRoomPhimID,phimDetail,lcbyid}) {
   const total = () =>{
     return totalAll
   }
+  
   useEffect(() => {
     const getItem = () => {
       axios.get('/mh/list' ).then(res => {
@@ -52,59 +54,24 @@ function CornAndWater({lcByRoomPhimID,phimDetail,lcbyid}) {
     id_user: user.ID_User,
     so_tien: totalAll/1000
   }
-  const id = data.id;
-  const getIdGd = (id,totalAll) =>{
-    localStorage.setItem('idgd',id_gd)
-    
-  }
- 
   
-  
-  const iduser = user.ID_User;
   const [DetailGD, setDetailGD] = useState(null);
-  useEffect(() => {
-    const getDetailGD = () => {
-      axios.get('/dg/getByIdUser/' + iduser ).then(res => {
-        setDetailGD(res.data.result);
-      })
-    }
-    getDetailGD();
-  },[iduser]);  
   
-  var id_gd;
-  if (DetailGD){
-     id_gd = DetailGD[DetailGD.length-1].id
-  }
-  const dataDetailGDVe = {
-    id: null,
-    id_giao_dich: id_gd,
-    id_hang: '1',
-    so_luong:sbTotal/50000
-  }
-  const dataDetailGDN = {
-    id: null,
-    id_giao_dich: id_gd,
-    id_hang: '2',
-    so_luong:countN
-  }
-  const dataDetailGDB = {
-    id: null,
-    id_giao_dich: id_gd,
-    id_hang: '3',
-    so_luong:countB
-  }
-  const dataDetailGDCB1 = {
-    id: null,
-    id_giao_dich: id_gd,
-    id_hang: '4',
-    so_luong:countCB1
-  }
-  const dataDetailGDCB2 = {
-    id: null,
-    id_giao_dich: id_gd,
-    id_hang: '5',
-    so_luong:countCB2
-  }
+    
+
+   
+  // const getDetailGD = () => {
+  //   axios.get('/dg/getByIdUser/' + iduser ).then(res => {
+  //     setDetailGD(res.data.result);
+  //   })
+  // }
+  
+  
+  
+  
+    
+    
+    
   const datVe = async () => {
     
       swal({
@@ -113,12 +80,51 @@ function CornAndWater({lcByRoomPhimID,phimDetail,lcbyid}) {
         icon: "warning",
         buttons: true,
         dangerMode: true,
-      }).then((willDelete) => {
+      }).then( async (willDelete) => {
         if (willDelete) {
           swal("Thanh toán thành công! Chúc bạn xem phim vui vẻ", {
             icon: "success",
           });
-           axios.post('/dg/add',data)
+          await axios.post('/dg/add',data)
+           var getIDGD = null;
+            getIDGD = await axios.get('/dg/getByIdUser/' + user.ID_User )
+           
+           var id_gd;
+           if (getIDGD.data){
+             id_gd = getIDGD.data.result[getIDGD.data.result.length-1].id
+          } 
+          
+          const dataDetailGDVe = {
+            id: null,
+            id_giao_dich: id_gd,
+            id_hang: '1',
+            so_luong:sbTotal/50000
+          }
+          
+        const dataDetailGDN = {
+          id: null,
+          id_giao_dich: id_gd,
+          id_hang: '2',
+          so_luong:countN
+        }
+        const dataDetailGDB = {
+          id: null,
+          id_giao_dich: id_gd,
+          id_hang: '3',
+          so_luong:countB
+        }
+        const dataDetailGDCB1 = {
+          id: null,
+          id_giao_dich: id_gd,
+          id_hang: '4',
+          so_luong:countCB1
+        }
+        const dataDetailGDCB2 = {
+          id: null,
+          id_giao_dich: id_gd,
+          id_hang: '5',
+          so_luong:countCB2
+        }
            axios.post('/ctdg/add',dataDetailGDVe)
            if(countN>0){
             axios.post('/ctdg/add',dataDetailGDN)
@@ -132,17 +138,17 @@ function CornAndWater({lcByRoomPhimID,phimDetail,lcbyid}) {
            if(countCB2>0){
             axios.post('/ctdg/add',dataDetailGDCB2)
            }
-           seatIdArray.forEach(e => {
-            axios.put('/seat/updatePo/', e)
-           });
-           
-
-          seatIdArray.forEach(id => {
+           const updateSove =  {
+            id_phim:phimDetail.id_phim,
+            so_ve: phimDetail? phimDetail.so_ve + sbTotal/50000:0
+          }
+            axios.put(`/phim/updatesove/${updateSove.id_phim}/${updateSove.so_ve}`);
+           seatIdArray.forEach(id => {
             axios.put(`/seat/updatePo/${id}`)
           });
 
           setTimeout(() => {
-            window.location.assign('/donebook/'+phimID+'/'+roomID+'/'+idPhim);
+            window.location.assign('/donebook/'+phimID+'/'+roomID+'/'+idlc);
           }, 2000);
         } else {
           swal("Chọn lại nào!");
@@ -152,7 +158,7 @@ function CornAndWater({lcByRoomPhimID,phimDetail,lcbyid}) {
     
 };
   
-  if(phimDetail){
+  if(phimDetail && item && lcbyid){
     return (
       <>
         <div className="content">
@@ -222,10 +228,10 @@ function CornAndWater({lcByRoomPhimID,phimDetail,lcbyid}) {
           </div>
           <div className="film__info">
             <span className="film__age--C">
-              Rạp {lcByRoomPhimID.result[0].room_id}
+              Rạp {roomID}
             </span>
             <span className="film__name">
-            {phimDetail.result[0].ten_phim}
+            {phimDetail.ten_phim}
             </span>
             <p className="film__detail">
             {moment(lcbyid.result[0].thoi_gian_chieu).format("DD/MM/yyyy")}  {moment(lcbyid.result[0].thoi_gian_chieu).format("hh:mm A")}
@@ -275,7 +281,7 @@ function CornAndWater({lcByRoomPhimID,phimDetail,lcbyid}) {
           className="btnBook"
           data-toggle="modal"
           data-target="#CreditModal"
-          onClick={getIdGd(id)}
+          
         >
           Đặt vé
         </div>

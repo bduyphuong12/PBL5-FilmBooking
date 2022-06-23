@@ -11,4 +11,5 @@ module.exports = function (router) {
     router.delete("/phim/delete/:id", phimController.remove_phim);
 
     router.put("/phim/update", phimController.update_phim);
+    router.put("/phim/updatesove/:id/:sove", phimController.update_sove);
 }

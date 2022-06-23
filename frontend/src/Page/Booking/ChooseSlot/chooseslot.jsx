@@ -105,7 +105,7 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail,lcbyid}) {
 
  
 
-  if(phimDetail  ){
+  if(phimDetail && lcbyid ){
     return (
       <>
       <div className="checkOut__left col-md-9 col-sm-12 p-0">
@@ -113,15 +113,15 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail,lcbyid}) {
           <div className="bookSlot__content">
             <div className="theater__info d-flex justify-content-between">
               <div className="theater__img d-flex bg-light">
-                <img src={phimDetail.result[0].poster} alt="hinhanh" />
+                <img src={phimDetail.poster} alt="hinhanh" />
                 <div className="theater__name">
                   <span className="name">
                     <span className="subname">
-                      Rạp {lcByRoomPhimID.result[0].room_id}
+                      Rạp {roomID}
                     </span>
                   </span>
                   <p className="showtime">
-                    Giờ chiếu: {moment(lcbyid.result[0].thoi_gian_chieu).format("hh:mm A")}
+                    Giờ chiếu: {moment(lcbyid.thoi_gian_chieu).format("hh:mm A")}
                   </p>
                 </div>
               </div>
@@ -168,13 +168,13 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail,lcbyid}) {
           </div>
           <div className="film__info">
             <span className="film__age--C">
-              Rạp {lcByRoomPhimID.result[0].room_id}
+              Rạp {lcByRoomPhimID.room_id}
             </span>
             <span className="film__name">
-              {phimDetail.result[0].ten_phim}
+              {phimDetail.ten_phim}
             </span>
             <p className="film__detail">
-            {moment(lcbyid.result[0].thoi_gian_chieu).format("DD/MM/yyyy")}  {moment(lcbyid.result[0].thoi_gian_chieu).format("hh:mm A")}
+            {moment(lcbyid.thoi_gian_chieu).format("DD/MM/yyyy")}  {moment(lcbyid.result[0].thoi_gian_chieu).format("hh:mm A")}
             
             </p>
            
@@ -224,7 +224,7 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail,lcbyid}) {
         <div>
         <Link
           className="btnContinue"
-          to={'/cornAwater/'+ lcByRoomPhimID.result[0].id_phim + '/'+ lcByRoomPhimID.result[0].room_id + '/'+lcbyid.result[0].id
+          to={'/cornAwater/'+ lcByRoomPhimID.id_phim + '/'+ lcByRoomPhimID.room_id + '/'+lcbyid.result[0].id
             
           }
           
