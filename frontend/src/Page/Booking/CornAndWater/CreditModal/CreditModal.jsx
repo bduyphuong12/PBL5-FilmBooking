@@ -3,7 +3,7 @@ import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import "./CreditModal.scss";
 import { Link } from "react-router-dom";
-
+import isEmpty from "validator/lib/isEmpty";
 export default class CreditModal extends Component {
   state = {
     cvc: "",
@@ -11,10 +11,9 @@ export default class CreditModal extends Component {
     focus: "",
     name: "",
     number: "",
-    msg: ""
   };
   
-  
+ 
   
   handleInputFocus = (e) => {
     this.setState({ focus: e.target.name });
@@ -69,9 +68,10 @@ export default class CreditModal extends Component {
                             className="w-100"
                             onChange={this.handleInputChange}
                             onFocus={this.handleInputFocus}
-                            
+                            onBlur={this.validate}
                           />
                           <div className="cardnum">Card Number</div>
+                          <div style={{ fontSize: 12, color: "red" }} className='Error' >{this.state.numberError}</div>
                         </div>
                         <div className="row">
                           <div className="col-6" style={{ paddingRight: 0 }}>
@@ -120,7 +120,11 @@ export default class CreditModal extends Component {
                   type="button"
                   className="btn-style draw-border"
                   onClick={() => {
-                    this.props.datVe();
+                    
+                    
+                      this.props.datVe();
+                   
+                    
                     // alert('Đặt vé thành công, chúc bạn xem phim vui vẻ.')
                   }}
                 >

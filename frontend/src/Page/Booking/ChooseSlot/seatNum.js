@@ -13,7 +13,7 @@ const SeatNum = ({seatId,seatName,clickFunc,closeRoom}) => {
     let newArr = [...activeList];                    
     newArr[id] = !activeList[id];                    
     setActiveList(newArr);        
-    console.log(newArr.length *10)                   
+                   
   };                                                 
      useEffect(() => {
         const getSeatCol = async () => {

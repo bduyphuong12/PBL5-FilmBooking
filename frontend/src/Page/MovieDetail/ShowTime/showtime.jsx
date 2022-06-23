@@ -15,7 +15,7 @@ export default function ShowTime() {
   useEffect(() => {
     const getLCDetail = () => {
       axios.get("/lc/getByIdPhim/" + phimID).then((res) => {
-        setLCPhimDetail(res.data);
+        setLCPhimDetail(res.data.result);
       });
     };
     getLCDetail();
@@ -30,17 +30,15 @@ export default function ShowTime() {
     }
     
     if(lcDetail){
-      
-      var newArray = lcDetail.result.filter(function (el) {
+      var newArray = null;
+      newArray = lcDetail.filter(function (el)  {
         return xuliDay(el.thoi_gian_chieu).toString().substring(0,10).indexOf(dateLC) > -1;
       });
       var newArr2 = newArray
       if(newArray[0]!==undefined){
         if(xuliDay(newArray[0].thoi_gian_chieu).localeCompare(getTimeNow())===0){
           newArr2 =newArray.filter(e =>{
-           return !checkTimeNow(xuliDate(e.thoi_gian_chieu))
-           
-           
+           return !checkTimeNow(xuliDate(e.thoi_gian_chieu))  
           })
           
         }
@@ -120,7 +118,7 @@ export default function ShowTime() {
     
 
   const renderTime = () => {
-    if (newArr2) {
+    if (newArr2 ) {
       return (
         <div>
           {React.Children.toArray(
@@ -153,78 +151,82 @@ export default function ShowTime() {
       );
     }
   };
-
-  return (
-    <section className="tabBookMovie">
-      <div className="container">
-        <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-          <li className="nav-item">
-            <a
-              className="nav-link active"
-              id="pills-home-tab"
-              data-toggle="pill"
-              href="#pills-schedule"
-              role="tab"
-              aria-controls="pills-schedule"
-              aria-selected="true"
+  if(lcDetail) {
+    return (
+      <section className="tabBookMovie">
+        <div className="container">
+          <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li className="nav-item">
+              <a
+                className="nav-link active"
+                id="pills-home-tab"
+                data-toggle="pill"
+                href="#pills-schedule"
+                role="tab"
+                aria-controls="pills-schedule"
+                aria-selected="true"
+              >
+                Lịch Chiếu
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                className="nav-link"
+                id="pills-profile-tab"
+                data-toggle="pill"
+                href="#pills-info"
+                role="tab"
+                aria-controls="pills-info"
+                aria-selected="false"
+              >
+                Thông Tin
+              </a>
+            </li>
+            
+          </ul>
+          {/* TAB LỊCH CHIẾU */}
+          <div id="movieTheater" className="tab-content">
+            <div
+              className="tab-pane fade show active"
+              id="pills-schedule"
+              role="tabpanel"
+              aria-labelledby="pills-schedule-tab"
             >
-              Lịch Chiếu
-            </a>
-          </li>
-          <li className="nav-item">
-            <a
-              className="nav-link"
-              id="pills-profile-tab"
-              data-toggle="pill"
-              href="#pills-info"
-              role="tab"
-              aria-controls="pills-info"
-              aria-selected="false"
-            >
-              Thông Tin
-            </a>
-          </li>
-          
-        </ul>
-        {/* TAB LỊCH CHIẾU */}
-        <div id="movieTheater" className="tab-content">
-          <div
-            className="tab-pane fade show active"
-            id="pills-schedule"
-            role="tabpanel"
-            aria-labelledby="pills-schedule-tab"
-          >
-            <div className="movieTheater__row row bg-light">
-              <div className="row__left col-md-4 col-sm-12">
+              <div className="movieTheater__row row bg-light">
+                <div className="row__left col-md-4 col-sm-12">
+                  <div
+                    className="nav flex-column nav-pills"
+                    id="v-pills-rap"
+                    role="tablist"
+                    aria-orientation="vertical"
+                  >
+                    <Lichchieu openInfo={openModal} />
+                  </div>
+                </div>
                 <div
-                  className="nav flex-column nav-pills"
-                  id="v-pills-rap"
-                  role="tablist"
-                  aria-orientation="vertical"
+                  className="tab-content col-md-8 col-sm-12"
+                  id="v-pills-tabContent"
                 >
-                  <Lichchieu openInfo={openModal} />
+                  {renderTime()}
                 </div>
               </div>
-              <div
-                className="tab-content col-md-8 col-sm-12"
-                id="v-pills-tabContent"
-              >
-                {renderTime()}
-              </div>
             </div>
+            {/**Thông tin */}
+            <div
+              className="tab-pane fade"
+              id="pills-info"
+              role="tabpanel"
+              aria-labelledby="pills-info-tab"
+            >
+              <Description />
+            </div>
+            
           </div>
-          {/**Thông tin */}
-          <div
-            className="tab-pane fade"
-            id="pills-info"
-            role="tabpanel"
-            aria-labelledby="pills-info-tab"
-          >
-            <Description />
-          </div>
-          
         </div>
-      </div>
-    </section>
-  );
-}
+      </section>
+    );
+  }
+  
+
+  }
+ 

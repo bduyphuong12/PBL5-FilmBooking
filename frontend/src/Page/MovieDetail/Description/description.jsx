@@ -24,7 +24,7 @@ export default function Description() {
     }
     getPhimDetail();
   },[phimID]);
-  if(phimDetail){
+  if(phimDetail && actor){
     return (
       <div className="row__above row">
         <div className="info__category col-md-6 col-sm-12">

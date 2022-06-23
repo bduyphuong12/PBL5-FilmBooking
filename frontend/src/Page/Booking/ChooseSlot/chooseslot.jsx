@@ -105,7 +105,7 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail,lcbyid}) {
 
  
 
-  if(phimDetail && lcbyid ){
+  if(phimDetail && lcbyid && lcByRoomPhimID){
     return (
       <>
       <div className="checkOut__left col-md-9 col-sm-12 p-0">
@@ -168,7 +168,7 @@ export default function ChooseSlot({lcByRoomPhimID,phimDetail,lcbyid}) {
           </div>
           <div className="film__info">
             <span className="film__age--C">
-              Rạp {lcByRoomPhimID.room_id}
+              Rạp {roomID}
             </span>
             <span className="film__name">
               {phimDetail.ten_phim}
