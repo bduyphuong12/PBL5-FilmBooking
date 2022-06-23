@@ -15,6 +15,7 @@ export default class CreditModal extends Component {
   };
   
   
+  
   handleInputFocus = (e) => {
     this.setState({ focus: e.target.name });
   };

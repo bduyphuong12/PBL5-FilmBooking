@@ -1,5 +1,5 @@
 import React from 'react'
-import './lichchieu.css'
+import './lichchieu.scss'
 var arr = Array(7).fill(0);
 export default function Lichchieu({openInfo}) {
     const daily = ["CHỦ NHẬT", "THỨ HAI", "THỨ BA", "THỨ TƯ","THỨ NĂM","THỨ SÁU","THỨ BẢY"];
@@ -8,14 +8,14 @@ export default function Lichchieu({openInfo}) {
     let day = d.getDay();
     getValueDay(day);
   return (
-    <div>
-        <a  className={arr[0]==0?'item-lichchieu sunday':'item-lichchieu'} onClick={function(event){openInfo(0)}}>{daily[arr[0]]}</a>
-        <a className={arr[1]==0?'item-lichchieu sunday':'item-lichchieu'} onClick={function(event){openInfo(1)}}>{daily[arr[1]]}</a>
-        <a className={arr[2]==0?'item-lichchieu sunday':'item-lichchieu'} onClick={function(event){openInfo(2)}}>{daily[arr[2]]}</a>
-        <a className={arr[3]==0?'item-lichchieu sunday':'item-lichchieu'} onClick={function(event){openInfo(3)}}>{daily[arr[3]]}</a>
-        <a className={arr[4]==0?'item-lichchieu sunday':'item-lichchieu'} onClick={function(event){openInfo(4)}}>{daily[arr[4]]}</a>
-        <a className={arr[5]==0?'item-lichchieu sunday':'item-lichchieu'} onClick={function(event){openInfo(5)}}>{daily[arr[5]]}</a>
-        <a className={arr[6]==0?'item-lichchieu sunday':'item-lichchieu'} onClick={function(event){openInfo(6)}}>{daily[arr[6]]}</a>
+    <div className='item'>
+        <a activeClassName="active" className ={arr[0]==0?'item-lichchieu sunday':'item-lichchieu'} onClick={function(event){openInfo(0)}}>{daily[arr[0]]}</a>
+        <a activeClassName="active" className={arr[1]==0?'item-lichchieu sunday':'item-lichchieu'} onClick={function(event){openInfo(1)}}>{daily[arr[1]]}</a>
+        <a activeClassName="active" className={arr[2]==0?'item-lichchieu sunday':'item-lichchieu'} onClick={function(event){openInfo(2)}}>{daily[arr[2]]}</a>
+        <a activeClassName="active" className={arr[3]==0?'item-lichchieu sunday':'item-lichchieu'} onClick={function(event){openInfo(3)}}>{daily[arr[3]]}</a>
+        <a activeClassName="active" className={arr[4]==0?'item-lichchieu sunday':'item-lichchieu'} onClick={function(event){openInfo(4)}}>{daily[arr[4]]}</a>
+        <a activeClassName="active" className={arr[5]==0?'item-lichchieu sunday':'item-lichchieu'} onClick={function(event){openInfo(5)}}>{daily[arr[5]]}</a>
+        <a activeClassName="active" className={arr[6]==0?'item-lichchieu sunday':'item-lichchieu'} onClick={function(event){openInfo(6)}}>{daily[arr[6]]}</a>
     </div>
   )
 }
